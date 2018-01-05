@@ -29,7 +29,14 @@ alias c3='nvim ~/.config/i3/config'
 alias cvi='nvim ~/.config/nvim/init.vim'
 alias cqb='nvim ~/.config/qutebrowser/config.py'
 alias cb='nvim ~/.bashrc'
+alias cba='nvim ~/.bash_aliases'
 alias cwee='nvim ~/.weechat/weechat.conf'
+
+# Yadm - Yet another dotfile manager
+alias dotcom='yadm commit -am'
+alias dotadd='yadm add'
+alias dotpus='yadm push'
+alias dotpul='yadm pull'
 
 # Touchpad
 alias padoff='synclient TouchpadOff=1'
