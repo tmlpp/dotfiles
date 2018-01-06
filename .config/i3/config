@@ -297,4 +297,3 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 3
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id numlockx
 exec --no-startup-id dropbox
-exec --no-startup-id xrdb .Xdefaults
