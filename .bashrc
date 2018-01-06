@@ -15,4 +15,4 @@ fi
 
 # bash-git-prompt from https://github.com/magicmonty/bash-git-prompt
 GIT_PROMPT_ONLY_IN_REPO=1
-source ~/.bash-git-prompt/gitprompt.sh
+source ~/source/.bash-git-prompt/gitprompt.sh
