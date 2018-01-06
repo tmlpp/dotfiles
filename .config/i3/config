@@ -100,7 +100,7 @@ bindsym Shift+$mod+l                move right
 # bindsym Control+Shift+$mod+m      notinuse
 
 ### N ###
-# bindsym $mod+n                    notinuse
+bindsym $mod+n                      workspace next
 # bindsym Shift+$mod+n              notinuse
 # bindsym Control+$mod+n            notinuse
 # bindsym Control+Shift+$mod+n      notinuse
@@ -112,7 +112,7 @@ bindsym Shift+$mod+o                resize grow width 5 px or 5 ppt
 # bindsym Control+Shift+$mod+o      notinuse
 
 ### P ###
-# bindsym $mod+p                    notinuse
+bindsym $mod+p                      workspace prev
 # bindsym Shift+$mod+p              notinuse
 # bindsym Control+$mod+p            notinuse
 # bindsym Control+Shift+$mod+p      notinuse

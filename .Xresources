@@ -64,7 +64,7 @@ Xft.hintstyle: hintslight
 
 !! === other stuff ===
 URxvt.scrollBar: false
-URxvt.fading: 15
+URxvt.fading: 0
 URxvt.perl-ext:           default,matcher
 URxvt.url-launcher:       qutebrowser
 URxvt.keysym.C-Delete:    perl:matcher:last
