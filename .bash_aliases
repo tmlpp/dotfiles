@@ -32,15 +32,10 @@ alias cb='nvim ~/.bashrc'
 alias cba='nvim ~/.bash_aliases'
 alias cwee='nvim ~/.weechat/weechat.conf'
 
-# Yadm - Yet another dotfile manager
-alias dotcom='yadm commit -am'
-alias dotadd='yadm add'
-alias dotpus='yadm push'
-alias dotpul='yadm pull'
-alias dotbra='yadm branch'
-alias dotche='yadm checkout'
-alias dotmer='yadm merge'
-alias dotsta='yadm status'
+# Yadm and git
+alias y='yadm'
+alias g='git'
+
 # Touchpad
 alias padoff='synclient TouchpadOff=1'
 alias padon='synclient TouchpadOff=0'
