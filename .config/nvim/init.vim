@@ -22,6 +22,7 @@ noremap <Leader>s :update<CR>
 noremap <Leader>ss :update<CR>:quit<CR>
 noremap <Leader>q :quit!<CR>
 noremap <Leader>c "+y
+noremap <Leader>cc :%y+<CR>
 
 let g:limelight_conceal_ctermfg = '240'
 let g:pencil#wrapModeDefault = 'soft'
