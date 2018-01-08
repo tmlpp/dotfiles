@@ -9,9 +9,9 @@ add control = Control_L Control_R
 keycode  49 = Escape NoSymbol Escape NoSymbol Escape
 keycode   9 = section onehalf section onehalf dead_stroke NoSymbol dead_stroke NoSymbol section onehalf dead_stroke
 
-! Make å (kc 34) left brace and bracket.
-! Make tilde/circumflex key right brace and bracket. Leave tilde behind AltGr. 
-keycode  34 = bracketleft braceleft bracketleft braceleft dead_doubleacute dead_abovering dead_doubleacute dead_abovering aring Aring dead_doubleacute dead_abovering
+! Make å (kc 34) left brace and bracket. Move circumflex to this key, with AltGr.
+! Make tilde/circumflex key (kc 35) right brace and bracket. Leave tilde behind AltGr. 
+keycode  34 = bracketleft braceleft bracketleft braceleft dead_circumflex dead_abovering dead_circumflex dead_abovering aring Aring dead_doubleacute dead_abovering
 keycode  35 = bracketright braceright bracketright braceright dead_tilde dead_macron dead_tilde dead_macron dead_diaeresis dead_circumflex dead_tilde dead_macron
 
 ! Swap dollar and currency sybols on 4 key.
