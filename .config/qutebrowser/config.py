@@ -659,9 +659,7 @@ c.confirm_quit = ['never']
 ## The editor (and arguments) to use for the `open-editor` command. `{}`
 ## gets replaced by the filename of the file to be edited.
 ## Type: ShellCommand
-# c.editor.command = ['urxvt' '-e' 'nvim' "'{}'"]
-c.editor.command = ['urxvt' '-e' "nvim '{}'"]
-# c.editor.command = ['urxvt' '-e' 'nvim {}']
+c.editor.command = ['urxvt', '-e', 'nvim', '{}']
 
 ## Encoding to use for the editor.
 ## Type: Encoding
