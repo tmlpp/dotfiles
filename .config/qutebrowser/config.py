@@ -20,16 +20,7 @@ c.auto_save.interval = 15000
 ## Type: Bool
 c.auto_save.session = True
 
-## The backend to use to display websites. qutebrowser supports two
-## different web rendering engines / backends, QtWebKit and QtWebEngine.
-## QtWebKit was discontinued by the Qt project with Qt 5.6, but picked up
-## as a well maintained fork: https://github.com/annulen/webkit/wiki -
-## qutebrowser only supports the fork. QtWebEngine is Qt's official
-## successor to QtWebKit. It's slightly more resource hungry that
-## QtWebKit and has a couple of missing features in qutebrowser, but is
-## generally the preferred choice. This setting requires a restart.
-## Type: String
-## Valid values:
+## The backend to use to display websites.
 ##   - webengine: Use QtWebEngine (based on Chromium)
 ##   - webkit: Use QtWebKit (based on WebKit, similar to Safari)
 # c.backend = 'webengine'
