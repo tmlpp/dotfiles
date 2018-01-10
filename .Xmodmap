@@ -11,7 +11,8 @@ keycode   9 = section onehalf section onehalf dead_stroke NoSymbol dead_stroke N
 
 ! Make å (kc 34) left brace and bracket. Move caret to this key, with AltGr.
 ! Make tilde/caret key (kc 35) right brace and bracket. Leave tilde behind AltGr. 
-keycode  34 = bracketleft braceleft bracketleft braceleft dead_circumflex dead_abovering dead_circumflex dead_abovering aring Aring dead_doubleacute dead_abovering
+! Make tilde and caret non-dead keys to access them with singel press. dead_tilde -> asciitilde, dead_circumflex -> asciicircum
+keycode  34 = bracketleft braceleft bracketleft braceleft asciicircum dead_abovering asciicircum dead_abovering aring Aring dead_doubleacute dead_abovering
 keycode  35 = bracketright braceright bracketright braceright asciitilde dead_macron asciitilde dead_macron dead_diaeresis dead_circumflex asciitilde dead_macron
 
 ! Swap dollar and currency sybols on 4 key.
