@@ -70,7 +70,7 @@ bindsym Shift+$mod+h                move left
 # bindsym Control+Shift+$mod+h      notinuse
 
 ### I ###
-# bindsym $mod+i                    notinuse
+bindsym $mod+i                      exec urxvt -e weechat
 bindsym Shift+$mod+i                resize grow height 5 px or 5 ppt
 # bindsym Control+$mod+i            notinuse
 # bindsym Control+Shift+$mod+i      notinuse
@@ -253,6 +253,7 @@ bindsym $mod+Shift+0	move container to workspace $ws10
 for_window [class="Spotify"] move to workspace $ws6
 assign [class="qutebrowser"] $ws1
 for_window [title=".*WhatsApp.*"] move to workspace $ws4
+for_window [class="^URxvt$" title="^WeeChat"] move to workspace $ws5
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
