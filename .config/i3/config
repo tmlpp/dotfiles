@@ -20,6 +20,8 @@ bindsym $mod+Tab                    exec rofi -show window
 
 bindsym $mod+Escape                 workspace back_and_forth
 
+bindsym $mod+Menu                   exec rofi -show run
+
 ### A ###
 bindsym $mod+a                      focus parent
 # bindsym Shift+$mod+a              notinuse
@@ -39,8 +41,7 @@ bindsym Shift+$mod+c                reload
 # bindsym Control+Shift+$mod+c      notinuse
 
 ### D ###
-bindsym $mod+d                      exec rofi -show run
-# bindsym $mod+d focus child
+bindsym $mod+d                      focus child
 # bindsym Shift+$mod+d              notinuse
 # bindsym Control+$mod+d            notinuse
 # bindsym Control+Shift+$mod+d      notinuse
