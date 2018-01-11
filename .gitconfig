@@ -11,7 +11,7 @@
     cl = clone
     co = checkout
     cob = checkout -b
-    com = chekcout master
+    com = checkout master
     d = diff
     l = log
     la = log --all
