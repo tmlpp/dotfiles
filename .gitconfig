@@ -1,13 +1,20 @@
 [user]
-	email = teemu.lappi@gmail.com
-	name = tmlpp
+    email = teemu.lappi@gmail.com
+    name = tmlpp
 
 [alias]
-	ci = commit
-	cm = commit -am
-	st = status
-	br = branch
-	co = checkout
-	ps = push
-	pl = pull
-	ad = add
+    a = add
+    b = branch
+    bd = branch -d
+    c = commit
+    cm = commit -am
+    cl = clone
+    co = checkout
+    cob = checkout -b
+    d = diff
+    l = log
+    la = log --all
+    lag = log --all --oneline --graph --decorate
+    pl = pull
+    ps = push
+    st = status
