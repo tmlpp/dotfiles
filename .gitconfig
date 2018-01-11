@@ -11,10 +11,12 @@
     cl = clone
     co = checkout
     cob = checkout -b
+    com = chekout master
     d = diff
     l = log
     la = log --all
     lag = log --all --oneline --graph --decorate
+    m = merge
     pl = pull
     ps = push
     st = status
