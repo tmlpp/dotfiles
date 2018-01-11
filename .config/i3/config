@@ -30,7 +30,7 @@ bindsym $mod+a                      focus parent
 
 ### B ###
 bindsym $mod+b                      exec qutebrowser
-bindsym Shift+$mod+b                exec qutebrowser --basedir ~/.qutebrowserwa web.whatsapp.com
+bindsym Shift+$mod+b                exec qutebrowser --basedir ~/.qutebrowserwa web.whatsapp.com ':enter-mode passthrough'
 bindsym Control+$mod+b              exec qutebrowser --basedir ~/.qutebrowser1
 # bindsym Control+Shift+$mod+b      notinuse
 
