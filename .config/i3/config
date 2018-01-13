@@ -22,6 +22,10 @@ bindsym $mod+Escape                 workspace back_and_forth
 
 bindsym $mod+Menu                   exec rofi -show run
 
+# bindsym $mod+needstobefiguredout  exec playerctl play-pause
+bindsym $mod+bracketleft            exec playerctl previous
+bindsym $mod+bracketright           exec playerctl next
+
 ### A ###
 bindsym $mod+a                      focus parent
 # bindsym Shift+$mod+a              notinuse
