@@ -54,8 +54,9 @@
 *color21:      base06
 
 !! === font ===
-URxvt.font: xft:Fira Mono:Medium:size=12
-URxvt.boldFfont: xft:Fira Mono:bold:size=12
+! URxvt.font: xft:Fira Mono:Medium:size=12
+URxvt.font: xft:Iosevka:Medium:size=12
+! URxvt.boldFfont: xft:Fira Mono:bold:size=12
 Xft.antialias: true
 Xft.hinting: true
 Xft.autohint: 1
