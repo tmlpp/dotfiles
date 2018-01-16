@@ -218,6 +218,12 @@ c.auto_save.session = True
 ## Type: QssColor
 # c.colors.statusbar.insert.fg = 'white'
 
+## Background color of the statusbar in passthrough mode.
+## Type: QssColor
+# c.colors.statusbar.passthrough.bg = 'black'
+## Foreground color of the statusbar in passthrough mode.
+## Type: QssColor
+# c.colors.statusbar.passthrough.fg = 'white'
 ## Background color of the statusbar.
 ## Type: QssColor
 # c.colors.statusbar.normal.bg = 'black'
@@ -838,7 +844,7 @@ c.fonts.web.family.serif = 'Merriweather'
 ##   - always: Search case-insensitively
 ##   - never: Search case-sensitively
 ##   - smart: Search case-sensitively if there are capital chars
-# c.ignore_case = 'smart'
+# c.search.ignore_case = 'smart'
 
 ## Forward unbound keys to the webview in normal mode.
 ## Type: String
@@ -966,7 +972,7 @@ c.scrolling.smooth = True
 ## The name of the session to save by default. If this is set to null,
 ## the session which was last loaded is saved.
 ## Type: SessionName
-# c.session_default_name = None
+# c.session.default_name = None
 
 ## Spell checking languages. You can check for available languages and
 ## install dictionaries using scripts/install_dict.py. Run the script
@@ -1055,7 +1061,7 @@ c.tabs.background = True
 
 ## Padding for tab indicators
 ## Type: Padding
-# c.tabs.indicator_padding = {'top': 2, 'bottom': 2, 'left': 0, 'right': 4}
+# c.tabs.indicator.padding = {'top': 2, 'bottom': 2, 'left': 0, 'right': 4}
 
 ## Behavior when the last tab is closed.
 ## Type: String
@@ -1136,15 +1142,16 @@ c.tabs.position = 'left'
 ##   - center
 # c.tabs.title.alignment = 'left'
 
-## The format to use for the tab title. The following placeholders are
-## defined:  * `{perc}`: The percentage as a string like `[10%]`. *
-## `{perc_raw}`: The raw percentage, e.g. `10` * `{title}`: The title of
-## the current web page * `{title_sep}`: The string ` - ` if a title is
-## set, empty otherwise. * `{index}`: The index of this tab. * `{id}`:
-## The internal tab ID of this tab. * `{scroll_pos}`: The page scroll
-## position. * `{host}`: The host of the current web page. * `{backend}`:
-## Either ''webkit'' or ''webengine'' * `{private}` : Indicates when
-## private mode is enabled.
+## Format to use for the tab title. The following placeholders are
+## defined:  * `{perc}`: Percentage as a string like `[10%]`. *
+## `{perc_raw}`: Raw percentage, e.g. `10`. * `{title}`: Title of the
+## current web page. * `{title_sep}`: The string ` - ` if a title is set,
+## empty otherwise. * `{index}`: Index of this tab. * `{id}`: Internal
+## tab ID of this tab. * `{scroll_pos}`: Page scroll position. *
+## `{host}`: Host of the current web page. * `{backend}`: Either
+## ''webkit'' or ''webengine'' * `{private}`: Indicates when private mode
+## is enabled. * `{current_url}`: URL of the current web page. *
+## `{protocol}`: Protocol (http/https/...) of the current web page.
 ## Type: FormatString
 # c.tabs.title.format = '{index}: {title}'
 
@@ -1156,11 +1163,11 @@ c.tabs.position = 'left'
 ## The width of the tab bar if it's vertical, in px or as percentage of
 ## the window.
 ## Type: PercOrInt
-c.tabs.width.bar = '10%'
+c.tabs.width = '10%'
 
 ## Width of the progress indicator (0 to disable).
 ## Type: Int
-# c.tabs.width.indicator = 3
+# c.tabs.indicator.width = 3
 
 ## Whether to wrap when changing tabs.
 ## Type: Bool
@@ -1224,14 +1231,8 @@ c.url.searchengines = {'DEFAULT': 'http://www.google.com/search?q={}',
 ## Type: Bool
 # c.window.hide_wayland_decoration = False
 
-## The format to use for the window title. The following placeholders are
-## defined:  * `{perc}`: The percentage as a string like `[10%]`. *
-## `{perc_raw}`: The raw percentage, e.g. `10` * `{title}`: The title of
-## the current web page * `{title_sep}`: The string ` - ` if a title is
-## set, empty otherwise. * `{id}`: The internal window ID of this window.
-## * `{scroll_pos}`: The page scroll position. * `{host}`: The host of
-## the current web page. * `{backend}`: Either ''webkit'' or
-## ''webengine'' * `{private}` : Indicates when private mode is enabled.
+## Format to use for the window title. The same placeholders like for
+## `tabs.title.format` are defined.
 ## Type: FormatString
 # c.window.title_format = '{perc}{title}{title_sep}qutebrowser'
 
@@ -1514,3 +1515,41 @@ config.bind('<Alt-k>', 'scroll up', mode='passthrough')
 
 ## Bindings for register mode
 # config.bind('<Escape>', 'leave-mode', mode='register')
+
+## New in v1.1.0
+## Delay (in milliseconds) before updating completions after typing a
+## character.
+## Type: Int
+# c.completion.delay = 0
+
+## Execute the best-matching command on a partial match.
+## Type: Bool
+# c.completion.use_best_match = False
+
+## Rounding radius (in pixels) for the edges of the keyhint dialog.
+## Type: Int
+# c.keyhint.radius = 6
+
+## Load a restored tab as soon as it takes focus.
+## Type: Bool
+# c.session.lazy_restore = False
+
+## Stay in insert/passthrough mode when switching tabs.
+## Type: Bool
+# c.tabs.persist_mode_on_change = False
+
+## Limit fullscreen to the browser window (does not expand to fill the
+## screen).
+## Type: Bool
+# c.content.windowed_fullscreen = False
+
+## Shrink pinned tabs down to their contents.
+## Type: Bool
+# c.tabs.pinned.shrink = True
+
+## Turn on Qt HighDPI scaling. This is equivalent to setting
+## QT_AUTO_SCREEN_SCALE_FACTOR=1 in the environment. It's off by default
+## as it can cause issues with some bitmap fonts. As an alternative to
+## this, it's possible to set font sizes and the `zoom.default` setting.
+## Type: Bool
+# c.qt.highdpi = False
