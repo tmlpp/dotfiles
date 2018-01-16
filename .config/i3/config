@@ -258,7 +258,7 @@ bindsym $mod+Shift+0	move container to workspace $ws10
 for_window [class="Spotify"] move to workspace $ws5
 assign [class="qutebrowser"] $ws1
 for_window [title=".*WhatsApp.*"] move to workspace $ws4
-for_window [title="qutebrowser1"] move to workspace $ws7
+for_window [class="qutebrowser" title="qutebrowser1"] move to workspace $ws7
 for_window [class="^URxvt$" title="^WeeChat"] move to workspace $ws4
 
 # resize window (you can also use the mouse for that)
