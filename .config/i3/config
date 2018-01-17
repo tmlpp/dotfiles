@@ -22,9 +22,9 @@ bindsym $mod+Escape                 workspace back_and_forth
 
 bindsym $mod+Menu                   exec rofi -show run
 
-# bindsym $mod+needstobefiguredout  exec playerctl play-pause
-bindsym $mod+bracketleft            exec playerctl previous
-bindsym $mod+bracketright           exec playerctl next
+# bindsym $mod+needstobefiguredout  exec --no-startup-id playerctl play-pause
+bindsym $mod+bracketleft            exec --no-startup-id playerctl previous
+bindsym $mod+bracketright           exec --no-startup-id playerctl next
 
 ### A ###
 bindsym $mod+a                      focus parent
@@ -294,18 +294,18 @@ mode "resize" {
 # }
 
 # Volume and media controls
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioPrev exec playerctl previous
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioRaiseVolume exec "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +3%"
-bindsym XF86AudioLowerVolume exec "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -3%"
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +3%"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -3%"
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
 # Screenshot
-bindsym Print exec "scrot '%Y-%m-%d_%H%M%S.png' -e 'mv $f ~/screenshots/'"
-bindsym $mod+Print exec "scrot -u '%Y-%m-%d_%H%M%S.png' -e 'mv $f ~/screenshots/'"
-bindsym XF86MonBrightnessDown exec xbacklight -dec 3
-bindsym XF86MonBrightnessUp exec xbacklight -inc 3
+bindsym Print exec --no-startup-id "scrot '%Y-%m-%d_%H%M%S.png' -e 'mv $f ~/screenshots/'"
+bindsym $mod+Print exec --no-startup-id "scrot -u '%Y-%m-%d_%H%M%S.png' -e 'mv $f ~/screenshots/'"
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 3
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 3
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id numlockx
 exec --no-startup-id dropbox
