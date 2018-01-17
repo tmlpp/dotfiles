@@ -165,10 +165,10 @@ bindsym $mod+w                      layout tabbed
 # bindsym Control+Shift+$mod+w      notinuse
 
 ### X ###
-# bindsym $mod+v                    notinuse
-# bindsym Shift+$mod+v              notinuse
-# bindsym Control+$mod+v            notinuse
-# bindsym Control+Shift+$mod+v      notinuse
+bindsym $mod+x                      scratchpad show
+bindsym Shift+$mod+x                move scratchpad
+# bindsym Control+$mod+x            notinuse
+# bindsym Control+Shift+$mod+x      notinuse
 
 ### Y ###
 bindsym Shift+$mod+y                resize shrink width 5 px or 5 ppt
