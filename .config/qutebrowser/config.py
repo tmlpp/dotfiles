@@ -1102,12 +1102,7 @@ c.tabs.background = True
 c.tabs.padding = {'top': 3, 'bottom': 3, 'left': 5, 'right': 5}
 
 ## The position of the tab bar.
-## Type: Position
-## Valid values:
-##   - top
-##   - bottom
-##   - left
-##   - right
+## Valid values: top, bottom, left, right
 c.tabs.position = 'left'
 
 ## Which tab to select when the focused tab is removed.
@@ -1144,23 +1139,24 @@ c.tabs.position = 'left'
 ##   - center
 # c.tabs.title.alignment = 'left'
 
-## Format to use for the tab title. The following placeholders are
-## defined:  * `{perc}`: Percentage as a string like `[10%]`. *
-## `{perc_raw}`: Raw percentage, e.g. `10`. * `{title}`: Title of the
-## current web page. * `{title_sep}`: The string ` - ` if a title is set,
-## empty otherwise. * `{index}`: Index of this tab. * `{id}`: Internal
-## tab ID of this tab. * `{scroll_pos}`: Page scroll position. *
-## `{host}`: Host of the current web page. * `{backend}`: Either
-## ''webkit'' or ''webengine'' * `{private}`: Indicates when private mode
-## is enabled. * `{current_url}`: URL of the current web page. *
-## `{protocol}`: Protocol (http/https/...) of the current web page.
+## Format to use for the tab and window titles.
+## The following placeholders are defined:
+## {perc}: Percentage as a string like [10%]
+## {perc_raw}: Raw percentage, e.g. 10
+## {title}: Title of the current web page
+## {title_sep}: The string ' - ' if a title is set, empty otherwise
+## {index}: Index of this tab
+## {id}`: Internal tab ID of this tab
+## {scroll_pos}`: Page scroll position
+## {host}: Host of the current web page
+## {backend}: Either ''webkit'' or ''webengine''
+## {private}: Indicates when private mode is enabled
+## {current_url}: URL of the current web page
+## {protocol}: Protocol (http/https/...) of the current web page
 ## Type: FormatString
 # c.tabs.title.format = '{index}: {title}'
-
-## The format to use for the tab title for pinned tabs. The same
-## placeholders like for `tabs.title.format` are defined.
-## Type: FormatString
 # c.tabs.title.format_pinned = '{index}'
+# c.window.title_format = '{perc}{title}{title_sep}qutebrowser'
 
 ## The width of the tab bar if it's vertical, in px or as percentage of
 ## the window.
@@ -1220,11 +1216,6 @@ c.url.searchengines = searchengines
 ## Hide the window decoration when using wayland (requires restart)
 ## Type: Bool
 # c.window.hide_wayland_decoration = False
-
-## Format to use for the window title. The same placeholders like for
-## `tabs.title.format` are defined.
-## Type: FormatString
-# c.window.title_format = '{perc}{title}{title_sep}qutebrowser'
 
 ## The default zoom level.
 ## Type: Perc
