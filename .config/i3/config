@@ -129,9 +129,9 @@ bindsym $mod+p                      workspace prev
 # bindsym Control+Shift+$mod+q      notinuse
 
 ### R ###
-bindsym $mod+r                      mode "resize"
+bindsym $mod+r                      [instance="scratchranger"] scratchpad show
 bindsym Shift+$mod+r                restart
-# bindsym Control+$mod+r            notinuse
+bindsym Control+$mod+r              mode "resize"
 # bindsym Control+Shift+$mod+r      notinuse
 
 ### S ###
@@ -141,7 +141,7 @@ bindsym $mod+s                      layout stacking
 # bindsym Control+Shift+$mod+s      notinuse
 
 ### T ###
-# bindsym $mod+t                    notinuse
+bindsym $mod+t		                [instance="scratchterm"] scratchpad show
 # bindsym Shift+$mod+t              notinuse
 # bindsym Control+$mod+t            notinuse
 # bindsym Control+Shift+$mod+t      notinuse
@@ -260,7 +260,8 @@ assign [class="qutebrowser"] $ws1
 for_window [title=".*WhatsApp.*"] move to workspace $ws4
 for_window [class="qutebrowser" title="qutebrowser1"] move to workspace $ws7
 for_window [class="^URxvt$" title="^WeeChat"] move to workspace $ws4
-
+for_window [class="^URxvt$" instance="scratchranger"] move scratchpad
+for_window [class="^URxvt$" instance="scratchterm"] move scratchpad
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -304,8 +305,12 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 # Screenshot
 bindsym Print exec --no-startup-id "scrot '%Y-%m-%d_%H%M%S.png' -e 'mv $f ~/screenshots/'"
 bindsym $mod+Print exec --no-startup-id "scrot -u '%Y-%m-%d_%H%M%S.png' -e 'mv $f ~/screenshots/'"
+
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 3
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 3
+
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id numlockx
 exec --no-startup-id dropbox
+exec --no-startup-id urxvt -name scratchranger -e ranger
+exec --no-startup-id urxvt -name scratchterm
