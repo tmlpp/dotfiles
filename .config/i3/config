@@ -41,7 +41,7 @@ bindsym Control+$mod+b              exec qutebrowser --basedir ~/.qutebrowser1
 ### C ###
 bindsym $mod+c                      kill
 bindsym Shift+$mod+c                reload
-# bindsym Control+$mod+c            notinuse
+bindsym Control+$mod+c              exec "emacsclient -e '(make-capture-frame)'"
 # bindsym Control+Shift+$mod+c      notinuse
 
 ### D ###
