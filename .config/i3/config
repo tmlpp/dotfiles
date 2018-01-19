@@ -262,6 +262,7 @@ for_window [class="qutebrowser" title="qutebrowser1"] move to workspace $ws7
 for_window [class="^URxvt$" title="^WeeChat"] move to workspace $ws4
 for_window [class="^URxvt$" instance="scratchranger"] move scratchpad
 for_window [class="^URxvt$" instance="scratchterm"] move scratchpad
+for_window [class="Emacs" instance="capture"] floating enable
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
