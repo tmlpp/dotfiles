@@ -6,8 +6,8 @@
     a = add
     b = branch
     bd = branch -d
-    c = commit
-    cm = commit -am
+    cm = commit
+    cam = commit -am
     cl = clone
     co = checkout
     cob = checkout -b
