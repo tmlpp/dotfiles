@@ -74,3 +74,8 @@ URxvt.keysym.M-Delete:    matcher:select
 URxvt.keysym.M-Escape:    perl:keyboard-select:activate
 URxvt.matcher.button:     1
 URxvt.matcher.pattern.1:  \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
+!! tabbedex
+URxvt.keysym.M-h: perl:tabbedex:prev_tab
+URxvt.keysym.M-l: perl:tabbedex:next_tab
+URxvt.keysym.M-j: perl:tabbedex:new_tab
+URxvt.keysym.M-k: perl:tabbedex:rename_tab
