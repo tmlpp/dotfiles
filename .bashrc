@@ -16,3 +16,5 @@ fi
 # bash-git-prompt from https://github.com/magicmonty/bash-git-prompt
 GIT_PROMPT_ONLY_IN_REPO=1
 source ~/repos/.bash-git-prompt/gitprompt.sh
+
+export EDITOR=nvim
