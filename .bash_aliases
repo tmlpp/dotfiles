@@ -14,12 +14,13 @@ alias mkd='mkdir -p'
 alias off='shutdown -h now'
 alias ..='cd..'
 
-# Package operations
-alias U='trizen -Suy' 	# update system
-alias S='trizen -Ss' 	# search package
-alias I='trizen -S' 	# install
-alias R='trizen -R' 	# remove
-alias CC='sudo pacman -Sc'
+# p as in package operations
+alias pU='trizen -Suy' 	# update system
+alias pS='trizen -Ss' 	# search package
+alias pI='trizen -S' 	# install
+alias pR='trizen -R' 	# remove
+alias pQ='trizen -Q'    # list installed
+alias pCC='sudo pacman -Sc'
 alias pm='pacman'
 
 alias v='nvim'
