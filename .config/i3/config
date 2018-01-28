@@ -39,7 +39,7 @@ bindsym Control+$mod+b              exec qutebrowser --basedir ~/.qutebrowser1
 # bindsym Control+Shift+$mod+b      notinuse
 
 ### C ###
-bindsym $mod+c                      kill
+bindsym $mod+c                      layout toggle split
 bindsym Shift+$mod+c                reload
 bindsym Control+$mod+c              exec "emacsclient -e '(make-capture-frame)'"
 # bindsym Control+Shift+$mod+c      notinuse
@@ -51,8 +51,8 @@ bindsym $mod+d                      focus child
 # bindsym Control+Shift+$mod+d      notinuse
 
 ### E ###
-bindsym $mod+e                      layout toggle split
-bindsym Shift+$mod+e                exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+e                      [instance="scratchagenda"] scratchpad show
+# bindsym Shift+$mod+e              notinuse
 # bindsym Control+$mod+e            notinuse
 # bindsym Control+Shift+$mod+e      notinuse
 
@@ -123,8 +123,8 @@ bindsym $mod+p                      workspace prev
 # bindsym Control+Shift+$mod+p      notinuse
 
 ### Q ###
-# bindsym $mod+q                    notinuse
-# bindsym Shift+$mod+q              notinuse
+bindsym $mod+q                      kill
+bindsym Shift+$mod+q                exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # bindsym Control+$mod+q            notinuse
 # bindsym Control+Shift+$mod+q      notinuse
 
@@ -135,13 +135,13 @@ bindsym Control+$mod+r              mode "resize"
 # bindsym Control+Shift+$mod+r      notinuse
 
 ### S ###
-bindsym $mod+s                      layout stacking
-# bindsym Shift+$mod+s              notinuse
+bindsym $mod+s                      scratchpad show
+bindsym Shift+$mod+s                move scratchpad
 # bindsym Control+$mod+s            notinuse
 # bindsym Control+Shift+$mod+s      notinuse
 
 ### T ###
-bindsym $mod+t		                [instance="scratchterm"] scratchpad show
+bindsym $mod+t		            [instance="scratchterm"] scratchpad show
 # bindsym Shift+$mod+t              notinuse
 # bindsym Control+$mod+t            notinuse
 # bindsym Control+Shift+$mod+t      notinuse
@@ -159,14 +159,14 @@ bindsym Shift+$mod+u                resize shrink height 5 px or 5 ppt
 # bindsym Control+Shift+$mod+v      notinuse
 
 ### W ###
-bindsym $mod+w                      layout tabbed
+# bindsym $mod+w                    notinuse
 # bindsym Shift+$mod+w              notinuse
 # bindsym Control+$mod+w            notinuse
 # bindsym Control+Shift+$mod+w      notinuse
 
 ### X ###
-bindsym $mod+x                      scratchpad show
-bindsym Shift+$mod+x                move scratchpad
+bindsym $mod+x                      layout stacking
+# bindsym Shift+$mod+x              notinuse
 # bindsym Control+$mod+x            notinuse
 # bindsym Control+Shift+$mod+x      notinuse
 
@@ -177,10 +177,10 @@ bindsym Shift+$mod+y                resize shrink width 5 px or 5 ppt
 # bindsym Control+Shift+$mod+v      notinuse
 
 ### Z ###
-# bindsym $mod+v                    notinuse
-# bindsym Shift+$mod+v              notinuse
-# bindsym Control+$mod+v            notinuse
-# bindsym Control+Shift+$mod+v      notinuse
+bindsym $mod+z                      layout tabbed
+# bindsym Shift+$mod+z              notinuse
+# bindsym Control+$mod+z            notinuse
+# bindsym Control+Shift+$mod+z      notinuse
 
 ### Å ###
 # bindsym $mod+v                    notinuse
@@ -263,6 +263,7 @@ for_window [class="^URxvt$" title="^WeeChat"] move to workspace $ws4
 for_window [class="^URxvt$" instance="scratchranger"] move scratchpad
 for_window [class="^URxvt$" instance="scratchterm"] move scratchpad
 for_window [class="Emacs" instance="capture"] floating enable
+for_window [class="Emacs" instance="scratchagenda"] move scratchpad
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -290,10 +291,16 @@ mode "resize" {
 bindsym $mod+m mode "launcher"
 
 mode "launcher" {
-     	bindsym s spotify ; mode "default"
-     	bindsym e emacs ; mode "default"
+     	bindsym s exec spotify ; mode "default"
+     	bindsym e exec emacs ; mode "default"
+	bindsym Shift+e exec emacsclient -c -F '(quote (name . "scratchagenda"))' -e '(org-agenda nil "d")' ; mode "default"
      	bindsym q exec qutebrowser --basedir ~/.qutebrowserwa -R web.whatsapp.com ':enter-mode passthrough' ; mode "default"
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
 }
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # bar {
