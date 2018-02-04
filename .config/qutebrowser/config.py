@@ -1156,7 +1156,7 @@ c.tabs.position = 'left'
 ## Type: FormatString
 # c.tabs.title.format = '{index}: {title}'
 # c.tabs.title.format_pinned = '{index}'
-# c.window.title_format = '{perc}{title}{title_sep}qutebrowser'
+c.window.title_format = '{title}{title_sep}qutebrowser'
 
 ## The width of the tab bar if it's vertical, in px or as percentage of
 ## the window.
