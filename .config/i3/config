@@ -260,10 +260,26 @@ assign [class="qutebrowser"] $ws1
 for_window [title=".*WhatsApp.*"] move to workspace $ws4
 for_window [class="qutebrowser" title="qutebrowser1"] move to workspace $ws7
 for_window [class="^URxvt$" title="^WeeChat"] move to workspace $ws4
-for_window [class="^URxvt$" instance="scratchranger"] move scratchpad
-for_window [class="^URxvt$" instance="scratchterm"] move scratchpad
 for_window [class="Emacs" instance="capture"] floating enable
+
+# scratch terminal
+for_window [class="^URxvt$" instance="scratchterm"] floating enable
+for_window [class="^URxvt$" instance="scratchterm"] resize set 1280 720
+for_window [class="^URxvt$" instance="scratchterm"] move scratchpad
+for_window [class="^URxvt$" instance="scratchterm"] border pixel 5
+
+# scratch ranger
+for_window [class="^URxvt$" instance="scratchranger"] floating enable
+for_window [class="^URxvt$" instance="scratchranger"] resize set 1280 720
+for_window [class="^URxvt$" instance="scratchranger"] move scratchpad
+for_window [class="^URxvt$" instance="scratchranger"] border pixel 5
+
+# scratch agenda
+for_window [class="Emacs" instance="scratchagenda"] floating enable
+for_window [class="Emacs" instance="scratchagenda"] resize set 1000 720
 for_window [class="Emacs" instance="scratchagenda"] move scratchpad
+for_window [class="Emacs" instance="scratchagenda"] border pixel 5
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
