@@ -51,7 +51,7 @@ bindsym $mod+d                      focus child
 # bindsym Control+Shift+$mod+d      notinuse
 
 ### E ###
-bindsym $mod+e                      [instance="scratchagenda"] scratchpad show
+bindsym $mod+e                      [instance="scratchagenda"] scratchpad show ; [instance="scratchagenda"] move position center
 # bindsym Shift+$mod+e              notinuse
 # bindsym Control+$mod+e            notinuse
 # bindsym Control+Shift+$mod+e      notinuse
@@ -129,7 +129,7 @@ bindsym Shift+$mod+q                exec "i3-nagbar -t warning -m 'You pressed t
 # bindsym Control+Shift+$mod+q      notinuse
 
 ### R ###
-bindsym $mod+r                      [instance="scratchranger"] scratchpad show
+bindsym $mod+r                      [instance="scratchranger"] scratchpad show ; [instance="scratchranger"] move position center
 bindsym Shift+$mod+r                restart
 bindsym Control+$mod+r              mode "resize"
 # bindsym Control+Shift+$mod+r      notinuse
@@ -141,7 +141,7 @@ bindsym Shift+$mod+s                move scratchpad
 # bindsym Control+Shift+$mod+s      notinuse
 
 ### T ###
-bindsym $mod+t		            [instance="scratchterm"] scratchpad show
+bindsym $mod+t		                [instance="scratchterm"] scratchpad show ; [instance="scratchterm"] move position center
 # bindsym Shift+$mod+t              notinuse
 # bindsym Control+$mod+t            notinuse
 # bindsym Control+Shift+$mod+t      notinuse
