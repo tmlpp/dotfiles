@@ -342,5 +342,5 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 3
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id numlockx
 exec --no-startup-id dropbox
-exec --no-startup-id urxvt -name scratchranger -e ranger
-exec --no-startup-id urxvt -name scratchterm
+exec --no-startup-id urxvt -bg "#2a2a2a" -name scratchranger -e ranger
+exec --no-startup-id urxvt -bg "#372424" -name scratchterm
