@@ -307,10 +307,11 @@ mode "resize" {
 bindsym $mod+m mode "launcher"
 
 mode "launcher" {
-     	bindsym s exec spotify ; mode "default"
-     	bindsym e exec emacs ; mode "default"
-	bindsym Shift+e exec emacsclient -c -F '(quote (name . "scratchagenda"))' -e '(org-agenda nil "d")' ; mode "default"
-     	bindsym q exec qutebrowser --basedir ~/.qutebrowserwa -R web.whatsapp.com ':enter-mode passthrough' ; mode "default"
+     	bindsym s       exec spotify ; mode "default"
+     	bindsym e       exec emacs ; mode "default"
+	    bindsym Shift+e exec emacsclient -c -F '(quote (name . "scratchagenda"))' -e '(org-agenda nil "d")' ; mode "default"
+     	bindsym q       exec qutebrowser --basedir ~/.qutebrowserwa -R web.whatsapp.com ':enter-mode passthrough' ; mode "default"
+        bindsym g       exec google-chrome-stable ; mode "default"
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
