@@ -15,8 +15,8 @@ inoremap <M-j> j
 
 "Insert newline below"
 map <Enter> o<Esc>
-
-let mapleader = ","
+inoremap öa \
+let mapleader = " "
 
 noremap <Leader>s :update<CR>
 noremap <Leader>ss :update<CR>:quit<CR>
