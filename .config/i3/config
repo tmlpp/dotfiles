@@ -159,7 +159,7 @@ bindsym Shift+$mod+u                resize shrink height 5 px or 5 ppt
 # bindsym Control+Shift+$mod+v      notinuse
 
 ### W ###
-# bindsym $mod+w                    notinuse
+bindsym $mod+w                    [instance="newsboat"] scratchpad show ; [instance="newsboat"] move position center
 # bindsym Shift+$mod+w              notinuse
 # bindsym Control+$mod+w            notinuse
 # bindsym Control+Shift+$mod+w      notinuse
@@ -280,6 +280,12 @@ for_window [class="Emacs" instance="scratchagenda"] resize set 1000 720
 for_window [class="Emacs" instance="scratchagenda"] move scratchpad
 for_window [class="Emacs" instance="scratchagenda"] border pixel 5
 
+# scratch agenda
+for_window [class="^URxvt$" instance="newsboat"] floating enable
+for_window [class="^URxvt$" instance="newsboat"] resize set 1000 720
+for_window [class="^URxvt$" instance="newsboat"] move scratchpad
+for_window [class="^URxvt$" instance="newsboat"] border pixel 5
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -345,3 +351,4 @@ exec_always --no-startup-id numlockx
 exec --no-startup-id dropbox
 exec --no-startup-id urxvt -bg "#2a2a2a" -name scratchranger -e ranger
 exec --no-startup-id urxvt -bg "#372424" -name scratchterm
+exec --no-startup-id urxvt -name newsboat -e newsboat
