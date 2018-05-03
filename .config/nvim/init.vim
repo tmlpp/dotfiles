@@ -21,11 +21,15 @@ let mapleader = " "
 noremap <Leader>s :update<CR>
 noremap <Leader>ss :update<CR>:quit<CR>
 noremap <Leader>q :quit!<CR>
-noremap <Leader>c "+y
-noremap <Leader>cc :%y+<CR>
+noremap <Leader>y "+y
+noremap <Leader>yy "+yy
+noremap <Leader>Y :%y+<CR>
+noremap <Leader>d "+d
+noremap <Leader>dd "+dd
+noremap <Leader>D :%D+<CR>
 noremap <Leader>p "+p
 noremap <Leader>P "+P
-
+noremap <Leader>e :e!<CR>
 let g:limelight_conceal_ctermfg = '240'
 let g:pencil#wrapModeDefault = 'soft'
 
@@ -35,3 +39,4 @@ set number relativenumber
 " set cursorline
 set encoding=utf-8
 set fileencoding=utf-8
+
