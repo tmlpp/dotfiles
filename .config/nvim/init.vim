@@ -4,6 +4,7 @@ Plug 'reedes/vim-pencil'
 Plug 'junegunn/limelight.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'chrisbra/Colorizer'
+Plug 'scrooloose/nerdtree'
 call plug#end()
 
 syntax on
@@ -40,3 +41,7 @@ set number relativenumber
 set encoding=utf-8
 set fileencoding=utf-8
 
+map <F8> :NERDTreeToggle<CR>
+let g:NERDTreeMapActivateNode = "l"
+" let g:NERDTreeMapPreview = "<F3>"
+au vimenter * if !argc() | NERDTree | endif
