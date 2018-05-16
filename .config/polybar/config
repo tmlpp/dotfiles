@@ -59,7 +59,7 @@ modules-right = filesystem xbacklight volume memory wlan eth battery temperature
 tray-position = right
 tray-padding = 1
 ;tray-transparent = true
-tray-background = #0063ff
+;tray-background = #0063ff
 
 ;wm-restack = bspwm
 ;wm-restack = i3
