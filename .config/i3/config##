@@ -20,7 +20,7 @@ bindsym $mod+Tab                    exec rofi -show window
 
 bindsym $mod+Escape                 workspace back_and_forth
 
-bindsym $mod+Menu                   exec rofi -show run
+bindsym $mod+Menu                   exec dmenu_run
 
 # bindsym $mod+needstobefiguredout  exec --no-startup-id playerctl play-pause
 bindsym $mod+bracketleft            exec --no-startup-id playerctl previous
