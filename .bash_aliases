@@ -16,6 +16,7 @@ alias tra='trans'
 alias mkd='mkdir -p'
 alias off='shutdown -h now'
 alias ..='cd..'
+alias uz='unzip'
 
 # p as in package operations
 alias pU='trizen -Suy' 	# update system
@@ -26,15 +27,15 @@ alias pQ='trizen -Q'    # list installed
 alias pCC='sudo pacman -Sc'
 alias pm='pacman'
 
-alias v='nvim'
+alias e='$EDITOR'
 
 # config commands
-alias c3='nvim ~/.config/i3/config'
-alias cvi='nvim ~/.config/nvim/init.vim'
-alias cqb='nvim ~/.config/qutebrowser/config.py'
-alias cb='nvim ~/.bashrc'
-alias cba='nvim ~/.bash_aliases'
-alias cwee='nvim ~/.weechat/weechat.conf'
+alias c3='$EDITOR ~/.config/i3/config'
+alias cvi='$EDITOR ~/.config/nvim/init.vim'
+alias cqb='$EDITOR ~/.config/qutebrowser/config.py'
+alias cb='$EDITOR ~/.bashrc'
+alias cba='$EDITOR ~/.bash_aliases'
+alias cwee='$EDITOR ~/.weechat/weechat.conf'
 
 # Yadm and git
 alias y='yadm'
