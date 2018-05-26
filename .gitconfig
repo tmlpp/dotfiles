@@ -4,6 +4,8 @@
 
 [alias]
     a = add
+    aa = add .
+    ai = add -i
     b = branch
     bd = branch -d
     c = commit
