@@ -9,7 +9,7 @@ smart_gaps on
 # new_window none
 set $term urxvt
 # Font 
-font pango:Fira Sans 10
+font pango:Iosevka 11
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
