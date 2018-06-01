@@ -1477,6 +1477,7 @@ config.bind('<Ctrl-I>', 'leave-mode', mode='insert')
 config.bind('<Ctrl-P>', 'leave-mode', mode='passthrough')
 config.bind('<Alt-j>', 'scroll down', mode='passthrough')
 config.bind('<Alt-k>', 'scroll up', mode='passthrough')
+config.bind('<Alt-d>', 'tab-close', mode='passthrough')
 
 ## Bindings for prompt mode
 # config.bind('<Alt-B>', 'rl-backward-word', mode='prompt')
