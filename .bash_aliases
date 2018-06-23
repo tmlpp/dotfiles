@@ -19,11 +19,12 @@ alias ..='cd..'
 alias uz='unzip'
 
 # p as in package operations
-alias pU='trizen -Suy' 	# update system
-alias pS='trizen -Ss' 	# search package
-alias pI='trizen -S' 	# install
-alias pR='trizen -R' 	# remove
-alias pQ='trizen -Q'    # list installed
+alias pU='aurman -Suy' 	# update system
+alias pS='aurman -Ss' 	# search package
+alias pI='aurman -S' 	# install
+alias pR='aurman -R' 	# remove
+alias pQ='aurman -Q'    # list installed
+alias pQi='aurman -Qi'  # show package info
 alias pCC='sudo pacman -Sc'
 alias pm='pacman'
 
