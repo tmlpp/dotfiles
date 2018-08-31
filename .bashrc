@@ -17,5 +17,5 @@ fi
 GIT_PROMPT_ONLY_IN_REPO=1
 source ~/repos/.bash-git-prompt/gitprompt.sh
 
-EDITOR=nvim
-BROWSER=qutebrowser
+export EDITOR=nvim
+export BROWSER=qutebrowser
