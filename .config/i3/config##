@@ -13,7 +13,7 @@ client.unfocused        #000000 #005861 #18838c #000000
 # new_window none
 set $term urxvt
 # Font 
-font pango:Iosevka 11
+font pango:Iosevka Medium 12
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
