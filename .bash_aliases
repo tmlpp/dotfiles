@@ -19,13 +19,13 @@ alias ..='cd..'
 alias uz='unzip'
 
 # p as in package operations
-alias pU='aurman -Suy' 	# update system
-alias pS='aurman -Ss' 	# search package
-alias pI='aurman -S' 	# install
-alias pR='aurman -R' 	# remove
-alias pQ='aurman -Q'    # list installed
-alias pQi='aurman -Qi'  # show package info
-alias pCC='sudo pacman -Sc'
+alias pU='yay -Suy' 	# update system
+alias pS='yay -Ss' 	# search package
+alias pI='yay -S' 	# install
+alias pR='yay -R' 	# remove
+alias pQ='yay -Q'    # list installed
+alias pQi='yay -Qi'  # show package info
+alias pCC='yay -Sc'
 alias pm='pacman'
 
 alias e='$EDITOR'
