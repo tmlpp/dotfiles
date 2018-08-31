@@ -75,31 +75,31 @@ bindsym $mod+f                      fullscreen toggle
 ### H ###
 bindsym $mod+h focus                left
 bindsym Shift+$mod+h                move left
-# bindsym Control+$mod+h            notinuse
+bindsym Control+$mod+h              resize shrink width 5 px or 5 ppt
 # bindsym Control+Shift+$mod+h      notinuse
 
 ### I ###
 bindsym $mod+i                      exec urxvt -e weechat
-bindsym Shift+$mod+i                resize grow height 5 px or 5 ppt
+# bindsym Shift+$mod+i              nothinuse
 # bindsym Control+$mod+i            notinuse
 # bindsym Control+Shift+$mod+i      notinuse
 
 ### J ###
 bindsym $mod+j focus                down
 bindsym Shift+$mod+j                move down
-bindsym Control+$mod+j              workspace next
+bindsym Control+$mod+j              resize shrink height 5 px or 5 ppt
 # bindsym Control+Shift+$mod+j      notinuse
 
 ### K ###
 bindsym $mod+k                      focus up
 bindsym Shift+$mod+k                move up
-bindsym Control+$mod+k              workspace prev
+bindsym Control+$mod+k              resize grow height 5 px or 5 ppt
 # bindsym Control+Shift+$mod+k      notinuse
 
 ### L ###
 bindsym $mod+l focus                right
 bindsym Shift+$mod+l                move right
-# bindsym Control+$mod+l            notinuse
+bindsym Control+$mod+l              resize grow width 5 px or 5 ppt
 # bindsym Control+Shift+$mod+l      notinuse
 
 ### M ###
@@ -115,7 +115,7 @@ bindsym $mod+n                      workspace next
 # bindsym Control+Shift+$mod+n      notinuse
 
 ### O ###
-bindsym Shift+$mod+o                resize grow width 5 px or 5 ppt
+# bindsym Shift+$mod+o              notinuse
 # bindsym Shift+$mod+o              notinuse
 # bindsym Control+$mod+o            notinuse
 # bindsym Control+Shift+$mod+o      notinuse
@@ -152,7 +152,7 @@ bindsym $mod+t		                [instance="scratchterm"] scratchpad show ; [inst
 
 ### U ###
 # bindsym $mod+u                    notinuse
-bindsym Shift+$mod+u                resize shrink height 5 px or 5 ppt
+# bindsym Shift+$mod+u              notinuse
 # bindsym Control+$mod+u            notinuse
 # bindsym Control+Shift+$mod+u      notinuse
 
@@ -175,7 +175,7 @@ bindsym $mod+x                      layout stacking
 # bindsym Control+Shift+$mod+x      notinuse
 
 ### Y ###
-bindsym Shift+$mod+y                resize shrink width 5 px or 5 ppt
+# bindsym Shift+$mod+y              notinuse
 # bindsym Shift+$mod+v              notinuse
 # bindsym Control+$mod+v            notinuse
 # bindsym Control+Shift+$mod+v      notinuse
