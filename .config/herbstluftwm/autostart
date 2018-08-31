@@ -15,13 +15,14 @@ hc keyunbind --all
 
 # keybindings
 # if you have a super key you will be much happier with Mod set to Mod4
-Mod=Mod1    # Use alt as the main modifier
-#Mod=Mod4   # Use the super key as the main modifier
+#Mod=Mod1    # Use alt as the main modifier
+Mod=Mod4   # Use the super key as the main modifier
 
 hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
-hc keybind $Mod-Shift-c close
-hc keybind $Mod-Return spawn ${TERMINAL:-xterm} # use your $TERMINAL with xterm as fallback
+hc keybind $Mod-q close
+# hc keybind $Mod-Return spawn ${TERMINAL:-xterm} # use your $TERMINAL with xterm as fallback
+hc keybind $Mod-Return spawn urxvt
 
 # basic movement
 # focusing clients
@@ -79,12 +80,14 @@ done
 # cycle through tags
 hc keybind $Mod-period use_index +1 --skip-visible
 hc keybind $Mod-comma  use_index -1 --skip-visible
+hc keybind $Mod-n use_index +1 --skip-visible
+hc keybind $Mod-p  use_index -1 --skip-visible
 
 # layouting
 hc keybind $Mod-r remove
 hc keybind $Mod-s floating toggle
 hc keybind $Mod-f fullscreen toggle
-hc keybind $Mod-p pseudotile toggle
+hc keybind $Mod-Shift-p pseudotile toggle
 # The following cycles through the available layouts within a frame, but skips
 # layouts, if the layout change wouldn't affect the actual window positions.
 # I.e. if there are two windows within a frame, the grid layout is skipped.
