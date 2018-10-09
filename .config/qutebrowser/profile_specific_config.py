@@ -12,3 +12,5 @@ searchengines = {'DEFAULT': 'http://www.google.com/search?q={}',
     'vk' : 'https://www.verkkokauppa.com/fi/search/?q={}',
     'w' : 'http://www.wikipedia.org/w/index.php?title=Special:Search&search={}',
     'y' : 'http://www.youtube.com/results?search_query={}'}
+
+windowtitle = '{title}{title_sep}qutebrowser - {host}'
