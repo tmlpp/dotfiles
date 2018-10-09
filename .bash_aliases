@@ -1,8 +1,8 @@
 # Some aliases
 alias l='less'
-alias ls='ls --color=auto'
-alias ll='ls -lh'
-alias lll='ls -lh | less'
+alias ls='ls -h --color=auto --group-directories-first'
+alias ll='ls -l'
+alias lll='ls -l | less'
 alias la='ls -A'
 alias rm='rm -r'
 alias cd..='cd ..'
