@@ -13,3 +13,4 @@ tv1 https://areena.yle.fi/tv/suorat/yle-tv1#autoplay=true
 sää http://ilmatieteenlaitos.fi/saa/sein%C3%A4joki?forecast=short
 ib https://inbox.google.com/?cid=imp
 pc https://playbeta.pocketcasts.com/web/
+sync http://127.0.0.1:8384/#
