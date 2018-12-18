@@ -1483,6 +1483,7 @@ config.bind('<Escape>', 'leave-mode', mode='hint')
 config.bind('<Escape>', 'leave-mode', mode='insert')
 # config.bind('<Shift-Ins>', 'insert-text {primary}', mode='insert')
 config.bind('<Ctrl-I>', 'leave-mode', mode='insert')
+config.bind('<Ctrl-K>', 'set-cmd-text -s :spawn --userscript keys.py ', mode='insert')
 
 ## Bindings for passthrough mode
 config.bind('<Ctrl-P>', 'leave-mode', mode='passthrough')
