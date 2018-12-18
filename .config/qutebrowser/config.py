@@ -34,7 +34,15 @@ c.auto_save.session = True
 ## when a key is bound (via `bindings.default` or `bindings.commands`),
 ## the mapping is ignored.
 ## Type: Dict
-# c.bindings.key_mappings = {'<Ctrl-[>': '<Escape>', '<Ctrl-6>': '<Ctrl-^>', '<Ctrl-M>': '<Return>', '<Ctrl-J>': '<Return>', '<Shift-Return>': '<Return>', '<Enter>': '<Return>', '<Shift-Enter>': '<Return>', '<Ctrl-Enter>': '<Ctrl-Return>'}
+c.bindings.key_mappings = {'<Ctrl-[>': '<Escape>',
+                           '<Ctrl-6>': '<Ctrl-^>',
+                           '<Ctrl-M>': '<Return>',
+                           '<Ctrl-J>': '<Return>',
+                           '<Shift-Return>': '<Return>',
+                           '<Enter>': '<Return>',
+                           '<Shift-Enter>': '<Return>',
+                           '<Ctrl-Enter>': '<Ctrl-Return>'
+}
 
 
 ## Background color of the selected completion item.
