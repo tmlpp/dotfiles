@@ -732,7 +732,7 @@ c.fonts.statusbar = '8pt Fira Sans'
 
 ## Font used in the tab bar.
 ## Type: QtFont
-c.fonts.tabs = '10pt Fira Sans'
+c.fonts.tabs = '10pt Fira Sans Condensed'
 
 ## Font family for cursive fonts.
 ## Type: FontFamily
@@ -1170,7 +1170,7 @@ c.window.title_format = windowtitle
 ## The width of the tab bar if it's vertical, in px or as percentage of
 ## the window.
 ## Type: PercOrInt
-c.tabs.width = '10%'
+c.tabs.width = '7%'
 
 ## Width of the progress indicator (0 to disable).
 ## Type: Int
