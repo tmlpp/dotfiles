@@ -1,0 +1,3 @@
+#!/bin/bash
+
+qutebrowser --basedir ~/.qutebrowser1
