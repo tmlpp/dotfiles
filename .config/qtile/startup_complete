@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# This script is run on initial qtile startup
+
+dropbox &
+syncthing &
+emacs &
+qutebrowser &
+numlockx &
+#discord &
+qute-wa &
