@@ -1,0 +1,304 @@
+from libqtile.config import Key, Screen, Group, Drag, Click, Match
+from libqtile.command import lazy
+from libqtile import layout, bar, widget, hook
+import os
+import subprocess
+
+try:
+    from typing import List  # noqa: F401
+except ImportError:
+    pass
+
+### Keyboard shortcuts
+
+mod = "mod4"
+
+keys = [
+    # Switch between windows in current stack pane
+    Key([mod], "j", lazy.layout.down()),
+    Key([mod], "k", lazy.layout.up()),
+    Key([mod], "h", lazy.layout.left()),
+    Key([mod], "l", lazy.layout.right()),
+
+    # Move windows up or down in current stack
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
+    Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
+    Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
+
+    # Resize
+    Key([mod, "control"], "j", lazy.layout.grow_down()),
+    Key([mod, "control"], "k", lazy.layout.grow_up()),
+    #Key([mod, "control"], "h", lazy.layout.grow_left()),
+    #Key([mod, "control"], "l", lazy.layout.grow_right()),
+    Key([mod, "control"], "h", lazy.layout.grow()),
+    Key([mod, "control"], "l", lazy.layout.shrink()),
+
+    # Switch window focus to other pane(s) of stack
+    Key([mod], "space", lazy.layout.next()),
+
+    #Swap panes of split stack
+    #Key([mod, "shift"], "space", lazy.layout.rotate()),
+    Key([mod, "shift"], "space", lazy.to_layout_index(1)),
+
+    # Toggle between split and unsplit sides of stack.
+    # Split = all windows displayed
+    # Unsplit = 1 window displayed, like Max layout, but still with
+    # multiple stack panes
+    Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
+    Key([mod], "Return", lazy.spawn("urxvt")),
+    Key([mod], "Menu", lazy.spawn("rofi -show run")),
+
+    # Media controls
+    Key([], "XF86AudioLowerVolume", lazy.spawn("volume-down")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("volume-up")),
+    Key([], "XF86AudioMute", lazy.spawn("volume-mute")),
+    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
+    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
+    Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
+    Key([mod], "plus", lazy.spawn("volume-up")),
+    Key([mod], "F3", lazy.spawn("volume-up")),
+    Key([mod], "minus", lazy.spawn("volume-down")),
+    Key([mod], "F2", lazy.spawn("volume-down")),
+    Key([mod], "F1", lazy.spawn("volume-mute")),
+    Key([mod], "F4", lazy.spawn("playerctl play-pause")),
+    Key([mod], "bracketleft", lazy.spawn("playerctl previous")),
+    Key([mod], "F5", lazy.spawn("playerctl previous")),
+    Key([mod], "bracketright", lazy.spawn("playerctl next")),
+    Key([mod], "F6", lazy.spawn("playerctl next")),
+
+    # Screenshot
+    Key([], "Print", lazy.spawn("scrot '%Y-%m-%d_%H%M%S.png' -e 'mv $f ~/screenshots/'")), # Normal
+    Key([mod], "Print", lazy.spawn("scrot -u '%Y-%m-%d_%H%M%S.png' -e 'mv $f ~/screenshots/'")), # Active window
+    Key([mod, "shift"], "Print", lazy.spawn("scrot /tmp/tempscreenshot.png -e 'xclip -selection clipboard -t image/png -i $f'")), # Copy to clipboard
+
+    # Toggle between different layouts as defined below
+    Key([mod], "Tab", lazy.next_layout()),
+    Key([mod], "9", lazy.prev_layout()),
+    Key([mod], "0", lazy.next_layout()),
+
+    Key([mod], "q", lazy.window.kill()),
+
+    Key([mod], "n", lazy.screen.next_group()),
+    Key([mod], "p", lazy.screen.prev_group()),
+
+    Key([mod, "shift"], "r", lazy.restart()),
+    Key([mod, "shift"], "q", lazy.shutdown()),
+    #Key([mod], "r", lazy.spawncmd()),
+
+    Key([mod, "control"], "c", lazy.spawn("emacsclient -e '(make-capture-frame)'")),
+]
+
+
+groups = [Group(i) for i in "asdfuio"]
+
+for i in groups:
+    keys.extend([
+        # mod1 + letter of group = switch to group
+        # mod1 + shift + letter of group = switch to & move focused window to group
+        Key([mod], i.name, lazy.group[i.name].toscreen()),
+        Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
+    ])
+
+### Define colors, based on my Emacs theme
+### Work in progress
+base21    = '#223639' # bg1
+base27    = '#324344' # bg2
+base33    = '#41504F' # bg3
+base39    = '#515E5A' # bg4
+base51    = '#717B71' # comment
+base62    = '#939989' # fg4
+base68    = '#A4A895' # fg3
+base74    = '#B6B8A2' # fg2
+base80    = '#C8C8AE' # fg1
+orange    = '#FF794D'
+orange_l  = '#FF9B6C'
+green     = '#50B877'
+green_l   = '#6ECC8F'
+cyan      = '#4BB3BF'
+cyan_l    = '#69C8D4'
+magenta   = '#FE67FF'
+magenta_l = '#FF8BFF'
+pink      = '#FF67A6'
+pink_l    = '#FF8DCB'
+
+color_bg = base21
+color_fg = base80
+color_hl = base80
+color_border = ''
+color_urgent = orange
+#color_active = ''
+color_inactive = '#978B76'
+#color_border = ''
+
+layouts = [
+    layout.Columns(
+        name='COL',
+        border_width=1,
+        border_normal=color_bg,
+        border_focus=pink),
+    layout.Bsp(
+        name='BSP',
+        border_width=1,
+        border_normal=base21,
+        border_focus=magenta),
+    layout.Max(name='MAX'),
+    layout.MonadTall(
+        name='MOT',
+        border_width=1,
+        border_normal=base21,
+        border_focus=orange),
+    layout.MonadWide(
+        name='MOW',
+        border_width=1,
+        border_normal=base21,
+        border_focus=orange),
+    #layout.Floating(),
+    #layout.Matrix(
+    #    name='mtrx',
+    #    columns=2),
+    #layout.RatioTile(),
+    #layout.Slice(),
+    #layout.Stack(num_stacks=2),
+    #layout.Tile(),
+    #layout.TreeTab(),
+    #layout.VerticalTile(),
+    #layout.Wmii(),
+    #layout.Zoomy()
+]
+
+
+widget_defaults = dict(
+    font='Iosevka',
+    fontsize=14,
+    padding=3,
+    background=color_bg,
+    foreground=color_fg,
+)
+extension_defaults = widget_defaults.copy()
+
+screens = [
+    Screen(
+        top=bar.Bar(
+            [
+                widget.GroupBox(
+                    font='Iosevka',
+                    active=color_fg,
+                    inactive=base51,
+                    highlight_method='line',
+                    this_current_screen_border=base51,
+                    urgent_border=color_urgent,
+                    highlight_color=base21,
+                    #foreground='888888',
+                    #background='550000'
+                    #active
+                ),
+                #widget.Prompt(),
+                widget.WindowName(),
+                #widget.Sep(),
+                widget.Volume(),
+                widget.Pomodoro(
+                    length_short_break=5,
+                    length_pomodori=25,
+                    length_long_break=15,
+                ),
+                # String format (p: partition, s: size, f: free space, uf: user free space, m: measure, r: ratio (uf/s))
+                widget.Sep(padding=10, size_percent=62),
+                widget.DF(partition="/", format="/: {uf}{m}", visible_on_warn=False),
+                widget.Sep(padding=10, size_percent=62),
+                widget.DF(partition="/home", format="home: {uf}{m}", visible_on_warn=False),
+                widget.Sep(padding=10, size_percent=62),
+                widget.DF(partition="/amanda", format="a: {uf}{m}", visible_on_warn=False),
+                widget.Sep(padding=10, size_percent=62),
+                widget.DF(partition="/bella", format="b: {uf}{m}", visible_on_warn=False),
+                widget.Sep(padding=10, size_percent=62),
+                widget.DF(partition="/cecilia", format="c: {uf}{m}", visible_on_warn=False),
+                widget.Sep(padding=10, size_percent=62),
+                widget.DF(partition="/diana", format="d: {uf}{m}", visible_on_warn=False),
+                widget.Sep(padding=10, size_percent=62),
+                widget.DF(partition="/emma", format="e: {uf}{m}", visible_on_warn=False),
+                widget.Sep(padding=10, size_percent=62),
+                widget.ThermalSensor(tag_sensor="Tdie"),
+                widget.CPUGraph(
+                    border_width = 1,
+                    border_color = base51,
+                    graph_color = base51,
+                    fill_color = base51),
+                widget.Memory(fmt='M: {MemUsed}/{MemTotal}'),
+                widget.Sep(padding=10, size_percent=62),
+                widget.Systray(),
+                widget.Clock(format='%a %d %b %H:%M'),
+                widget.Sep(padding=10, size_percent=62),
+                widget.CurrentLayout(foreground = base51),
+            ],
+            30,
+        ),
+    ),
+]
+
+# Drag floating layouts.
+mouse = [
+    Drag([mod], "Button1", lazy.window.set_position_floating(),
+         start=lazy.window.get_position()),
+    Drag([mod], "Button3", lazy.window.set_size_floating(),
+         start=lazy.window.get_size()),
+    Click([mod], "Button2", lazy.window.bring_to_front())
+]
+
+dgroups_key_binder = None
+dgroups_app_rules = []  # type: List
+main = None
+follow_mouse_focus = True
+bring_front_click = False
+cursor_warp = False
+floating_layout = layout.Floating(float_rules=[
+    {'wmclass': 'confirm'},
+    {'wmclass': 'dialog'},
+    {'wmclass': 'download'},
+    {'wmclass': 'error'},
+    {'wmclass': 'file_progress'},
+    {'wmclass': 'notification'},
+    {'wmclass': 'splash'},
+    {'wmclass': 'toolbar'},
+    {'wmclass': 'confirmreset'},  # gitk
+    {'wmclass': 'makebranch'},  # gitk
+    {'wmclass': 'maketag'},  # gitk
+    {'wname': 'branchdialog'},  # gitk
+    {'wname': 'pinentry'},  # GPG key password entry
+    {'wmclass': 'ssh-askpass'},  # ssh-askpass
+])
+auto_fullscreen = True
+focus_on_window_activation = "smart"
+
+# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
+# string besides java UI toolkits; you can see several discussions on the
+# mailing lists, github issues, and other WM documentation that suggest setting
+# this string if your java app doesn't work correctly. We may as well just lie
+# and say that we're a working one by default.
+#
+# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
+# java that happens to be on java's whitelist.
+wmname = "LG3D"
+
+@hook.subscribe.startup
+def startup():
+    startup_file = os.path.expanduser('~/.config/qtile/startup')
+    subprocess.call([startup_file])
+
+@hook.subscribe.startup_once
+def startup_once():
+    startup_file = os.path.expanduser('~/.config/qtile/startup_once')
+    subprocess.call([startup_file])
+
+@hook.subscribe.startup_once
+def startup_complete():
+    startup_file = os.path.expanduser('~/.config/qtile/startup_complete')
+    subprocess.call([startup_file])
+
+#@hook.subscribe.startup_once
+#def autostart_once():
+#    subprocess.call([home + '/.config/qtile/startup_once.sh'])
+#
+#@hook.subscribe.startup
+#def autostart():
+#    subprocess.call([home + '/.config/qtile/startup.sh'])
