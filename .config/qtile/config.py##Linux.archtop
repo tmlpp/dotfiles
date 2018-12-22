@@ -224,7 +224,7 @@ screens = [
                 widget.Sep(padding=10, size_percent=62),
                 widget.Wlan(interface = 'wlp1s0'),
                 widget.Sep(padding=10, size_percent=62),
-                widget.Battery(),
+                widget.Battery(charge_char = '▲', discharge_char = '▼'),
                 widget.Sep(padding=10, size_percent=62),
                 widget.Systray(),
                 widget.Clock(format='%a %d %b %H:%M'),
