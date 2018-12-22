@@ -67,6 +67,10 @@ keys = [
     Key([mod], "bracketright", lazy.spawn("playerctl next")),
     Key([mod], "F6", lazy.spawn("playerctl next")),
 
+    # Brightness
+    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 3")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 3")),
+
     # Screenshot
     Key([], "Print", lazy.spawn("scrot '%Y-%m-%d_%H%M%S.png' -e 'mv $f ~/screenshots/'")), # Normal
     Key([mod], "Print", lazy.spawn("scrot -u '%Y-%m-%d_%H%M%S.png' -e 'mv $f ~/screenshots/'")), # Active window
