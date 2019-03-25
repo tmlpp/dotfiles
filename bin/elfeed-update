@@ -1,3 +1,3 @@
 #!/bin/bash
 
-emacsclient -e "(elfeed-search-fetch nil)"
+emacsclient -e "(tsl/check-elfeed-and-update)"
