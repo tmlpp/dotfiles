@@ -31,15 +31,21 @@ keys = [
     Key([mod, "control"], "k", lazy.layout.grow_up()),
     #Key([mod, "control"], "h", lazy.layout.grow_left()),
     #Key([mod, "control"], "l", lazy.layout.grow_right()),
-    Key([mod, "control"], "h", lazy.layout.grow()),
-    Key([mod, "control"], "l", lazy.layout.shrink()),
+    #Key([mod, "control"], "h", lazy.layout.grow()),
+    #Key([mod, "control"], "l", lazy.layout.shrink()),
+    Key([mod, "control"], "h",
+        lazy.layout.grow(), # Monad
+        lazy.layout.grow_left()), # Column, BSP
+    Key([mod, "control"], "l",
+        lazy.layout.shrink(), # Monad
+        lazy.layout.grow_right()), # Column, BSP
 
     # Switch window focus to other pane(s) of stack
     Key([mod], "space", lazy.layout.next()),
 
     #Swap panes of split stack
-    #Key([mod, "shift"], "space", lazy.layout.rotate()),
-    Key([mod, "shift"], "space", lazy.to_layout_index(1)),
+    Key([mod, "shift"], "space", lazy.layout.rotate()),
+    #Key([mod, "shift"], "space", lazy.to_layout_index(1)),
 
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
