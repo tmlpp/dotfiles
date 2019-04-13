@@ -58,8 +58,7 @@ Xft.hintstyle: hintslight
 
 !! === other stuff ===
 URxvt.scrollBar: false
-URxvt.fading: 15
-URxvt.perl-ext:           default,matcher,keyboard-select,font-size,tabbedex,url-select
+URxvt.perl-ext:           default,matcher,keyboard-select,font-size,url-select
 URxvt.url-launcher:       qutebrowser
 URxvt.keysym.C-Delete:    matcher:last
 URxvt.keysym.M-Delete:    perl:matcher:list
@@ -70,8 +69,3 @@ URxvt.matcher.pattern.1:  \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
 
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.url-select.launcher: qutebrowser
-!! tabbedex
-URxvt.keysym.M-h: perl:tabbedex:prev_tab
-URxvt.keysym.M-l: perl:tabbedex:next_tab
-URxvt.keysym.M-j: perl:tabbedex:new_tab
-URxvt.keysym.M-k: perl:tabbedex:rename_tab
