@@ -189,9 +189,9 @@ layouts = [
 
 
 widget_defaults = dict(
-    font='Iosevka',
+    font='Fira Mono',
     fontsize=14,
-    padding=3,
+    padding=5,
     background=color_bg,
     foreground=color_fg,
 )
@@ -202,43 +202,48 @@ screens = [
         top=bar.Bar(
             [
                 widget.GroupBox(
-                    font='Iosevka',
-                    active=color_fg,
-                    inactive=base51,
+                    # font="Fira Mono",
+                    active=base51,
+                    inactive=base39,
                     highlight_method='line',
                     this_current_screen_border=base51,
                     urgent_border=color_urgent,
                     highlight_color=base21,
-                    #foreground='888888',
-                    #background='550000'
+                    padding=3,
+                    # foreground='888888',
+                    # background='550000'
                     #active
                 ),
-                #widget.Prompt(),
-                widget.WindowName(),
-                #widget.Sep(),
-                widget.Volume(),
-                widget.Pomodoro(
-                    length_short_break=5,
-                    length_pomodori=25,
-                    length_long_break=15,
+                widget.Prompt(),
+                widget.WindowName(
+                    font="Fira Sans Compressed Italic",
+                    padding=20,
                 ),
+                #widget.Sep(),
+                widget.Volume(
+                    padding=15),
+                # widget.Pomodoro(
+                #     length_short_break=5,
+                #     length_pomodori=25,
+                #     length_long_break=15,
+                # ),
                 # String format (p: partition, s: size, f: free space, uf: user free space, m: measure, r: ratio (uf/s))
-                widget.Sep(padding=10, size_percent=62),
+                widget.Sep(size_percent=62),
                 widget.DF(partition="/", format="/: {uf}{m}", visible_on_warn=False),
-                widget.Sep(padding=10, size_percent=62),
+                widget.Sep(size_percent=62),
                 widget.DF(partition="/home", format="home: {uf}{m}", visible_on_warn=False),
-                widget.Sep(padding=10, size_percent=62),
+                widget.Sep(size_percent=62),
                 widget.DF(partition="/amanda", format="a: {uf}{m}", visible_on_warn=False),
-                widget.Sep(padding=10, size_percent=62),
+                widget.Sep(size_percent=62),
                 widget.DF(partition="/bella", format="b: {uf}{m}", visible_on_warn=False),
-                widget.Sep(padding=10, size_percent=62),
+                widget.Sep(size_percent=62),
                 widget.DF(partition="/cecilia", format="c: {uf}{m}", visible_on_warn=False),
-                widget.Sep(padding=10, size_percent=62),
+                widget.Sep(size_percent=62),
                 widget.DF(partition="/diana", format="d: {uf}{m}", visible_on_warn=False),
-                widget.Sep(padding=10, size_percent=62),
+                widget.Sep(size_percent=62),
                 widget.DF(partition="/emma", format="e: {uf}{m}", visible_on_warn=False),
-                widget.Sep(padding=10, size_percent=62),
-                widget.ThermalSensor(tag_sensor="Tdie"),
+                widget.Sep(size_percent=62),
+                widget.ThermalSensor(tag_sensor="Tdie", padding=10),
                 widget.CPUGraph(
                     border_width = 0,
                     border_color = base51,
@@ -248,7 +253,9 @@ screens = [
                 widget.Memory(fmt='M: {MemUsed}/{MemTotal}'),
                 widget.Sep(padding=10, size_percent=62),
                 widget.Systray(),
-                widget.Clock(format='%a %d %b %H:%M'),
+                widget.Clock(
+                    format='%a %d %b %H:%M',
+                    font="Fira Mono Bold"),
                 widget.Sep(padding=10, size_percent=62),
                 widget.CurrentLayout(foreground = base51),
             ],
