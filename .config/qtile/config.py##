@@ -140,25 +140,35 @@ color_inactive = '#978B76'
 layouts = [
     layout.Columns(
         name='COL',
+        margin=5,
         border_width=1,
         border_normal=color_bg,
         border_focus=pink),
     layout.Bsp(
         name='BSP',
+        margin=5,
         border_width=1,
         border_normal=base21,
         border_focus=magenta),
     layout.Max(name='MAX'),
     layout.MonadTall(
         name='MOT',
+        margin=5,
         border_width=1,
         border_normal=base21,
-        border_focus=orange),
+        border_focus=orange,
+        min_ratio=0.2,
+        max_ratio=0.8,
+        ratio=0.6),
     layout.MonadWide(
         name='MOW',
+        margin=5,
         border_width=1,
         border_normal=base21,
-        border_focus=orange),
+        border_focus=orange,
+        min_ratio=0.2,
+        max_ratio=0.8,
+        ratio=0.7),
     layout.Floating(
         name='FLO',
         border_width=1,
