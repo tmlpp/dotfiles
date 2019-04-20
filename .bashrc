@@ -10,6 +10,7 @@ shopt -s histappend
 
 HISTSIZE=-1
 HISTFILESIZE=-1
+HISTCONTROL=ignoreboth
 
 # PS1='\u@\h \W\$ '
 PS1="\[$(tput bold)\]\[$(tput setaf 2)\][\[$(tput setaf 3)\]\u\[$(tput setaf 1)\]@\[$(tput setaf 3)\]\h \[$(tput setaf 6)\]\W\[$(tput setaf 2)\]]\[$(tput setaf 4)\]\\$ \[$(tput sgr0)\]"
