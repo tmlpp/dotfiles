@@ -17,6 +17,7 @@ alias mkd='mkdir -p'
 alias off='shutdown -h now'
 alias ..='cd..'
 alias uz='unzip'
+alias q='exit'
 
 # p as in package operations
 alias pU='yay -Suy' 	# update system
