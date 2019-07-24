@@ -13,4 +13,4 @@ searchengines = {'DEFAULT': 'http://www.google.com/search?q={}',
     'w' : 'http://www.wikipedia.org/w/index.php?title=Special:Search&search={}',
     'y' : 'http://www.youtube.com/results?search_query={}'}
 
-windowtitle = '{title}{title_sep}qbmain - {host}'
+windowtitle = '{current_title}{title_sep}qbmain - {host}'

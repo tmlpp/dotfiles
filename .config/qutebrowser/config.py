@@ -1151,7 +1151,7 @@ c.tabs.position = 'left'
 ## The following placeholders are defined:
 ## {perc}: Percentage as a string like [10%]
 ## {perc_raw}: Raw percentage, e.g. 10
-## {title}: Title of the current web page
+## {current_title}: Title of the current web page
 ## {title_sep}: The string ' - ' if a title is set, empty otherwise
 ## {index}: Index of this tab
 ## {id}`: Internal tab ID of this tab
