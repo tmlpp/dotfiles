@@ -318,3 +318,7 @@
 #    urgency = normal
 #
 # vim: ft=cfg
+
+[play_sound]
+	summary = "Pomodoro"
+	script = ~/playsound.sh
