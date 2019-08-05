@@ -1,0 +1,150 @@
+/**
+ * ROFI Color theme
+ * User: tmlpp
+ * Copyright: Teemu Lappi
+ */
+
+* {
+    bg-1: #3b3b3b;
+    bg-2: #1e1e1e;
+    bg-3: #282828;
+    bg-4: #2e2e2e;
+    bg-5: #444444;
+    bg-6: #494949;
+    fg-1: #ffffff;
+    fg-2: #c3c3c3;
+    selected: #314e78;
+    font: "Fira Sans 12";
+    border: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+#window {
+    background-color: @bg-1;
+    width: 20%;
+    border: 0px;
+    /* border-color: @bg-1; */
+    /* border-radius: 10px 10px 0px; */
+}
+
+#mainbox {
+    background-color: @bg-1;
+    /* padding: 5px; */
+
+}
+
+#message {
+
+}
+
+#textbox {
+    background-color: @bg-1;
+}
+
+#listview {
+    fixed-height: 0;
+    scrollbar: false;
+    background-color: @bg-1;
+    padding: 0;
+
+}
+
+#element {
+    background-color: @bg-3;
+    text-color: @fg-2;
+    padding: 3px;
+}
+
+#element.normal.normal {
+    text-color: @normal-foreground;
+}
+
+#element.normal.urgent {
+    background-color: #008800;
+    text-color: @urgent-foreground;
+}
+
+#element.normal.active {
+    background-color: #008800;
+    text-color: @active-foreground;
+}
+
+#element.selected.normal {
+    background-color: @selected;
+    // text-color: @selected-normal-foreground;
+}
+
+#element.selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color: @selected-urgent-foreground;
+}
+
+#element.selected.active {
+    // background-color: @selected-active-background;
+    // text-color: @selected-active-foreground;
+}
+
+#element.alternate.normal {
+    background-color: @bg-4;
+    // text-color: @alternate-normal-foreground;
+}
+
+#element.alternate.urgent {
+    background-color: @alternate-urgent-background;
+    text-color: @alternate-urgent-foreground;
+}
+
+#element.alternate.active {
+    background-color: @alternate-active-background;
+    text-color: @alternate-active-foreground;
+}
+
+#scrollbar {
+    width: 4px;
+    handle-width: 8px;
+}
+
+#sidebar {
+    border-color: @separatorcolor;
+}
+
+#button.selected {
+    background-color: @selected-normal-background;
+    text-color: @selected-normal-foreground;
+}
+
+#inputbar {
+    text-color: #ffffff;
+    background-color: @bg-1;
+    /* padding: 5px 5px 5px 5px; */
+}
+
+#case-indicator {
+    text-color: @normal-foreground;
+    background-color: @bg-2;
+}
+
+#entry {
+    text-color: @fg-1;
+    background-color: @bg-2;
+}
+
+#prompt {
+    text-color: #ffffff;
+    background-color: @bg-2;
+    padding: 0px 9px 0px 9px;
+}
+
+#inputbar {
+    // children: [ prompt,textbox-prompt-colon,entry,case-indicator ];
+    background-color: @bg-1;
+}
+
+#textbox-prompt-colon {
+    expand: true;
+    str: ":";
+    margin: 0px 0.3em 0em 0em ;
+    text-color: #f00;
+    background-color: @bg-2;
+}

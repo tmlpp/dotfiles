@@ -3,11 +3,11 @@ rofi.modi:                           window,run
 ! "Window width" Set from: Default
 rofi.width:                          30
 ! "Number of lines" Set from: Default
-rofi.lines:                          10
+rofi.lines:                          15
 ! "Number of columns" Set from: Default
 rofi.columns:                        1
 ! "Font to use" Set from: Default
-rofi.font:                           Iosevka 12
+rofi.font:                           Iosevka 14
 ! "Border width" Set from: Default
 rofi.bw:                             0
 ! "Location on screen" Set from: Default
@@ -97,7 +97,7 @@ rofi.run-shell-command:              {terminal} -e {cmd}
 ! "Indicate how it match by underlining it." Set from: Default
 ! rofi.show-match:                     true
 ! "New style theme file" Set from: Default
-! rofi.theme:                          
+rofi.theme:                          testi
 ! "Color scheme for normal row" Set from: Default
 ! rofi.color-normal:                   
 ! "Color scheme for urgent row" Set from: Default
