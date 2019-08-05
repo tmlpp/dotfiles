@@ -2,10 +2,13 @@
 
 # This script is run on initial qtile startup
 
-dropbox &
-syncthing &
-emacs &
-qutebrowser &
-numlockx &
-#discord &
-qute-wa &
+# dropbox &
+# syncthing &
+# numlockx &
+# qutebrowser &
+# ~/.fehbg &
+# #discord &
+# gpick &
+# emacs &
+# qute-wa &
+# spotify &
