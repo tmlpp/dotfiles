@@ -48,8 +48,8 @@
 
 !! === font ===
 ! URxvt.font: xft:Fira Mono:Medium:size=12
-URxvt.font: xft:Iosevka:Regular:size=11
-URxvt.boldFfont: xft:Iosevka:Heavy:size=11
+URxvt.font: xft:IBM Plex Mono:Regular:size=11
+URxvt.boldFfont: xft:IBM Plex Mono:Heavy:size=11
 Xft.antialias: true
 Xft.hinting: true
 Xft.autohint: 1
