@@ -96,6 +96,9 @@ keys = [
     #Key([mod], "r", lazy.spawncmd()),
 
     Key([mod, "control"], "c", lazy.spawn("emacsclient -e '(make-capture-frame)'")),
+    Key([mod], "t", lazy.group["valiaiknimi"].dropdown_toggle("term")),
+    Key([mod], "r", lazy.group["valiaiknimi"].dropdown_toggle("ranger")),
+    Key([mod], "e", lazy.group["valiaiknimi"].dropdown_toggle("qshell")),
 ]
 
 
