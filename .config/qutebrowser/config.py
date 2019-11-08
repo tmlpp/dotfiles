@@ -236,11 +236,11 @@ c.bindings.key_mappings = {'<Ctrl-[>': '<Escape>',
 # c.colors.statusbar.passthrough.fg = 'white'
 ## Background color of the statusbar.
 ## Type: QssColor
-# c.colors.statusbar.normal.bg = 'black'
+c.colors.statusbar.normal.bg = '#303030'
 
 ## Foreground color of the statusbar.
 ## Type: QssColor
-# c.colors.statusbar.normal.fg = 'white'
+c.colors.statusbar.normal.fg = '#aaaaaa'
 
 ## Background color of the statusbar in private browsing mode.
 ## Type: QssColor
@@ -283,15 +283,15 @@ c.bindings.key_mappings = {'<Ctrl-[>': '<Escape>',
 ##### COLORS #####
 
 ## Tab colors
-c.colors.tabs.bar.bg = '#2f2f3b'
-c.colors.tabs.even.bg = '#2f2f3b'
-c.colors.tabs.even.fg = '#acac89'
-c.colors.tabs.odd.bg = '#2f2f3b'
-c.colors.tabs.odd.fg = '#acac89'
-c.colors.tabs.selected.even.bg = '#464658'
-c.colors.tabs.selected.even.fg = '#c8c89f'
-c.colors.tabs.selected.odd.bg = '#464658'
-c.colors.tabs.selected.odd.fg = '#c8c89f'
+c.colors.tabs.bar.bg = '#232323'
+c.colors.tabs.even.bg = '#2b2b2b'
+c.colors.tabs.even.fg = '#989898'
+c.colors.tabs.odd.bg = '#2b2b2b'
+c.colors.tabs.odd.fg = '#989898'
+c.colors.tabs.selected.even.bg = '#424242'
+c.colors.tabs.selected.even.fg = '#ffffff'
+c.colors.tabs.selected.odd.bg = '#424242'
+c.colors.tabs.selected.odd.fg = '#ffffff'
 
 ## Color for the tab indicator on errors.
 # c.colors.tabs.indicator.error = '#ff0000'
