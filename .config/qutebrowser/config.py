@@ -44,295 +44,95 @@ c.bindings.key_mappings = {'<Ctrl-[>': '<Escape>',
                            '<Ctrl-Enter>': '<Ctrl-Return>'
 }
 
-
-## Background color of the selected completion item.
-## Type: QssColor
-
-## Bottom border color of the selected completion item.
-## Type: QssColor
-
-## Top border color of the selected completion item. 
-## Type: QssColor
-
-## Foreground color of the selected completion item.
-## Type: QtColor
-
-## Foreground color of the matched text in the completion.
-
-## Color of the scrollbar in completion view
-## Type: QssColor
-
-## Color of the scrollbar handle in completion view.
-## Type: QssColor
-
-## Background color for the download bar.
-## Type: QssColor
-# c.colors.downloads.bar.bg = 'black'
-
-## Background color for downloads with errors.
-## Type: QtColor
-# c.colors.downloads.error.bg = 'red'
-
-## Foreground color for downloads with errors.
-## Type: QtColor
-# c.colors.downloads.error.fg = 'white'
-
-## Color gradient start for download backgrounds.
-## Type: QtColor
-# c.colors.downloads.start.bg = '#0000aa'
-
-## Color gradient start for download text.
-## Type: QtColor
-# c.colors.downloads.start.fg = 'white'
-
-## Color gradient stop for download backgrounds.
-## Type: QtColor
-# c.colors.downloads.stop.bg = '#00aa00'
-
-## Color gradient end for download text.
-## Type: QtColor
-# c.colors.downloads.stop.fg = 'white'
-
-## Color gradient interpolation system for download backgrounds.
-## Type: ColorSystem
-## Valid values:
-##   - rgb: Interpolate in the RGB color system.
-##   - hsv: Interpolate in the HSV color system.
-##   - hsl: Interpolate in the HSL color system.
-##   - none: Don't show a gradient.
-# c.colors.downloads.system.bg = 'rgb'
-
-## Color gradient interpolation system for download text.
-## Type: ColorSystem
-## Valid values:
-##   - rgb: Interpolate in the RGB color system.
-##   - hsv: Interpolate in the HSV color system.
-##   - hsl: Interpolate in the HSL color system.
-##   - none: Don't show a gradient.
-# c.colors.downloads.system.fg = 'rgb'
-
-## Background color for hints. Note that you can use a `rgba(...)` value
-## for transparency.
-## Type: QssColor
-# c.colors.hints.bg = 'qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgba(255, 247, 133, 0.8), stop:1 rgba(255, 197, 66, 0.8))'
-
-## Font color for hints.
-## Type: QssColor
-# c.colors.hints.fg = 'black'
-
-## Font color for the matched part of hints.
-## Type: QssColor
-# c.colors.hints.match.fg = 'green'
-
-## Background color of the keyhint widget.
-## Type: QssColor
-# c.colors.keyhint.bg = 'rgba(0, 0, 0, 80%)'
-
-## Text color for the keyhint widget.
-## Type: QssColor
-# c.colors.keyhint.fg = '#FFFFFF'
-
-## Highlight color for keys to complete the current keychain.
-## Type: QssColor
-# c.colors.keyhint.suffix.fg = '#FFFF00'
-
-## Background color of an error message.
-## Type: QssColor
-# c.colors.messages.error.bg = 'red'
-
-## Border color of an error message.
-## Type: QssColor
-# c.colors.messages.error.border = '#bb0000'
-
-## Foreground color of an error message.
-## Type: QssColor
-# c.colors.messages.error.fg = 'white'
-
-## Background color of an info message.
-## Type: QssColor
-# c.colors.messages.info.bg = 'black'
-
-## Border color of an info message.
-## Type: QssColor
-# c.colors.messages.info.border = '#333333'
-
-## Foreground color an info message.
-## Type: QssColor
-# c.colors.messages.info.fg = 'white'
-
-## Background color of a warning message.
-## Type: QssColor
-# c.colors.messages.warning.bg = 'darkorange'
-
-## Border color of a warning message.
-## Type: QssColor
-# c.colors.messages.warning.border = '#d47300'
-
-## Foreground color a warning message.
-## Type: QssColor
-# c.colors.messages.warning.fg = 'white'
-
-## Background color for prompts.
-## Type: QssColor
-# c.colors.prompts.bg = '#444444'
-
-## Border used around UI elements in prompts.
-## Type: String
-# c.colors.prompts.border = '1px solid gray'
-
-## Foreground color for prompts.
-## Type: QssColor
-# c.colors.prompts.fg = 'white'
-
-## Background color for the selected item in filename prompts.
-## Type: QssColor
-# c.colors.prompts.selected.bg = 'grey'
-
-## Background color of the statusbar in caret mode.
-## Type: QssColor
-# c.colors.statusbar.caret.bg = 'purple'
-
-## Foreground color of the statusbar in caret mode.
-## Type: QssColor
-# c.colors.statusbar.caret.fg = 'white'
-
-## Background color of the statusbar in caret mode with a selection.
-## Type: QssColor
-# c.colors.statusbar.caret.selection.bg = '#a12dff'
-
-## Foreground color of the statusbar in caret mode with a selection.
-## Type: QssColor
-# c.colors.statusbar.caret.selection.fg = 'white'
-
-## Background color of the statusbar in command mode.
-## Type: QssColor
-# c.colors.statusbar.command.bg = 'black'
-
-## Foreground color of the statusbar in command mode.
-## Type: QssColor
-# c.colors.statusbar.command.fg = 'white'
-
-## Background color of the statusbar in private browsing + command mode.
-## Type: QssColor
-# c.colors.statusbar.command.private.bg = 'grey'
-
-## Foreground color of the statusbar in private browsing + command mode.
-## Type: QssColor
-# c.colors.statusbar.command.private.fg = 'white'
-
-## Background color of the statusbar in insert mode.
-## Type: QssColor
-# c.colors.statusbar.insert.bg = 'darkgreen'
-
-## Foreground color of the statusbar in insert mode.
-## Type: QssColor
-# c.colors.statusbar.insert.fg = 'white'
-
-## Background color of the statusbar in passthrough mode.
-## Type: QssColor
-# c.colors.statusbar.passthrough.bg = 'black'
-## Foreground color of the statusbar in passthrough mode.
-## Type: QssColor
-# c.colors.statusbar.passthrough.fg = 'white'
-## Background color of the statusbar.
-## Type: QssColor
-c.colors.statusbar.normal.bg = '#303030'
-
-## Foreground color of the statusbar.
-## Type: QssColor
-c.colors.statusbar.normal.fg = '#aaaaaa'
-
-## Background color of the statusbar in private browsing mode.
-## Type: QssColor
-# c.colors.statusbar.private.bg = '#666666'
-
-## Foreground color of the statusbar in private browsing mode.
-## Type: QssColor
-# c.colors.statusbar.private.fg = 'white'
-
-## Background color of the progress bar.
-## Type: QssColor
-# c.colors.statusbar.progress.bg = 'white'
-
-## Foreground color of the URL in the statusbar on error.
-## Type: QssColor
-# c.colors.statusbar.url.error.fg = 'orange'
-
-## Default foreground color of the URL in the statusbar.
-## Type: QssColor
-# c.colors.statusbar.url.fg = 'white'
-
-## Foreground color of the URL in the statusbar for hovered links.
-## Type: QssColor
-# c.colors.statusbar.url.hover.fg = 'aqua'
-
-## Foreground color of the URL in the statusbar on successful load
-## (http).
-## Type: QssColor
-# c.colors.statusbar.url.success.http.fg = 'white'
-
-## Foreground color of the URL in the statusbar on successful load
-## (https).
-## Type: QssColor
-# c.colors.statusbar.url.success.https.fg = 'lime'
-
-## Foreground color of the URL in the statusbar when there's a warning.
-## Type: QssColor
-# c.colors.statusbar.url.warn.fg = 'yellow'
-
 ##### COLORS #####
 
-## Tab colors
+c.colors.completion.category.bg = '#464658'
+# c.colors.completion.category.border.bottom = 'black'
+# c.colors.completion.category.border.top = 'black'
+c.colors.completion.category.fg = '#c8c89f'
+c.colors.completion.even.bg = '#2f2f3b'
+c.colors.completion.fg = '#acac89'
+c.colors.completion.item.selected.bg = '#acac89'
+c.colors.completion.item.selected.border.bottom = '#c8c89f'
+c.colors.completion.item.selected.border.top = '#c8c89f'
+c.colors.completion.item.selected.fg = '#2f2f3b'
+# c.colors.completion.item.selected.match.fg
+c.colors.completion.match.fg = '#e5e5b6'
+c.colors.completion.odd.bg = '#2f2f3b'
+# c.colors.completion.scrollbar.bg = '#333333'
+# c.colors.completion.scrollbar.fg = 'white'
+# c.colors.downloads.bar.bg = 'black'
+# c.colors.downloads.error.bg = 'red'
+# c.colors.downloads.error.fg = 'white'
+# c.colors.downloads.start.bg = '#0000aa'
+# c.colors.downloads.start.fg = 'white'
+# c.colors.downloads.stop.bg = '#00aa00'
+# c.colors.downloads.stop.fg = 'white'
+# c.colors.downloads.system.bg = 'rgb'
+# c.colors.downloads.system.fg = 'rgb'
+# c.colors.hints.bg = 'qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgba(255, 247, 133, 0.8), stop:1 rgba(255, 197, 66, 0.8))'
+# c.colors.hints.fg = 'black'
+# c.colors.hints.match.fg = 'green'
+# c.colors.keyhint.bg = 'rgba(0, 0, 0, 80%)'
+# c.colors.keyhint.fg = '#FFFFFF'
+# c.colors.keyhint.suffix.fg = '#FFFF00'
+# c.colors.messages.error.bg = 'red'
+# c.colors.messages.error.border = '#bb0000'
+# c.colors.messages.error.fg = 'white'
+# c.colors.messages.info.bg = 'black'
+# c.colors.messages.info.border = '#333333'
+# c.colors.messages.info.fg = 'white'
+# c.colors.messages.warning.bg = 'darkorange'
+# c.colors.messages.warning.border = '#d47300'
+# c.colors.messages.warning.fg = 'white'
+# c.colors.prompts.bg = '#444444'
+# c.colors.prompts.border = '1px solid gray'
+# c.colors.prompts.fg = 'white'
+# c.colors.prompts.selected.bg = 'grey'
+# c.colors.statusbar.caret.bg = 'purple'
+# c.colors.statusbar.caret.fg = 'white'
+# c.colors.statusbar.caret.selection.bg = '#a12dff'
+# c.colors.statusbar.caret.selection.fg = 'white'
+# c.colors.statusbar.command.bg = 'black'
+# c.colors.statusbar.command.fg = 'white'
+# c.colors.statusbar.command.private.bg = 'grey'
+# c.colors.statusbar.command.private.fg = 'white'
+# c.colors.statusbar.insert.bg = 'darkgreen'
+# c.colors.statusbar.insert.fg = 'white'
+c.colors.statusbar.normal.bg = '#303030'
+c.colors.statusbar.normal.fg = '#aaaaaa'
+# c.colors.statusbar.passthrough.bg = 'black'
+# c.colors.statusbar.passthrough.fg = 'white'
+# c.colors.statusbar.private.bg = '#666666'
+# c.colors.statusbar.private.fg = 'white'
+# c.colors.statusbar.progress.bg = 'white'
+# c.colors.statusbar.url.error.fg = 'orange'
+# c.colors.statusbar.url.fg = 'white'
+# c.colors.statusbar.url.hover.fg = 'aqua'
+# c.colors.statusbar.url.success.http.fg = 'white'
+# c.colors.statusbar.url.success.https.fg = 'lime'
+# c.colors.statusbar.url.warn.fg = 'yellow'
 c.colors.tabs.bar.bg = '#232323'
 c.colors.tabs.even.bg = '#2b2b2b'
 c.colors.tabs.even.fg = '#989898'
+# c.colors.tabs.indicator.error = '#ff0000'
+# c.colors.tabs.indicator.start = '#0000aa'
+# c.colors.tabs.indicator.stop = '#00aa00'
+# c.colors.tabs.indicator.system = 'rgb'
 c.colors.tabs.odd.bg = '#2b2b2b'
 c.colors.tabs.odd.fg = '#989898'
+# c.colors.tabs.pinned.even.bg
+# c.colors.tabs.pinned.even.fg
+# c.colors.tabs.pinned.odd.bg
+# c.colors.tabs.pinned.odd.fg
+# c.colors.tabs.pinned.selected.even.bg
+# c.colors.tabs.pinned.selected.even.fg
+# c.colors.tabs.pinned.selected.odd.bg
+# c.colors.tabs.pinned.selected.odd.fg
 c.colors.tabs.selected.even.bg = '#424242'
 c.colors.tabs.selected.even.fg = '#ffffff'
 c.colors.tabs.selected.odd.bg = '#424242'
 c.colors.tabs.selected.odd.fg = '#ffffff'
-
-## Color for the tab indicator on errors.
-# c.colors.tabs.indicator.error = '#ff0000'
-
-## Color gradient start for the tab indicator.
-# c.colors.tabs.indicator.start = '#0000aa'
-
-## Color gradient end for the tab indicator.
-# c.colors.tabs.indicator.stop = '#00aa00'
-
-## Color gradient interpolation system for the tab indicator.
-## Type: ColorSystem
-## Valid values:
-##   - rgb: Interpolate in the RGB color system.
-##   - hsv: Interpolate in the HSV color system.
-##   - hsl: Interpolate in the HSL color system.
-##   - none: Don't show a gradient.
-# c.colors.tabs.indicator.system = 'rgb'
-
-## Completion category headers
-# c.colors.completion.category.bg = 'qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #888888, stop:1 #505050)'
-c.colors.completion.category.bg = '#464658'
-c.colors.completion.category.fg = '#c8c89f'
-# c.colors.completion.category.border.bottom = 'black'
-# c.colors.completion.category.border.top = 'black'
-
-## Completion items
-c.colors.completion.even.bg = '#2f2f3b'
-c.colors.completion.odd.bg = '#2f2f3b'
-c.colors.completion.fg = '#acac89'
-c.colors.completion.item.selected.bg = '#acac89'
-c.colors.completion.item.selected.fg = '#2f2f3b'
-c.colors.completion.item.selected.border.bottom = '#c8c89f'
-c.colors.completion.item.selected.border.top = '#c8c89f'
-c.colors.completion.match.fg = '#e5e5b6'
-# c.colors.completion.scrollbar.bg = '#333333'
-# c.colors.completion.scrollbar.fg = 'white'
-
-## Background color for webpages if unset (or empty to use the theme's
-## color)
-## Type: QtColor
 # c.colors.webpage.bg = 'white'
 
 ## How many commands to save in the command history. 0: no history / -1:
