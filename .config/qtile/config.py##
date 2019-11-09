@@ -235,7 +235,6 @@ layouts = [
     #layout.Tile(),
     #layout.TreeTab(),
     #layout.VerticalTile(),
-    #layout.Wmii(),
     #layout.Zoomy()
 ]
 
