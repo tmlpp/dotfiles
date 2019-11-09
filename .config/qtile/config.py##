@@ -42,7 +42,7 @@ keys = [
     Key([mod, "control"], "l",
         lazy.layout.shrink(), # Monad
         lazy.layout.grow_right()), # Column, BSP
-    Key([mod], "n", lazy.layout.normalize()),
+    Key([mod, "shift"], "n", lazy.layout.normalize()),
     Key([mod], "y", lazy.window.toggle_floating()),
 
     # Switch window focus to other pane(s) of stack
