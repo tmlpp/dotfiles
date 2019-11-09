@@ -223,21 +223,20 @@ layouts = [
         min_ratio=0.2,
         max_ratio=0.8,
         ratio=0.7),
-    layout.Floating(
-        name='FLO',
-        border_width=1,
-        border_normal=base21,
-        border_focus=cyan),
-    #layout.Matrix(
-    #    name='mtrx',
-    #    columns=2),
-    #layout.RatioTile(),
-    #layout.Slice(),
-    #layout.Stack(num_stacks=2),
-    #layout.Tile(),
-    #layout.TreeTab(),
-    #layout.VerticalTile(),
-    #layout.Zoomy()
+    # layout.Floating(
+    #     name='FLO',
+    #     border_width=1,
+    #     border_normal=base21,
+    #     border_focus=cyan),
+    # layout.Matrix(),
+    # layout.RatioTile(),
+    # layout.Slice(),
+    # layout.Stack(),
+    # layout.Tile(),
+    layout.TreeTab(
+        name='TAB'),
+    # layout.VerticalTile(),
+    # layout.Zoomy()
 ]
 
 
