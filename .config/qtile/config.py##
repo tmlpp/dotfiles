@@ -87,7 +87,6 @@ keys = [
     Key([mod, "shift"], "Print", lazy.spawn("scrot /tmp/tempscreenshot.png -e 'xclip -selection clipboard -t image/png -i $f'")), # Copy to clipboard
 
     # Toggle between different layouts as defined below
-    # Key([mod], "Tab", lazy.next_layout()),
     Key([mod], "9", lazy.prev_layout()),
     Key([mod], "0", lazy.next_layout()),
 
@@ -95,6 +94,7 @@ keys = [
 
     Key([mod], "n", lazy.screen.next_group()),
     Key([mod], "p", lazy.screen.prev_group()),
+    Key([mod], "Tab", lazy.screen.toggle_group()),
 
     Key([mod, "shift"], "r", lazy.restart()),
     Key([mod, "shift"], "q", lazy.shutdown()),
