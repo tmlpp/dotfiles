@@ -12,8 +12,6 @@ except ImportError:
 
 ### Keyboard shortcuts
 
-follow_mouse_focus = False
-cursor_warp = False
 mod = "mod4"
 
 keys = [
