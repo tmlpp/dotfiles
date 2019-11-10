@@ -22,14 +22,22 @@ keys = [
     Key([mod], "l", lazy.layout.right()),
 
     # Move windows up or down in current stack
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
+    Key([mod, "shift"], "j",
+        lazy.layout.shuffle_down(),
+        lazy.layout.move_down()), # treetab
+    Key([mod, "shift"], "k",
+        lazy.layout.shuffle_up(),
+        lazy.layout.move_up()), # treetab
     Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
     Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
 
     # Resize
-    Key([mod, "control"], "j", lazy.layout.grow_down()),
-    Key([mod, "control"], "k", lazy.layout.grow_up()),
+    Key([mod, "control"], "j",
+        lazy.layout.grow_down(),
+        lazy.layout.section_down()), # treetab
+    Key([mod, "control"], "k",
+        lazy.layout.grow_up(),
+        lazy.layout.section_up()), # treetab
     #Key([mod, "control"], "h", lazy.layout.grow_left()),
     #Key([mod, "control"], "l", lazy.layout.grow_right()),
     #Key([mod, "control"], "h", lazy.layout.grow()),
@@ -235,7 +243,33 @@ layouts = [
     # layout.Stack(),
     # layout.Tile(),
     layout.TreeTab(
-        name='TAB'),
+        name='TAB', # Name of this layout
+        active_bg = '000080', # Background color of active tab
+        active_fg = 'ffffff', # Foreground color of active tab
+        bg_color = color_bg, # Background color of tabs
+        border_width = 1, # Width of the border
+        font = 'IBM Plex Sans Condensed', # Font
+        fontshadow = None, # font shadow color, default is None (no shadow)
+        fontsize = 12, # Font pixel size.
+        inactive_bg = '606060', # Background color of inactive tab
+        inactive_fg = 'ffffff', # Foreground color of inactive tab
+        level_shift = 8, # Shift for children tabs
+        margin_left = 0, # Left margin of tab panel
+        margin_y = 0, # Vertical margin of tab panel
+        padding_left = 3, # Left padding for tabs
+        padding_x = 3, # Left padding for tab label
+        padding_y = 3, # Top padding for tab label
+        panel_width = 120, # Width of the left panel
+        previous_on_rm = False, # Focus previous window on close instead of first.
+        section_bottom = 6, # Bottom margin of section
+        section_fg = 'ffffff', # Color of section label
+        section_fontsize = 10, # Font pixel size of section label
+        section_left = 4, # Left margin of section label
+        section_padding = 4, # Bottom of margin section label
+        section_top = 4, # Top margin of section label
+        sections = ['Web', 'System', 'Other'], # List of sections
+        vspace = 0, # Space between tabs
+    ),
     # layout.VerticalTile(),
     # layout.Zoomy()
 ]
