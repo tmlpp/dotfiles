@@ -347,7 +347,7 @@ screens = [
                 widget.Sep(padding=10, size_percent=62),
                 widget.Systray(),
                 widget.Clock(
-                    format='%a %d %b %H:%M',
+                    format='%a %d.%m. %H:%M',
                     font="Fira Mono Bold"),
                 widget.Sep(padding=10, size_percent=62),
                 widget.CurrentLayout(foreground = base51),
