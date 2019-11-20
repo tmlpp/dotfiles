@@ -111,10 +111,9 @@ keys = [
     #Key([mod], "r", lazy.spawncmd()),
 
     Key([mod, "control"], "c", lazy.spawn("emacsclient -e '(make-capture-frame)'")),
-    Key([mod], 't', lazy.group['valiaiknimi'].dropdown_toggle('term')),
-    Key([mod], 'r', lazy.group['valiaiknimi'].dropdown_toggle('ranger')),
-    Key([mod], 'e', lazy.group['valiaiknimi'].dropdown_toggle('qshell')),
-    #Key([mod], 'r', lazy.group['valiaiknimi'].dropdown_toggle('qshell')),
+    Key([mod], 't', lazy.group['scratchpad'].dropdown_toggle('term')),
+    Key([mod], 'r', lazy.group['scratchpad'].dropdown_toggle('ranger')),
+    Key([mod], 'e', lazy.group['scratchpad'].dropdown_toggle('qshell')),
 ]
 
 
@@ -133,18 +132,25 @@ groups = [
     Group("outi",
           matches=[Match(wm_class=["Steam"])],
           layout="MAX"),
-    ScratchPad("valiaiknimi", [
-        # define a drop down terminal.
-        # it is placed in the upper third of screen by default.
-        DropDown("term", "urxvt", opacity=0.8),
-
-        # define another terminal exclusively for qshell at different position
+    ScratchPad("scratchpad", [
+        DropDown("term", "urxvt",
+                 x=0.25, y=0,
+                 width=0.5, height=0.7,
+                 opacity=0.9,
+                 on_focus_lost_hide=True,
+                 warp_pointer=False),
         DropDown("qshell", "urxvt -hold -e qshell",
-                 x=0.05, y=0.4, width=0.9, height=0.6, opacity=0.9,
-                 on_focus_lost_hide=True),
+                 x=0.6, y=0.1,
+                 width=0.4, height=0.8,
+                 opacity=0.9,
+                 on_focus_lost_hide=True,
+                 warp_pointer=False),
         DropDown("ranger", "urxvt -hold -e ranger",
-                 x=0.05, y=0.4, width=0.9, height=0.6, opacity=0.9,
-                 on_focus_lost_hide=True)
+                 x=0.2, y=0,
+                 width=0.6, height=0.5,
+                 opacity=0.9,
+                 on_focus_lost_hide=True,
+                 warp_pointer=False)
     ]),
     ]
 
