@@ -1,3 +1,5 @@
+#    -*- mode: python -*-
+
 from libqtile.config import Key, Screen, Group, Drag, Click, Match, ScratchPad, DropDown
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
