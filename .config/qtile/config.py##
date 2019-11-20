@@ -100,7 +100,8 @@ keys = [
 
     Key([mod], "q", lazy.window.kill()),
     Key([mod], "Escape", lazy.window.kill()),
-    Key([mod], "b", lazy.hide_show_bar()),
+    Key([mod], "b", lazy.hide_show_bar('bottom')),
+    Key([mod, "shift"], "b", lazy.hide_show_bar('top')),
 
     Key([mod], "n", lazy.screen.next_group()),
     Key([mod], "p", lazy.screen.prev_group()),
