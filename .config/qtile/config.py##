@@ -285,7 +285,7 @@ layouts = [
 
 
 widget_defaults = dict(
-    font='Fira Mono',
+    font='IBM Plex Mono',
     fontsize=14,
     padding=5,
     background=color_bg,
@@ -310,25 +310,13 @@ screens = [
                     # background='550000'
                     #active
                 ),
-                widget.Prompt(),
                 widget.WindowName(
-                    font="Fira Sans Compressed Italic",
+                    font="IBM Plex Sans",
                     padding=20,
                 ),
-                #widget.Sep(),
+                widget.Sep(size_percent=62),
                 widget.Volume(
                     padding=15),
-                widget.Pomodoro(
-                    num_pomodori=6,
-                    length_short_break=3,
-                    length_pomodori=30,
-                    fmt='%s',
-                    prefix_inactive='Pomodoro',
-                    prefix_active='Sit ',
-                    prefix_break='Up ',
-                    prefix_long_break='UP ',
-                    length_long_break=15,
-                ),
                 # String format (p: partition, s: size, f: free space, uf: user free space, m: measure, r: ratio (uf/s))
                 widget.Sep(size_percent=62),
                 widget.DF(partition="/", format="/: {uf}{m}", visible_on_warn=False),
@@ -357,11 +345,46 @@ screens = [
                 widget.Systray(),
                 widget.Clock(
                     format='%a %d.%m. %H:%M',
-                    font="Fira Mono Bold"),
+                ),
                 widget.Sep(padding=10, size_percent=62),
                 widget.CurrentLayout(foreground = base51),
             ],
-            30,
+            30, background=color_bg,
+        ),
+        bottom=bar.Bar(
+            [
+                widget.Pomodoro(
+                    length_pomodori=25,
+                    length_short_break=5,
+                    length_long_break=20,
+                    num_pomodori=4,
+                    prefix_inactive='Pomodoro: 25/5/20/4',
+                    prefix_active='W ',
+                    prefix_break='b ',
+                    prefix_long_break='B ',
+                    fontsize=12,
+                    color_inactive=color_fg,
+                    color_active=orange,
+                    color_break=cyan,
+                ),
+                widget.Sep(padding=10, size_percent=62),
+                widget.Pomodoro(
+                    length_pomodori=20,
+                    length_short_break=0,
+                    length_long_break=0,
+                    num_pomodori=24,
+                    prefix_inactive='20 min loop',
+                    prefix_active='Next in: ',
+                    prefix_break='Next in: ',
+                    prefix_long_break='Next in: ',
+                    fontsize=12,
+                    color_inactive=color_fg,
+                    color_active=orange,
+                    color_break=cyan,
+                ),
+                widget.Spacer(length=bar.STRETCH),
+            ],
+            20, background=color_bg,
         ),
     ),
 ]
