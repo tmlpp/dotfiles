@@ -170,7 +170,7 @@ def func(c):
 #         Key([mod], i.name, lazy.group[i.name].toscreen()),
 #         Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
 #     ])
-for i in groups:
+for i in groups[:-1]: # don't include scratchpad group
     keys.extend([
         # mod1 + letter of group = switch to group
         # mod1 + shift + letter of group = switch to & move focused window to group
