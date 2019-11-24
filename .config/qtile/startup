@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# This script is run every time qtile starts
+
+~/.fehbg &
