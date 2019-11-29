@@ -331,8 +331,6 @@ screens = [
                 widget.Sep(size_percent=62),
                 widget.DF(partition="/diana", format="d: {uf}{m}", visible_on_warn=False),
                 widget.Sep(size_percent=62),
-                widget.DF(partition="/emma", format="e: {uf}{m}", visible_on_warn=False),
-                widget.Sep(size_percent=62),
                 widget.ThermalSensor(tag_sensor="Tdie", padding=10),
                 widget.CPUGraph(
                     border_width = 0,
