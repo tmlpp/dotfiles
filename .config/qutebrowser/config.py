@@ -1503,6 +1503,8 @@ config.bind('<Ctrl-K>', 'set-cmd-text -s :spawn --userscript keys.py ', mode='in
 config.bind('<Ctrl-P>', 'leave-mode', mode='passthrough')
 config.bind('<Alt-j>', 'scroll down', mode='passthrough')
 config.bind('<Alt-k>', 'scroll up', mode='passthrough')
+config.bind('<Alt-l>', 'scroll right', mode='passthrough')
+config.bind('<Alt-h>', 'scroll left', mode='passthrough')
 config.bind('<Alt-d>', 'tab-close', mode='passthrough')
 
 ## Bindings for prompt mode
