@@ -23,6 +23,11 @@ keys = [
     Key([mod], "h", lazy.layout.left()),
     Key([mod], "l", lazy.layout.right()),
 
+    # Screens
+    # Key([mod], "1", lazy.to_screen(0), lazy.group.to_screen(0)),
+    # Key([mod], "2", lazy.to_screen(1), lazy.group.to_screen(1)),
+    Key([mod], "1", lazy.to_screen(0)),
+    Key([mod], "2", lazy.to_screen(1)),
     # Move windows up or down in current stack
     Key([mod, "shift"], "j",
         lazy.layout.shuffle_down(),
