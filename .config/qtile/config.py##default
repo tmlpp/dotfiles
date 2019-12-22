@@ -300,6 +300,37 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
+        bottom=bar.Bar(
+            [
+                widget.GroupBox(
+                    # font="Fira Mono",
+                    active=base51,
+                    inactive=base39,
+                    highlight_method='line',
+                    this_current_screen_border=base51,
+                    urgent_border=color_urgent,
+                    highlight_color=base21,
+                    padding=3,
+                    # foreground='888888',
+                    # background='550000'
+                    #active
+                ),
+                widget.WindowName(
+                    font="IBM Plex Sans",
+                    padding=20,
+                ),
+                widget.Clock(
+                    format='%a %d.%m. %H:%M',
+                ),
+                widget.Sep(padding=10, size_percent=62),
+                widget.CurrentLayout(
+                    foreground = base51,
+                ),
+            ],
+            25, background=color_bg,
+        ),
+    ),
+    Screen(
         top=bar.Bar(
             [
                 widget.GroupBox(
