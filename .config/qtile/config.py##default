@@ -92,8 +92,8 @@ keys = [
     Key([mod], "F4", lazy.spawn("playerctl --player=spotify play-pause")),
     Key([mod], "bracketleft", lazy.spawn("playerctl --player=spotify previous")),
     Key([mod], "F5", lazy.spawn("playerctl --player=spotify previous")),
-    Key([mod], "bracketright", lazy.spawn("playerctl next")),
-    Key([mod], "F6", lazy.spawn("playerctl next")),
+    Key([mod], "bracketright", lazy.spawn("playerctl --player=spotify next")),
+    Key([mod], "F6", lazy.spawn("playerctl --player=spotify next")),
 
     # Screenshot
     Key([], "Print", lazy.spawn("scrot '%Y-%m-%d_%H%M%S.png' -e 'mv $f ~/screenshots/'")), # Normal
