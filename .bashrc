@@ -26,3 +26,8 @@ source ~/.repos/bash-git-prompt/gitprompt.sh
 
 export EDITOR=nvim
 export BROWSER=qutebrowser
+
+mkcd () {
+        mkdir -p "$1"
+        cd "$1"
+}
