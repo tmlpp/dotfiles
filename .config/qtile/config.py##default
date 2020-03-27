@@ -459,6 +459,8 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'galculator'},
     {'wmclass': 'PureRef'},
     {'wmclass': 'Dragon'},
+    {'wmclass': 'Gpick'},
+    {'wname': 'Blender Preferences'},
     {'wname': 'capture'},
 ])
 auto_fullscreen = True
