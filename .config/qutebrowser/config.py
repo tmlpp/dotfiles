@@ -137,26 +137,26 @@ c.colors.tabs.selected.odd.fg = '#ffffff'
 
 ##### FONTS #####
 
-c.fonts.default_family = 'Fira Sans'
-c.fonts.completion.category = 'bold 10pt default_family'
-c.fonts.completion.entry = '10pt default_family'
+c.fonts.default_family = 'IBM Plex Sans'
+c.fonts.completion.category = 'bold 11pt default_family'
+c.fonts.completion.entry = '11pt default_family'
 # c.fonts.debug_console = '10pt Fira Sans'
 c.fonts.downloads = '10pt default_family'
 c.fonts.hints = '10pt default_family'
 c.fonts.keyhint = '12pt default_family'
-# c.fonts.messages.error = '10pt Fira Sans'
-# c.fonts.messages.info = '10pt Fira Sans'
-# c.fonts.messages.warning = '10pt Fira Sans'
-# c.fonts.prompts = '8pt sans-serif'
-c.fonts.statusbar = '8pt Fira Sans'
-c.fonts.tabs = '10pt Fira Sans Condensed'
+# c.fonts.messages.error = '10pt default_family'
+# c.fonts.messages.info = '10pt default_family'
+# c.fonts.messages.warning = '10pt default_family'
+# c.fonts.prompts = '8pt default_family'
+c.fonts.statusbar = '9pt default_family'
+c.fonts.tabs = '10pt default_family'
 c.fonts.web.family.cursive = 'IBM Plex Sans'
 # c.fonts.web.family.fantasy = ''
 c.fonts.web.family.fixed = 'IBM Plex Mono'
 c.fonts.web.family.sans_serif = 'IBM Plex Sans'
 # c.fonts.web.family.serif = 'Merriweather'
 c.fonts.web.family.serif = 'IBM Plex Serif'
-# c.fonts.web.family.standard = ''
+c.fonts.web.family.standard = 'IBM Plex Sans'
 # c.fonts.web.size.default = 16
 # c.fonts.web.size.default_fixed = 13
 # c.fonts.web.size.minimum = 0
@@ -1002,6 +1002,8 @@ config.bind(',k', 'hint images userscript save.url')
 # config.bind(',M', 'spawn mpv --player-operation-mode=pseudo-gui {url}')
 config.bind(',m', 'hint links userscript open-in-mpv')
 config.bind(',M', 'spawn --userscript open-in-mpv')
+config.bind(',v', 'hint links userscript dl-video')
+config.bind(',V', 'hint --rapid links userscript dl-video')
 config.bind(',ny', 'spawn --userscript rss.youtube')
 config.bind(',nY', 'hint links userscript rss.youtube')
 config.bind(',nr', 'spawn --userscript rss.reddit')
@@ -1014,9 +1016,11 @@ config.bind(',l', 'hint links yank')
 config.bind(',F', 'config-cycle content.plugins')
 config.bind(',x', 'hint links userscript gallery.dl')
 config.bind(',X', 'hint --rapid links userscript gallery.dl')
+config.bind(',,', 'hint images userscript img-dl-sha1-rename')
 config.bind('zi', 'zoom 150%')
 config.bind('zo', 'zoom 100%')
 config.bind(';l', 'hint links userscript save.url')
+config.bind(';I', 'hint images userscript img-dl-sha1-rename')
 # config.bind('<Alt-1>', 'tab-focus 1')
 # config.bind('<Alt-2>', 'tab-focus 2')
 # config.bind('<Alt-3>', 'tab-focus 3')
