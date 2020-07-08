@@ -1,11 +1,13 @@
 #!/bin/bash
 
 dropbox &
-#syncthing &
+syncthing &
 numlockx &
 qutebrowser &
-#discord &
+discord &
 emacs &
 qute-wa &
 spotify &
 # picom -b
+xset dpms 3600 3600 3600
+xset s 3600 3600
