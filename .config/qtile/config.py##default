@@ -42,20 +42,24 @@ keys = [
     # Resize
     Key([mod, "control"], "j",
         lazy.layout.grow_down(),
-        lazy.layout.section_down()), # treetab
+        lazy.layout.section_down(), # treetab
+        lazy.layout.decrease_nmaster()), # Tile
     Key([mod, "control"], "k",
         lazy.layout.grow_up(),
-        lazy.layout.section_up()), # treetab
+        lazy.layout.section_up(), # treetab
+        lazy.layout.increase_nmaster()), # Tile
     #Key([mod, "control"], "h", lazy.layout.grow_left()),
     #Key([mod, "control"], "l", lazy.layout.grow_right()),
     #Key([mod, "control"], "h", lazy.layout.grow()),
     #Key([mod, "control"], "l", lazy.layout.shrink()),
     Key([mod, "control"], "h",
         lazy.layout.grow(), # Monad
-        lazy.layout.grow_left()), # Column, BSP
+        lazy.layout.grow_left(), # Column, BSP
+        lazy.layout.decrease_ratio()), # Tile
     Key([mod, "control"], "l",
         lazy.layout.shrink(), # Monad
-        lazy.layout.grow_right()), # Column, BSP
+        lazy.layout.grow_right(), # Column, BSP
+        lazy.layout.increase_ratio()), # Tile
     Key([mod, "shift"], "n", lazy.layout.normalize()),
     Key([mod], "m", lazy.window.toggle_fullscreen()),
     Key([mod], "y", lazy.window.toggle_floating()),
@@ -256,7 +260,15 @@ layouts = [
     # layout.RatioTile(),
     # layout.Slice(),
     # layout.Stack(),
-    # layout.Tile(),
+# ratio=0.618, masterWindows=1, expand=True, ratio_increment=0.05, add_on_top=True, add_after_last=False, shift_windows=False, master_match=None, **config)
+    layout.Tile(
+        # ratio = 0.5,
+        masterWindows = 2,
+        # expand = False,
+        add_on_top = False,
+        add_after_last = True,
+        shift_windows = True,
+    ),
     layout.TreeTab(
         name='TAB', # Name of this layout
         active_bg = '000080', # Background color of active tab
