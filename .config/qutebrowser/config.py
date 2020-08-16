@@ -531,7 +531,7 @@ c.editor.command = ['urxvt', '-e', 'nvim', '{}']
 
 ## Chars used for hint strings.
 ## Type: UniqueCharString
-# c.hints.chars = 'asdfghjkl'
+c.hints.chars = hints_chars
 
 ## The dictionary file to be used by the word hints.
 ## Type: File

@@ -14,3 +14,4 @@ searchengines = {'DEFAULT': 'http://www.google.com/search?q={}',
     'y' : 'http://www.youtube.com/results?search_query={}'}
 
 windowtitle = '{current_title}{title_sep}qbmain - {host}'
+hints_chars = 'asdfghjkl'
