@@ -78,7 +78,9 @@ keys = [
     # multiple stack panes
     Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
     Key([mod], "Return", lazy.spawn("urxvt")),
-    Key([mod], "Menu", lazy.spawn("rofi -show run")),
+    # Key([mod], "Menu", lazy.spawn("rofi -show run")),
+    Key([mod], "F8", lazy.spawn("rofi -show run")),
+    Key([mod], "F9", lazy.spawn("clipplay")),
     Key([mod, "shift"], "Menu", lazy.spawn("rofitestscript")),
 
     # Media controls
@@ -125,6 +127,7 @@ keys = [
     Key([mod], 't', lazy.group['scratchpad'].dropdown_toggle('term')),
     Key([mod], 'r', lazy.group['scratchpad'].dropdown_toggle('ranger')),
     Key([mod], 'e', lazy.group['scratchpad'].dropdown_toggle('qshell')),
+    Key([mod], 'F12', lazy.spawn("emacsclient -c")),
 ]
 
 
