@@ -769,9 +769,10 @@ c.scrolling.smooth = True
 ##   - vi-VN: Vietnamese (Viet Nam)
 # c.spellcheck.languages = []
 
-## Hide the statusbar unless a message is shown.
-## Type: Bool
-c.statusbar.hide = False
+## Statusbar visibility
+## Valid values:
+## always, never, in-mode (only show statusbar outside of normal mode)
+c.statusbar.show = 'in-mode'
 
 ## Padding for the statusbar.
 ## Type: Padding
