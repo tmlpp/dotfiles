@@ -309,7 +309,7 @@ layouts = [
 
 widget_defaults = dict(
     font='IBM Plex Mono',
-    fontsize=14,
+    fontsize=13,
     padding=5,
     background=color_bg,
     foreground=color_fg,
@@ -345,13 +345,13 @@ screens = [
                 widget.DF(partition="/", format="/: {uf}{m}", visible_on_warn=False),
                 widget.Sep(size_percent=62),
                 # widget.ThermalSensor(tag_sensor="Tdie", padding=10),
-                # widget.ThermalSensor(tag_sensor="temp1"),
-                # widget.CPUGraph(
-                #     border_width = 0,
-                #     border_color = base51,
-                #     margin_y = 8,
-                #     graph_color = base51,
-                #     fill_color = base51),
+                widget.ThermalSensor(tag_sensor="temp1"),
+                widget.CPUGraph(
+                    border_width = 0,
+                    border_color = base51,
+                    margin_y = 8,
+                    graph_color = base51,
+                    fill_color = base51),
                 # widget.Memory(fmt='M: {MemUsed}/{MemTotal}'),
                 widget.Sep(padding=10, size_percent=62),
                 widget.Systray(),
@@ -361,7 +361,7 @@ screens = [
                 widget.Sep(padding=10, size_percent=62),
                 widget.CurrentLayout(foreground = base51),
             ],
-            30, background=color_bg,
+            24, background=color_bg,
         ),
         # bottom=bar.Bar(
         #     [
