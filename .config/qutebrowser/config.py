@@ -772,7 +772,7 @@ c.scrolling.smooth = True
 ## Statusbar visibility
 ## Valid values:
 ## always, never, in-mode (only show statusbar outside of normal mode)
-c.statusbar.show = 'in-mode'
+c.statusbar.show = 'always'
 
 ## Padding for the statusbar.
 ## Type: Padding
