@@ -21,3 +21,7 @@ keycode  13 = 4 dollar 4 dollar currency guillemotleft dollar
 
 ! Add zero width space to AltGr+space
 keycode	 65 = space space space space U200B
+
+! Some Scandic and EU things
+keycode  39 = s S s S odiaeresis Odiaeresis
+keycode  26 = e E e E EuroSign
