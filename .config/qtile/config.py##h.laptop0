@@ -1,0 +1,528 @@
+#    -*- mode: python -*-
+
+from libqtile.config import Key, Screen, Group, Drag, Click, Match, ScratchPad, DropDown
+from libqtile.command import lazy
+from libqtile import layout, bar, widget, hook
+import os
+import subprocess
+import re
+
+try:
+    from typing import List  # noqa: F401
+except ImportError:
+    pass
+
+### Keyboard shortcuts
+
+mod = "mod4"
+
+keys = [
+    # Switch between windows in current stack pane
+    Key([mod], "j", lazy.layout.down()),
+    Key([mod], "k", lazy.layout.up()),
+    Key([mod], "h", lazy.layout.left()),
+    Key([mod], "l", lazy.layout.right()),
+
+    # Screens
+    # Key([mod], "1", lazy.to_screen(0), lazy.group.to_screen(0)),
+    # Key([mod], "2", lazy.to_screen(1), lazy.group.to_screen(1)),
+    Key([mod], "2", lazy.to_screen(0)),
+    Key([mod], "1", lazy.to_screen(1)),
+    Key([mod], "g", lazy.next_screen()),
+    # Move windows up or down in current stack
+    Key([mod, "shift"], "j",
+        lazy.layout.shuffle_down(),
+        lazy.layout.move_down()), # treetab
+    Key([mod, "shift"], "k",
+        lazy.layout.shuffle_up(),
+        lazy.layout.move_up()), # treetab
+    Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
+    Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
+
+    # Resize
+    Key([mod, "control"], "j",
+        lazy.layout.grow_down(),
+        lazy.layout.section_down(), # treetab
+        lazy.layout.decrease_nmaster()), # Tile
+    Key([mod, "control"], "k",
+        lazy.layout.grow_up(),
+        lazy.layout.section_up(), # treetab
+        lazy.layout.increase_nmaster()), # Tile
+    #Key([mod, "control"], "h", lazy.layout.grow_left()),
+    #Key([mod, "control"], "l", lazy.layout.grow_right()),
+    #Key([mod, "control"], "h", lazy.layout.grow()),
+    #Key([mod, "control"], "l", lazy.layout.shrink()),
+    Key([mod, "control"], "h",
+        lazy.layout.grow(), # Monad
+        lazy.layout.grow_left(), # Column, BSP
+        lazy.layout.decrease_ratio()), # Tile
+    Key([mod, "control"], "l",
+        lazy.layout.shrink(), # Monad
+        lazy.layout.grow_right(), # Column, BSP
+        lazy.layout.increase_ratio()), # Tile
+    Key([mod, "shift"], "n", lazy.layout.normalize()),
+    Key([mod], "m", lazy.window.toggle_fullscreen()),
+    Key([mod], "y", lazy.window.toggle_floating()),
+
+    # Switch window focus to other pane(s) of stack
+    Key([mod], "space", lazy.layout.next()),
+
+    #Swap panes of split stack
+    Key([mod, "shift"], "space", lazy.layout.rotate()),
+    Key([mod, "shift"], "space", lazy.layout.flip()),
+    #Key([mod, "shift"], "space", lazy.to_layout_index(1)),
+
+    # Toggle between split and unsplit sides of stack.
+    # Split = all windows displayed
+    # Unsplit = 1 window displayed, like Max layout, but still with
+    # multiple stack panes
+    Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
+    Key([mod], "Return", lazy.spawn("urxvt")),
+    # Key([mod], "Menu", lazy.spawn("rofi -show run")),
+    Key([mod], "F8", lazy.spawn("rofi -show run")),
+    Key([mod], "F9", lazy.spawn("clipplay")),
+    Key([mod, "shift"], "Menu", lazy.spawn("rofitestscript")),
+
+    # Media controls
+    Key([], "XF86AudioLowerVolume", lazy.spawn("volume-down")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("volume-up")),
+    Key([], "XF86AudioMute", lazy.spawn("volume-mute")),
+    Key([], "XF86AudioPlay", lazy.spawn("playerctl --player=spotify play-pause")),
+    Key([], "XF86AudioPrev", lazy.spawn("playerctl --player=spotify previous")),
+    Key([], "XF86AudioNext", lazy.spawn("playerctl --player=spotify next")),
+    Key([mod], "plus", lazy.spawn("volume-up")),
+    Key([mod], "F3", lazy.spawn("volume-up")),
+    Key([mod], "minus", lazy.spawn("volume-down")),
+    Key([mod], "F2", lazy.spawn("volume-down")),
+    Key([mod], "F1", lazy.spawn("volume-mute")),
+    Key([mod], "F4", lazy.spawn("playerctl --player=spotify play-pause")),
+    Key([mod], "bracketleft", lazy.spawn("playerctl --player=spotify previous")),
+    Key([mod], "F5", lazy.spawn("playerctl --player=spotify previous")),
+    Key([mod], "bracketright", lazy.spawn("playerctl --player=spotify next")),
+    Key([mod], "F6", lazy.spawn("playerctl --player=spotify next")),
+
+    # Screenshot
+    Key([], "Print", lazy.spawn("scrot '%Y-%m-%d_%H%M%S.png' -e 'mv $f ~/screenshots/'")), # Normal
+    Key([mod], "Print", lazy.spawn("scrot -u '%Y-%m-%d_%H%M%S.png' -e 'mv $f ~/screenshots/'")), # Active window
+    Key([mod, "shift"], "Print", lazy.spawn("scrot /tmp/tempscreenshot.png -e 'xclip -selection clipboard -t image/png -i $f'")), # Copy to clipboard
+
+    # Toggle between different layouts as defined below
+    Key([mod], "9", lazy.prev_layout()),
+    Key([mod], "0", lazy.next_layout()),
+
+    Key([mod], "q", lazy.window.kill()),
+    Key([mod], "Escape", lazy.window.kill()),
+    Key([mod], "b", lazy.hide_show_bar('bottom')),
+    Key([mod, "shift"], "b", lazy.hide_show_bar('top')),
+
+    Key([mod], "n", lazy.screen.next_group()),
+    Key([mod], "p", lazy.screen.prev_group()),
+    Key([mod], "Tab", lazy.screen.toggle_group()),
+
+    Key([mod, "shift"], "r", lazy.restart()),
+    Key([mod, "shift"], "q", lazy.shutdown()),
+    #Key([mod], "r", lazy.spawncmd()),
+
+    Key([mod, "control"], "c", lazy.spawn("emacsclient -e '(make-capture-frame)'")),
+    Key([mod], 't', lazy.group['scratchpad'].dropdown_toggle('term')),
+    Key([mod], 'r', lazy.group['scratchpad'].dropdown_toggle('ranger')),
+    Key([mod], 'e', lazy.group['scratchpad'].dropdown_toggle('qshell')),
+    Key([mod], 'F12', lazy.spawn("emacsclient -c")),
+]
+
+
+#groups = [Group(i) for i in "asdfuio"]
+groups = [
+    Group("amanda"),
+    Group("saija",
+          layout="MOW"),
+    Group("diana"),
+    Group("florence"),
+    #Group("ulla", matches=[Match(wm_class=["qutebrowser"])]),
+    Group("ulla"),
+    Group("iida",
+          matches=[Match(wm_class=["Blender"])],
+          layout="MAX"),
+    Group("outi",
+          matches=[Match(wm_class=["Steam"])],
+          layout="MAX"),
+    ScratchPad("scratchpad", [
+        DropDown("term", "urxvt",
+                 x=0.25, y=0,
+                 width=0.5, height=0.7,
+                 opacity=0.9,
+                 on_focus_lost_hide=True,
+                 warp_pointer=False),
+        DropDown("qshell", "urxvt -hold -e qshell",
+                 x=0.6, y=0.1,
+                 width=0.4, height=0.8,
+                 opacity=0.9,
+                 on_focus_lost_hide=True,
+                 warp_pointer=False),
+        DropDown("ranger", "urxvt -hold -e ranger",
+                 x=0.2, y=0,
+                 width=0.6, height=0.5,
+                 opacity=0.9,
+                 on_focus_lost_hide=True,
+                 warp_pointer=False)
+    ]),
+    ]
+
+@hook.subscribe.client_new
+def func(c):
+    if c.name == "Spotify":
+        c.togroup("florence")
+    if re.search("qbwa", c.name):
+        c.togroup("ulla")
+    # elif c.wm_class == "emacs":
+    #     c.togroup("saija")
+# for i in groups:
+#     keys.extend([
+#         # mod1 + letter of group = switch to group
+#         # mod1 + shift + letter of group = switch to & move focused window to group
+#         Key([mod], i.name, lazy.group[i.name].toscreen()),
+#         Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
+#     ])
+for i in groups[:-1]: # don't include scratchpad group
+    keys.extend([
+        # mod1 + letter of group = switch to group
+        # mod1 + shift + letter of group = switch to & move focused window to group
+        Key([mod], i.name[0], lazy.group[i.name].toscreen()),
+        Key([mod, "shift"], i.name[0], lazy.window.togroup(i.name)),
+    ])
+
+### Define colors, based on my Emacs theme
+### Work in progress
+base21    = '#223639' # bg1
+base27    = '#324344' # bg2
+base33    = '#41504F' # bg3
+base39    = '#515E5A' # bg4
+base51    = '#717B71' # comment
+base62    = '#939989' # fg4
+base68    = '#A4A895' # fg3
+base74    = '#B6B8A2' # fg2
+base80    = '#C8C8AE' # fg1
+orange    = '#FF794D'
+orange_l  = '#FF9B6C'
+green     = '#50B877'
+green_l   = '#6ECC8F'
+cyan      = '#4BB3BF'
+cyan_l    = '#69C8D4'
+magenta   = '#FE67FF'
+magenta_l = '#FF8BFF'
+pink      = '#FF67A6'
+pink_l    = '#FF8DCB'
+
+color_bg = base21
+color_fg = base80
+color_hl = base80
+color_border = ''
+color_urgent = orange
+#color_active = ''
+color_inactive = '#978B76'
+#color_border = ''
+
+layouts = [
+    layout.Columns(
+        name='COL',
+        margin=5,
+        border_width=1,
+        border_normal=color_bg,
+        border_focus=pink),
+    layout.Bsp(
+        name='BSP',
+        margin=5,
+        border_width=1,
+        border_normal=base21,
+        border_focus=magenta),
+    layout.Max(name='MAX'),
+    # layout.MonadTall(
+    #     name='MOT',
+    #     margin=5,
+    #     border_width=1,
+    #     border_normal=base21,
+    #     border_focus=orange,
+    #     min_ratio=0.2,
+    #     max_ratio=0.8,
+    #     ratio=0.6),
+    layout.MonadWide(
+        name='MOW',
+        margin=5,
+        border_width=1,
+        border_normal=base21,
+        border_focus=orange,
+        min_ratio=0.2,
+        max_ratio=0.8,
+        ratio=0.7),
+    # layout.Floating(
+    #     name='FLO',
+    #     border_width=1,
+    #     border_normal=base21,
+    #     border_focus=cyan),
+    # layout.Matrix(),
+    # layout.RatioTile(),
+    # layout.Slice(),
+    # layout.Stack(),
+    layout.Tile(
+        name='TILE',
+        ratio = 0.5,
+        # ratio_increment = 0.05,
+        masterWindows = 1,
+        # master_match = None,
+        margin=2,
+        border_width=2,
+        border_normal=base21,
+        border_focus=orange,
+        # expand = False,
+        add_on_top = False,
+        add_after_last = True,
+        shift_windows = True,
+    ),
+    layout.TreeTab(
+        name='TAB', # Name of this layout
+        active_bg = '000080', # Background color of active tab
+        active_fg = 'ffffff', # Foreground color of active tab
+        bg_color = color_bg, # Background color of tabs
+        border_width = 1, # Width of the border
+        font = 'IBM Plex Sans Condensed', # Font
+        fontshadow = None, # font shadow color, default is None (no shadow)
+        fontsize = 12, # Font pixel size.
+        inactive_bg = '606060', # Background color of inactive tab
+        inactive_fg = 'ffffff', # Foreground color of inactive tab
+        level_shift = 8, # Shift for children tabs
+        margin_left = 0, # Left margin of tab panel
+        margin_y = 0, # Vertical margin of tab panel
+        padding_left = 3, # Left padding for tabs
+        padding_x = 3, # Left padding for tab label
+        padding_y = 3, # Top padding for tab label
+        panel_width = 120, # Width of the left panel
+        previous_on_rm = False, # Focus previous window on close instead of first.
+        section_bottom = 6, # Bottom margin of section
+        section_fg = 'ffffff', # Color of section label
+        section_fontsize = 10, # Font pixel size of section label
+        section_left = 4, # Left margin of section label
+        section_padding = 4, # Bottom of margin section label
+        section_top = 4, # Top margin of section label
+        sections = ['Web', 'System', 'Other'], # List of sections
+        vspace = 0, # Space between tabs
+    ),
+    # layout.VerticalTile(),
+    # layout.Zoomy()
+]
+
+
+widget_defaults = dict(
+    font='IBM Plex Mono',
+    fontsize=14,
+    padding=5,
+    background=color_bg,
+    foreground=color_fg,
+)
+extension_defaults = widget_defaults.copy()
+
+screens = [
+    Screen(
+        bottom=bar.Bar(
+            [
+                widget.GroupBox(
+                    # font="Fira Mono",
+                    active=base51,
+                    inactive=base39,
+                    highlight_method='line',
+                    this_current_screen_border=base51,
+                    urgent_border=color_urgent,
+                    highlight_color=base21,
+                    padding=3,
+                    # foreground='888888',
+                    # background='550000'
+                    #active
+                ),
+                widget.WindowName(
+                    font="IBM Plex Sans",
+                    padding=20,
+                ),
+                widget.CurrentScreen(),
+                widget.Clock(
+                    format='%a %d.%m. %H:%M',
+                ),
+                widget.Sep(padding=10, size_percent=62),
+                widget.CurrentLayout(
+                    foreground = base51,
+                ),
+            ],
+            25, background=color_bg,
+        ),
+    ),
+    Screen(
+        top=bar.Bar(
+            [
+                widget.GroupBox(
+                    # font="Fira Mono",
+                    active=base51,
+                    inactive=base39,
+                    highlight_method='line',
+                    this_current_screen_border=base51,
+                    urgent_border=color_urgent,
+                    highlight_color=base21,
+                    padding=3,
+                    # foreground='888888',
+                    # background='550000'
+                    #active
+                ),
+                widget.WindowName(
+                    font="IBM Plex Sans",
+                    padding=20,
+                ),
+                widget.Sep(size_percent=62),
+                widget.CurrentScreen(),
+                widget.Sep(size_percent=62),
+                widget.Volume(
+                    padding=15),
+                # String format (p: partition, s: size, f: free space, uf: user free space, m: measure, r: ratio (uf/s))
+                widget.Sep(size_percent=62),
+                widget.DF(partition="/", format="/: {uf}{m}", visible_on_warn=False),
+                widget.Sep(size_percent=62),
+                widget.DF(partition="/tmp", format="/tmp: {uf}{m}", visible_on_warn=False),
+                widget.Sep(size_percent=62),
+                widget.DF(partition="/home", format="home: {uf}{m}", visible_on_warn=False),
+                widget.Sep(size_percent=62),
+                widget.DF(partition="/amanda", format="a: {uf}{m}", visible_on_warn=False),
+                widget.Sep(size_percent=62),
+                widget.DF(partition="/bella", format="b: {uf}{m}", visible_on_warn=False),
+                widget.Sep(size_percent=62),
+                widget.DF(partition="/cecilia", format="c: {uf}{m}", visible_on_warn=False),
+                widget.Sep(size_percent=62),
+                widget.DF(partition="/diana", format="d: {uf}{m}", visible_on_warn=False),
+                widget.Sep(size_percent=62),
+                widget.ThermalSensor(tag_sensor="Tdie", padding=10),
+                widget.CPUGraph(
+                    border_width = 0,
+                    border_color = base51,
+                    margin_y = 8,
+                    graph_color = base51,
+                    fill_color = base51),
+                widget.Memory(fmt='M: {MemUsed}/{MemTotal}'),
+                widget.Sep(padding=10, size_percent=62),
+                widget.Systray(),
+                widget.Clock(
+                    format='%a %d.%m. %H:%M',
+                ),
+                widget.Sep(padding=10, size_percent=62),
+                widget.CurrentLayout(foreground = base51),
+            ],
+            30, background=color_bg,
+        ),
+        bottom=bar.Bar(
+            [
+                widget.Pomodoro(
+                    length_pomodori=25,
+                    length_short_break=5,
+                    length_long_break=20,
+                    num_pomodori=4,
+                    prefix_inactive='Pomodoro: 25/5/20/4',
+                    prefix_active='W ',
+                    prefix_break='b ',
+                    prefix_long_break='B ',
+                    fontsize=12,
+                    color_inactive=color_fg,
+                    color_active=orange,
+                    color_break=cyan,
+                ),
+                widget.Sep(padding=10, size_percent=62),
+                widget.Pomodoro(
+                    length_pomodori=20,
+                    length_short_break=0,
+                    length_long_break=0,
+                    num_pomodori=24,
+                    prefix_inactive='20 min loop',
+                    prefix_active='Next in: ',
+                    prefix_break='Next in: ',
+                    prefix_long_break='Next in: ',
+                    fontsize=12,
+                    color_inactive=color_fg,
+                    color_active=orange,
+                    color_break=cyan,
+                ),
+                widget.Spacer(length=bar.STRETCH),
+            ],
+            20, background=color_bg,
+        ),
+    ),
+]
+
+# Drag floating layouts.
+mouse = [
+    Drag([mod], "Button1", lazy.window.set_position_floating(),
+         start=lazy.window.get_position()),
+    Drag([mod], "Button3", lazy.window.set_size_floating(),
+         start=lazy.window.get_size()),
+    Click([mod], "Button2", lazy.window.bring_to_front()),
+    Click([mod], "Button9", lazy.screen.next_group()),
+    Click([mod], "Button8", lazy.screen.prev_group())
+]
+
+dgroups_key_binder = None
+dgroups_app_rules = []  # type: List
+main = None
+follow_mouse_focus = False
+bring_front_click = False
+cursor_warp = False
+floating_layout = layout.Floating(float_rules=[
+    {'wmclass': 'confirm'},
+    {'wmclass': 'dialog'},
+    {'wmclass': 'download'},
+    {'wmclass': 'error'},
+    {'wmclass': 'file_progress'},
+    {'wmclass': 'notification'},
+    {'wmclass': 'splash'},
+    {'wmclass': 'toolbar'},
+    {'wmclass': 'confirmreset'},  # gitk
+    {'wmclass': 'makebranch'},  # gitk
+    {'wmclass': 'maketag'},  # gitk
+    {'wname': 'branchdialog'},  # gitk
+    {'wname': 'pinentry'},  # GPG key password entry
+    {'wmclass': 'ssh-askpass'},  # ssh-askpass
+    {'wmclass': 'galculator'},
+    {'wmclass': 'PureRef'},
+    {'wmclass': 'Dragon'},
+    {'wmclass': 'Gpick'},
+    {'wname': 'Blender Preferences'},
+    {'wname': 'capture'},
+    {'wname': 'Krita - Edit Text — Krita'},
+    {'wname': 'Event Tester'},
+])
+auto_fullscreen = True
+focus_on_window_activation = "smart"
+
+# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
+# string besides java UI toolkits; you can see several discussions on the
+# mailing lists, github issues, and other WM documentation that suggest setting
+# this string if your java app doesn't work correctly. We may as well just lie
+# and say that we're a working one by default.
+#
+# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
+# java that happens to be on java's whitelist.
+wmname = "LG3D"
+
+@hook.subscribe.startup
+def startup():
+    startup_file = os.path.expanduser('~/.config/qtile/startup')
+    subprocess.call([startup_file])
+
+@hook.subscribe.startup_once
+def startup_once():
+    startup_file = os.path.expanduser('~/.config/qtile/startup_once')
+    subprocess.call([startup_file])
+
+@hook.subscribe.startup_complete
+def startup_complete():
+    startup_file = os.path.expanduser('~/.config/qtile/startup_complete')
+    subprocess.call([startup_file])
+
+#@hook.subscribe.startup_once
+#def autostart_once():
+#    subprocess.call([home + '/.config/qtile/startup_once.sh'])
+#
+#@hook.subscribe.startup
+#def autostart():
+#    subprocess.call([home + '/.config/qtile/startup.sh'])
