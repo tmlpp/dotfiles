@@ -133,19 +133,15 @@ keys = [
 
 #groups = [Group(i) for i in "asdfuio"]
 groups = [
-    Group("amanda"),
-    Group("saija",
-          layout="MOW"),
-    Group("diana"),
-    Group("florence"),
+    # Group("amanda"),
+    # Group("saija",
+    #       layout="MOW"),
+    # Group("diana"),
+    # Group("florence"),
     #Group("ulla", matches=[Match(wm_class=["qutebrowser"])]),
     Group("ulla"),
-    Group("iida",
-          matches=[Match(wm_class=["Blender"])],
-          layout="MAX"),
-    Group("outi",
-          matches=[Match(wm_class=["Steam"])],
-          layout="MAX"),
+    Group("iida"),
+    Group("outi"),
     ScratchPad("scratchpad", [
         DropDown("term", "urxvt",
                  x=0.25, y=0,
@@ -168,12 +164,12 @@ groups = [
     ]),
     ]
 
-@hook.subscribe.client_new
-def func(c):
-    if c.name == "Spotify":
-        c.togroup("florence")
-    if re.search("qbwa", c.name):
-        c.togroup("ulla")
+# @hook.subscribe.client_new
+# def func(c):
+#     if c.name == "Spotify":
+#         c.togroup("florence")
+#     if re.search("qbwa", c.name):
+#         c.togroup("ulla")
     # elif c.wm_class == "emacs":
     #     c.togroup("saija")
 # for i in groups:
@@ -229,12 +225,12 @@ layouts = [
         border_width=1,
         border_normal=color_bg,
         border_focus=pink),
-    layout.Bsp(
-        name='BSP',
-        margin=5,
-        border_width=1,
-        border_normal=base21,
-        border_focus=magenta),
+    # layout.Bsp(
+    #     name='BSP',
+    #     margin=5,
+    #     border_width=1,
+    #     border_normal=base21,
+    #     border_focus=magenta),
     layout.Max(name='MAX'),
     # layout.MonadTall(
     #     name='MOT',
@@ -245,15 +241,15 @@ layouts = [
     #     min_ratio=0.2,
     #     max_ratio=0.8,
     #     ratio=0.6),
-    layout.MonadWide(
-        name='MOW',
-        margin=5,
-        border_width=1,
-        border_normal=base21,
-        border_focus=orange,
-        min_ratio=0.2,
-        max_ratio=0.8,
-        ratio=0.7),
+    # layout.MonadWide(
+    #     name='MOW',
+    #     margin=5,
+    #     border_width=1,
+    #     border_normal=base21,
+    #     border_focus=orange,
+    #     min_ratio=0.2,
+    #     max_ratio=0.8,
+    #     ratio=0.7),
     # layout.Floating(
     #     name='FLO',
     #     border_width=1,
@@ -278,34 +274,34 @@ layouts = [
         add_after_last = True,
         shift_windows = True,
     ),
-    layout.TreeTab(
-        name='TAB', # Name of this layout
-        active_bg = '000080', # Background color of active tab
-        active_fg = 'ffffff', # Foreground color of active tab
-        bg_color = color_bg, # Background color of tabs
-        border_width = 1, # Width of the border
-        font = 'IBM Plex Sans Condensed', # Font
-        fontshadow = None, # font shadow color, default is None (no shadow)
-        fontsize = 12, # Font pixel size.
-        inactive_bg = '606060', # Background color of inactive tab
-        inactive_fg = 'ffffff', # Foreground color of inactive tab
-        level_shift = 8, # Shift for children tabs
-        margin_left = 0, # Left margin of tab panel
-        margin_y = 0, # Vertical margin of tab panel
-        padding_left = 3, # Left padding for tabs
-        padding_x = 3, # Left padding for tab label
-        padding_y = 3, # Top padding for tab label
-        panel_width = 120, # Width of the left panel
-        previous_on_rm = False, # Focus previous window on close instead of first.
-        section_bottom = 6, # Bottom margin of section
-        section_fg = 'ffffff', # Color of section label
-        section_fontsize = 10, # Font pixel size of section label
-        section_left = 4, # Left margin of section label
-        section_padding = 4, # Bottom of margin section label
-        section_top = 4, # Top margin of section label
-        sections = ['Web', 'System', 'Other'], # List of sections
-        vspace = 0, # Space between tabs
-    ),
+    # layout.TreeTab(
+    #     name='TAB', # Name of this layout
+    #     active_bg = '000080', # Background color of active tab
+    #     active_fg = 'ffffff', # Foreground color of active tab
+    #     bg_color = color_bg, # Background color of tabs
+    #     border_width = 1, # Width of the border
+    #     font = 'IBM Plex Sans Condensed', # Font
+    #     fontshadow = None, # font shadow color, default is None (no shadow)
+    #     fontsize = 12, # Font pixel size.
+    #     inactive_bg = '606060', # Background color of inactive tab
+    #     inactive_fg = 'ffffff', # Foreground color of inactive tab
+    #     level_shift = 8, # Shift for children tabs
+    #     margin_left = 0, # Left margin of tab panel
+    #     margin_y = 0, # Vertical margin of tab panel
+    #     padding_left = 3, # Left padding for tabs
+    #     padding_x = 3, # Left padding for tab label
+    #     padding_y = 3, # Top padding for tab label
+    #     panel_width = 120, # Width of the left panel
+    #     previous_on_rm = False, # Focus previous window on close instead of first.
+    #     section_bottom = 6, # Bottom margin of section
+    #     section_fg = 'ffffff', # Color of section label
+    #     section_fontsize = 10, # Font pixel size of section label
+    #     section_left = 4, # Left margin of section label
+    #     section_padding = 4, # Bottom of margin section label
+    #     section_top = 4, # Top margin of section label
+    #     sections = ['Web', 'System', 'Other'], # List of sections
+    #     vspace = 0, # Space between tabs
+    # ),
     # layout.VerticalTile(),
     # layout.Zoomy()
 ]
@@ -321,38 +317,6 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 screens = [
-    Screen(
-        bottom=bar.Bar(
-            [
-                widget.GroupBox(
-                    # font="Fira Mono",
-                    active=base51,
-                    inactive=base39,
-                    highlight_method='line',
-                    this_current_screen_border=base51,
-                    urgent_border=color_urgent,
-                    highlight_color=base21,
-                    padding=3,
-                    # foreground='888888',
-                    # background='550000'
-                    #active
-                ),
-                widget.WindowName(
-                    font="IBM Plex Sans",
-                    padding=20,
-                ),
-                widget.CurrentScreen(),
-                widget.Clock(
-                    format='%a %d.%m. %H:%M',
-                ),
-                widget.Sep(padding=10, size_percent=62),
-                widget.CurrentLayout(
-                    foreground = base51,
-                ),
-            ],
-            25, background=color_bg,
-        ),
-    ),
     Screen(
         top=bar.Bar(
             [
@@ -374,34 +338,21 @@ screens = [
                     padding=20,
                 ),
                 widget.Sep(size_percent=62),
-                widget.CurrentScreen(),
-                widget.Sep(size_percent=62),
                 widget.Volume(
                     padding=15),
                 # String format (p: partition, s: size, f: free space, uf: user free space, m: measure, r: ratio (uf/s))
                 widget.Sep(size_percent=62),
                 widget.DF(partition="/", format="/: {uf}{m}", visible_on_warn=False),
                 widget.Sep(size_percent=62),
-                widget.DF(partition="/tmp", format="/tmp: {uf}{m}", visible_on_warn=False),
-                widget.Sep(size_percent=62),
-                widget.DF(partition="/home", format="home: {uf}{m}", visible_on_warn=False),
-                widget.Sep(size_percent=62),
-                widget.DF(partition="/amanda", format="a: {uf}{m}", visible_on_warn=False),
-                widget.Sep(size_percent=62),
-                widget.DF(partition="/bella", format="b: {uf}{m}", visible_on_warn=False),
-                widget.Sep(size_percent=62),
-                widget.DF(partition="/cecilia", format="c: {uf}{m}", visible_on_warn=False),
-                widget.Sep(size_percent=62),
-                widget.DF(partition="/diana", format="d: {uf}{m}", visible_on_warn=False),
-                widget.Sep(size_percent=62),
-                widget.ThermalSensor(tag_sensor="Tdie", padding=10),
-                widget.CPUGraph(
-                    border_width = 0,
-                    border_color = base51,
-                    margin_y = 8,
-                    graph_color = base51,
-                    fill_color = base51),
-                widget.Memory(fmt='M: {MemUsed}/{MemTotal}'),
+                # widget.ThermalSensor(tag_sensor="Tdie", padding=10),
+                # widget.ThermalSensor(tag_sensor="temp1"),
+                # widget.CPUGraph(
+                #     border_width = 0,
+                #     border_color = base51,
+                #     margin_y = 8,
+                #     graph_color = base51,
+                #     fill_color = base51),
+                # widget.Memory(fmt='M: {MemUsed}/{MemTotal}'),
                 widget.Sep(padding=10, size_percent=62),
                 widget.Systray(),
                 widget.Clock(
@@ -412,41 +363,41 @@ screens = [
             ],
             30, background=color_bg,
         ),
-        bottom=bar.Bar(
-            [
-                widget.Pomodoro(
-                    length_pomodori=25,
-                    length_short_break=5,
-                    length_long_break=20,
-                    num_pomodori=4,
-                    prefix_inactive='Pomodoro: 25/5/20/4',
-                    prefix_active='W ',
-                    prefix_break='b ',
-                    prefix_long_break='B ',
-                    fontsize=12,
-                    color_inactive=color_fg,
-                    color_active=orange,
-                    color_break=cyan,
-                ),
-                widget.Sep(padding=10, size_percent=62),
-                widget.Pomodoro(
-                    length_pomodori=20,
-                    length_short_break=0,
-                    length_long_break=0,
-                    num_pomodori=24,
-                    prefix_inactive='20 min loop',
-                    prefix_active='Next in: ',
-                    prefix_break='Next in: ',
-                    prefix_long_break='Next in: ',
-                    fontsize=12,
-                    color_inactive=color_fg,
-                    color_active=orange,
-                    color_break=cyan,
-                ),
-                widget.Spacer(length=bar.STRETCH),
-            ],
-            20, background=color_bg,
-        ),
+        # bottom=bar.Bar(
+        #     [
+        #         widget.Pomodoro(
+        #             length_pomodori=25,
+        #             length_short_break=5,
+        #             length_long_break=20,
+        #             num_pomodori=4,
+        #             prefix_inactive='Pomodoro: 25/5/20/4',
+        #             prefix_active='W ',
+        #             prefix_break='b ',
+        #             prefix_long_break='B ',
+        #             fontsize=12,
+        #             color_inactive=color_fg,
+        #             color_active=orange,
+        #             color_break=cyan,
+        #         ),
+        #         widget.Sep(padding=10, size_percent=62),
+        #         widget.Pomodoro(
+        #             length_pomodori=20,
+        #             length_short_break=0,
+        #             length_long_break=0,
+        #             num_pomodori=24,
+        #             prefix_inactive='20 min loop',
+        #             prefix_active='Next in: ',
+        #             prefix_break='Next in: ',
+        #             prefix_long_break='Next in: ',
+        #             fontsize=12,
+        #             color_inactive=color_fg,
+        #             color_active=orange,
+        #             color_break=cyan,
+        #         ),
+        #         widget.Spacer(length=bar.STRETCH),
+        #     ],
+        #     20, background=color_bg,
+        # ),
     ),
 ]
 
@@ -504,25 +455,17 @@ focus_on_window_activation = "smart"
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
 
-@hook.subscribe.startup
-def startup():
-    startup_file = os.path.expanduser('~/.config/qtile/startup')
-    subprocess.call([startup_file])
+# @hook.subscribe.startup
+# def startup():
+#     startup_file = os.path.expanduser('~/.config/qtile/startup')
+#     subprocess.call([startup_file])
 
-@hook.subscribe.startup_once
-def startup_once():
-    startup_file = os.path.expanduser('~/.config/qtile/startup_once')
-    subprocess.call([startup_file])
+# @hook.subscribe.startup_once
+# def startup_once():
+#     startup_file = os.path.expanduser('~/.config/qtile/startup_once')
+#     subprocess.call([startup_file])
 
-@hook.subscribe.startup_complete
-def startup_complete():
-    startup_file = os.path.expanduser('~/.config/qtile/startup_complete')
-    subprocess.call([startup_file])
-
-#@hook.subscribe.startup_once
-#def autostart_once():
-#    subprocess.call([home + '/.config/qtile/startup_once.sh'])
-#
-#@hook.subscribe.startup
-#def autostart():
-#    subprocess.call([home + '/.config/qtile/startup.sh'])
+# @hook.subscribe.startup_complete
+# def startup_complete():
+#     startup_file = os.path.expanduser('~/.config/qtile/startup_complete')
+#     subprocess.call([startup_file])
