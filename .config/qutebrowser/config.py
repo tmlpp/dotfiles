@@ -121,14 +121,14 @@ c.colors.tabs.even.fg = '#989898'
 # c.colors.tabs.indicator.system = 'rgb'
 c.colors.tabs.odd.bg = '#2b2b2b'
 c.colors.tabs.odd.fg = '#989898'
-# c.colors.tabs.pinned.even.bg
-# c.colors.tabs.pinned.even.fg
-# c.colors.tabs.pinned.odd.bg
-# c.colors.tabs.pinned.odd.fg
-# c.colors.tabs.pinned.selected.even.bg
-# c.colors.tabs.pinned.selected.even.fg
-# c.colors.tabs.pinned.selected.odd.bg
-# c.colors.tabs.pinned.selected.odd.fg
+c.colors.tabs.pinned.even.bg = '#383838'
+c.colors.tabs.pinned.even.fg = '#989898'
+c.colors.tabs.pinned.odd.bg = '#383838'
+c.colors.tabs.pinned.odd.fg = '#989898'
+c.colors.tabs.pinned.selected.even.bg = '#424242'
+c.colors.tabs.pinned.selected.even.fg = '#ffffff'
+c.colors.tabs.pinned.selected.odd.bg = '#424242'
+c.colors.tabs.pinned.selected.odd.fg = '#ffffff'
 c.colors.tabs.selected.even.bg = '#424242'
 c.colors.tabs.selected.even.fg = '#ffffff'
 c.colors.tabs.selected.odd.bg = '#424242'
