@@ -6,6 +6,7 @@ x-scheme-handler/about=org.qutebrowser.qutebrowser.desktop
 x-scheme-handler/unknown=org.qutebrowser.qutebrowser.desktop
 x-scheme-handler/discord-413081698159296512=discord-413081698159296512.desktop
 x-scheme-handler/msteams=teams.desktop
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
 
 [Added Associations]
 image/jpeg=pureref.desktop;
