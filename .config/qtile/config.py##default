@@ -135,11 +135,12 @@ keys = [
 groups = [
     Group("amanda"),
     Group("saija",
-          layout="MOW"),
+          layout="TILE"),
     Group("diana"),
     Group("florence"),
     #Group("ulla", matches=[Match(wm_class=["qutebrowser"])]),
-    Group("ulla"),
+    Group("ulla",
+          layout="TILE"),
     Group("iida",
           matches=[Match(wm_class=["Blender"])],
           layout="MAX"),
@@ -415,11 +416,11 @@ screens = [
         bottom=bar.Bar(
             [
                 widget.Pomodoro(
-                    length_pomodori=25,
-                    length_short_break=5,
-                    length_long_break=20,
+                    length_pomodori=27,
+                    length_short_break=3,
+                    length_long_break=15,
                     num_pomodori=4,
-                    prefix_inactive='Pomodoro: 25/5/20/4',
+                    prefix_inactive='Pomodoro: 27/3/15/4',
                     prefix_active='W ',
                     prefix_break='b ',
                     prefix_long_break='B ',
