@@ -25,3 +25,6 @@ keycode	 65 = space space space space U200B
 ! Some Scandic and EU things
 keycode  39 = s S s S odiaeresis Odiaeresis
 keycode  26 = e E e E EuroSign
+
+keycode  94 = asciitilde grave asciitilde grave dead_grave 
+
