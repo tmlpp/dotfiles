@@ -402,7 +402,7 @@ screens = [
                     margin_y = 8,
                     graph_color = base51,
                     fill_color = base51),
-                widget.Memory(fmt='M: {MemUsed}/{MemTotal}'),
+                widget.Memory(format='M: {MemUsed}/{MemTotal}'),
                 widget.Sep(padding=10, size_percent=62),
                 widget.Systray(),
                 widget.Clock(
