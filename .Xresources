@@ -1,76 +1,10 @@
-! #define base00 #2D2D2D
-! #define base01 #424242
-! #define base02 #C6C6C6
-! #define base03 #F0F0F0
-! #define base04 #E08383
-! #define base05 #EDB8B8
-! #define base06 #35B535
-! #define base07 #81DA81
-! #define base08 #BABA38
-! #define base09 #EAEA43
-! #define base0A #9797E0
-! #define base0B #B4B4F1
-! #define base0C #FF5ECE
-! #define base0D #FF96DF
-! #define base0E #00B29F
-! #define base0F #00CFB8
-! *foreground:   base03
-! #ifdef background_opacity
-! *background:   [background_opacity]base00
-! #else
-! *background:   base00
-! #endif
-! *cursorColor:  base03
-! blk, dargray
-! *color0:       base00
-! *color8:       base01
-! red
-! *color1:       base04
-! *color9:       base05
-! green
-! *color2:       base06
-! *color10:      base07
-! yellow
-! *color3:       base08
-! *color11:      base09
-! blue
-! *color4:       base0A
-! *color12:      base0B
-! magenta
-! *color5:       base0C
-! *color13:      base0D
-! cyan
-! *color6:       base0E
-! *color14:      base0F
-! white, l-gray
-! *color7:       base03
-! *color15:      base02
-
-! Dracula Xresources palette
-*.foreground: #F8F8F2
-*.background: #282A36
-*.color0:     #000000
-*.color8:     #4D4D4D
-*.color1:     #FF5555
-*.color9:     #FF6E67
-*.color2:     #50FA7B
-*.color10:    #5AF78E
-*.color3:     #F1FA8C
-*.color11:    #F4F99D
-*.color4:     #BD93F9
-*.color12:    #CAA9FA
-*.color5:     #FF79C6
-*.color13:    #FF92D0
-*.color6:     #8BE9FD
-*.color14:    #9AEDFE
-*.color7:     #BFBFBF
-*.color15:    #E6E6E6
+#include "/home/teemu/.repos/nord-xresources/src/nord"
 !! === font ===
 ! URxvt.font: xft:Fira Mono:Medium:size=12
-!URxvt.font: xft:IBM Plex Mono:Regular:size=11
-!URxvt.boldFfont: xft:IBM Plex Mono:Heavy:size=11
-URxvt.font: xft:Iosevka:Regular:size=11
-URxvt.boldFfont: xft:Iosevka:Heavy:size=11
+URxvt.font: xft:IBM Plex Mono:Regular:size=11
+URxvt.boldFfont: xft:IBM Plex Mono:Heavy:size=11
+!URxvt.font: xft:Iosevka:Regular:size=11
+!URxvt.boldFfont: xft:Iosevka:Heavy:size=11
 Xft.antialias: true
 Xft.hinting: true
 Xft.autohint: 1
