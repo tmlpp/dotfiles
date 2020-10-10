@@ -28,3 +28,5 @@ keycode  26 = e E e E EuroSign
 
 keycode  94 = asciitilde grave asciitilde grave dead_grave 
 
+! En dash and em dash
+keycode  20 = minus underscore minus underscore U2013 U2014 U2013 U2014 minus underscore U2713 U2717 minus underscore U2713 U2717
