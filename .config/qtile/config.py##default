@@ -379,12 +379,12 @@ screens = [
             [
                 widget.GroupBox(
                     # font="Fira Mono",
-                    active=base51,
-                    inactive=base39,
+                    active=nord8,
+                    inactive=nord3,
                     highlight_method='line',
-                    this_current_screen_border=base51,
-                    urgent_border=color_urgent,
-                    highlight_color=base21,
+                    this_current_screen_border=nord3,
+                    urgent_border=nord12,
+                    highlight_color=nord1,
                     padding=3,
                     # foreground='888888',
                     # background='550000'
