@@ -214,9 +214,6 @@ magenta_l = '#FF8BFF'
 pink      = '#FF67A6'
 pink_l    = '#FF8DCB'
 
-color_bg = base21
-color_fg = base80
-color_hl = base80
 # Polar Night
 nord0 = '#2e3440' # bg1
 nord1 = '#3b4252' # bg2
@@ -237,6 +234,10 @@ nord12 = '#d08770'
 nord13 = '#ebcb8b'
 nord14 = '#a3be8c'
 nord15 = '#b48ead'
+
+color_bg = nord0
+color_fg = nord4
+color_hl = nord6
 color_border = ''
 color_urgent = orange
 #color_active = ''
