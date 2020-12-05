@@ -1314,3 +1314,5 @@ config.bind('<Alt-d>', 'tab-close', mode='passthrough')
 ## this, it's possible to set font sizes and the `zoom.default` setting.
 ## Type: Bool
 # c.qt.highdpi = False
+
+config.source('nord-qutebrowser.py')
