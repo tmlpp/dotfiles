@@ -17,6 +17,7 @@ alias traf='trans :fi'
 alias off='shutdown -h now'
 alias uz='unzip'
 alias q='exit'
+alias cal='cal -m'
 
 # p as in package operations
 alias pU='yay -Suy' 	# update system
