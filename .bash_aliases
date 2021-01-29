@@ -48,9 +48,10 @@ alias padoff='synclient TouchpadOff=1'
 alias padon='synclient TouchpadOff=0'
 
 # Ledger
-alias led='ledger -f ~/Dropbox/ledger/my.ledger'
-alias ler='ledger -f ~/Dropbox/ledger/my.ledger reg'
-alias leb='ledger -f ~/Dropbox/ledger/my.ledger bal'
+export LEDGER_FILE=~/Dropbox/ledger/my.ledger
+alias led='ledger -f $LEDGER_FILE'
+alias ler='ledger -f $LEDGER_FILE reg'
+alias leb='ledger -f $LEDGER_FILE bal'
 
 # wacom
 alias wac='xsetwacom'
@@ -82,3 +83,5 @@ alias pod6='popd +6 > /dev/null ; dirs -v'
 alias pod7='popd +7 > /dev/null ; dirs -v'
 alias pod8='popd +8 > /dev/null ; dirs -v'
 alias pod9='popd +9 > /dev/null ; dirs -v'
+
+alias herb='herbstclient'
