@@ -259,8 +259,8 @@ c.confirm_quit = ['never']
 # c.content.default_encoding = 'iso-8859-1'
 
 ## Enable extra tools for Web developers. This needs to be enabled for
-## `:inspector` to work and also adds an _Inspect_ entry to the context
-## menu. For QtWebEngine, see `--enable-webengine-inspector` in
+## `:devtools` to work and also adds an _Inspect_ entry to the context
+## menu. For QtWebEngine, see `--enable-webengine-devtools` in
 ## `qutebrowser --help` instead.
 ## Type: Bool
 # c.content.developer_extras = False
@@ -456,7 +456,7 @@ c.confirm_quit = ['never']
 
 ## Whether load requests should be monitored for cross-site scripting
 ## attempts. Suspicious scripts will be blocked and reported in the
-## inspector's JavaScript console. Enabling this feature might have an
+## devtools's JavaScript console. Enabling this feature might have an
 ## impact on performance.
 ## Type: Bool
 # c.content.xss_auditing = False
@@ -501,7 +501,7 @@ c.downloads.position = 'bottom'
 ## Type: Int
 # c.downloads.remove_finished = -1
 
-## The editor (and arguments) to use for the `open-editor` command. `{}`
+## The editor (and arguments) to use for the `edit-text` command. `{}`
 ## gets replaced by the filename of the file to be edited.
 ## Type: ShellCommand
 # c.editor.command = ['urxvt', '-e', 'nvim', '{}']
@@ -983,7 +983,7 @@ c.url.searchengines = searchengines
 # c.zoom.text_only = False
 
 ## Bindings for normal mode
-# config.bind("'", 'enter-mode jump_mark')
+# config.bind("'", 'mode-enter jump_mark')
 # config.bind('+', 'zoom-in')
 # config.bind('-', 'zoom-out')
 # config.bind('.', 'repeat-command')
@@ -1023,6 +1023,7 @@ config.bind(',,', 'hint images userscript img-dl-sha1-rename')
 config.bind('zi', 'zoom 150%')
 config.bind('zo', 'zoom 100%')
 config.bind(';l', 'hint links userscript save.url')
+config.bind(';L', 'hint --rapid links userscript save.url')
 config.bind(';I', 'hint images userscript img-dl-sha1-rename')
 # config.bind('<Alt-1>', 'tab-focus 1')
 # config.bind('<Alt-2>', 'tab-focus 2')
@@ -1043,14 +1044,14 @@ config.bind(';I', 'hint images userscript img-dl-sha1-rename')
 # config.bind('<Ctrl-PgDown>', 'tab-next')
 # config.bind('<Ctrl-PgUp>', 'tab-prev')
 # config.bind('<Ctrl-Q>', 'quit')
-# config.bind('<Ctrl-Return>', 'follow-selected -t')
+# config.bind('<Ctrl-Return>', 'selection-follow -t')
 # config.bind('<Ctrl-Shift-N>', 'open -p')
 # config.bind('<Ctrl-Shift-T>', 'undo')
 # config.bind('<Ctrl-Shift-W>', 'close')
 # config.bind('<Ctrl-T>', 'open -t')
 # config.bind('<Ctrl-Tab>', 'tab-focus last')
 # config.bind('<Ctrl-U>', 'scroll-page 0 -0.5')
-config.bind('<Ctrl-P>', 'enter-mode passthrough')
+config.bind('<Ctrl-P>', 'mode-enter passthrough')
 # config.bind('<Ctrl-W>', 'tab-close')
 # config.bind('<Ctrl-X>', 'navigate decrement')
 # config.bind('<Ctrl-^>', 'tab-focus last')
@@ -1060,12 +1061,12 @@ config.bind('<Ctrl-Shift-p>', 'tab-pin')
 # config.bind('<Escape>', 'clear-keychain ;; search ;; fullscreen --leave')
 # config.bind('<F11>', 'fullscreen')
 # config.bind('<F5>', 'reload')
-# config.bind('<Return>', 'follow-selected')
+# config.bind('<Return>', 'selection-follow')
 # config.bind('<back>', 'back')
 # config.bind('<forward>', 'forward')
 # config.bind('=', 'zoom')
 # config.bind('?', 'set-cmd-text ?')
-# config.bind('@', 'run-macro')
+# config.bind('@', 'macro-run')
 # config.bind('B', 'set-cmd-text -s :quickmark-load -t')
 # config.bind('D', 'tab-close -o')
 # config.bind('F', 'hint all tab')
@@ -1089,7 +1090,7 @@ config.bind('<Ctrl-Shift-p>', 'tab-pin')
 # config.bind('ZZ', 'quit --save')
 # config.bind('[[', 'navigate prev')
 # config.bind(']]', 'navigate next')
-# config.bind('`', 'enter-mode set_mark')
+# config.bind('`', 'mode-enter set_mark')
 # config.bind('ad', 'download-cancel')
 # config.bind('b', 'set-cmd-text -s :quickmark-load')
 # config.bind('cd', 'download-clear')
@@ -1116,10 +1117,10 @@ config.bind('<Ctrl-Shift-K>', 'tab-move -')
 # config.bind('gm', 'tab-move')
 # config.bind('go', 'set-cmd-text :open {url:pretty}')
 # config.bind('gr', 'tab-move +')
-# config.bind('gt', 'set-cmd-text -s :buffer')
+# config.bind('gt', 'set-cmd-text -s :tab-select')
 # config.bind('gu', 'navigate up')
 # config.bind('h', 'scroll left')
-# config.bind('i', 'enter-mode insert')
+# config.bind('i', 'mode-enter insert')
 # config.bind('j', 'scroll down')
 # config.bind('k', 'scroll up')
 # config.bind('l', 'scroll right')
@@ -1128,7 +1129,7 @@ config.bind('<Ctrl-Shift-K>', 'tab-move -')
 # config.bind('o', 'set-cmd-text -s :open')
 # config.bind('pP', 'open -- {primary}')
 # config.bind('pp', 'open -- {clipboard}')
-# config.bind('q', 'record-macro')
+# config.bind('q', 'macro-record')
 # config.bind('r', 'reload')
 # config.bind('sf', 'save')
 # config.bind('sk', 'set-cmd-text -s :bind')
@@ -1142,14 +1143,14 @@ config.bind('sp', 'spawn --userscript qutepocket')
 config.bind('th', 'back -t')
 config.bind('tl', 'forward -t')
 # config.bind('u', 'undo')
-# config.bind('v', 'enter-mode caret')
+# config.bind('v', 'mode-enter caret')
 # config.bind('wB', 'set-cmd-text -s :bookmark-load -w')
 # config.bind('wO', 'set-cmd-text :open -w {url:pretty}')
 # config.bind('wP', 'open -w -- {primary}')
 # config.bind('wb', 'set-cmd-text -s :quickmark-load -w')
 # config.bind('wf', 'hint all window')
 # config.bind('wh', 'back -w')
-# config.bind('wi', 'inspector')
+# config.bind('wi', 'devtools')
 # config.bind('wl', 'forward -w')
 # config.bind('wo', 'set-cmd-text -s :open -w')
 # config.bind('wp', 'open -w -- {clipboard}')
@@ -1173,10 +1174,10 @@ config.bind('xx', 'config-cycle statusbar.show always in-mode ;; config-cycle ta
 ## Bindings for caret mode
 # config.bind('$', 'move-to-end-of-line', mode='caret')
 # config.bind('0', 'move-to-start-of-line', mode='caret')
-# config.bind('<Ctrl-Space>', 'drop-selection', mode='caret')
-# config.bind('<Escape>', 'leave-mode', mode='caret')
+# config.bind('<Ctrl-Space>', 'selection-drop', mode='caret')
+# config.bind('<Escape>', 'mode-leave', mode='caret')
 # config.bind('<Return>', 'yank selection', mode='caret')
-# config.bind('<Space>', 'toggle-selection', mode='caret')
+# config.bind('<Space>', 'selection-toggle', mode='caret')
 # config.bind('G', 'move-to-end-of-document', mode='caret')
 # config.bind('H', 'scroll left', mode='caret')
 # config.bind('J', 'scroll down', mode='caret')
@@ -1186,14 +1187,14 @@ config.bind('xx', 'config-cycle statusbar.show always in-mode ;; config-cycle ta
 # config.bind('[', 'move-to-start-of-prev-block', mode='caret')
 # config.bind(']', 'move-to-start-of-next-block', mode='caret')
 # config.bind('b', 'move-to-prev-word', mode='caret')
-# config.bind('c', 'enter-mode normal', mode='caret')
+# config.bind('c', 'mode-enter normal', mode='caret')
 # config.bind('e', 'move-to-end-of-word', mode='caret')
 # config.bind('gg', 'move-to-start-of-document', mode='caret')
 # config.bind('h', 'move-to-prev-char', mode='caret')
 # config.bind('j', 'move-to-next-line', mode='caret')
 # config.bind('k', 'move-to-prev-line', mode='caret')
 # config.bind('l', 'move-to-next-char', mode='caret')
-# config.bind('v', 'toggle-selection', mode='caret')
+# config.bind('v', 'selection-toggle', mode='caret')
 # config.bind('w', 'move-to-next-word', mode='caret')
 # config.bind('y', 'yank selection', mode='caret')
 # config.bind('{', 'move-to-end-of-prev-block', mode='caret')
@@ -1220,7 +1221,7 @@ config.bind('xx', 'config-cycle statusbar.show always in-mode ;; config-cycle ta
 # config.bind('<Ctrl-W>', 'rl-unix-word-rubout', mode='command')
 # config.bind('<Ctrl-Y>', 'rl-yank', mode='command')
 # config.bind('<Down>', 'command-history-next', mode='command')
-# config.bind('<Escape>', 'leave-mode', mode='command')
+# config.bind('<Escape>', 'mode-leave', mode='command')
 # config.bind('<Return>', 'command-accept', mode='command')
 # config.bind('<Shift-Delete>', 'completion-item-del', mode='command')
 # config.bind('<Shift-Tab>', 'completion-item-focus prev', mode='command')
@@ -1231,18 +1232,17 @@ config.bind('xx', 'config-cycle statusbar.show always in-mode ;; config-cycle ta
 # config.bind('<Ctrl-B>', 'hint all tab-bg', mode='hint')
 # config.bind('<Ctrl-F>', 'hint links', mode='hint')
 # config.bind('<Ctrl-R>', 'hint --rapid links tab-bg', mode='hint')
-config.bind('<Escape>', 'leave-mode', mode='hint')
-# config.bind('<Return>', 'follow-hint', mode='hint')
+config.bind('<Escape>', 'mode-leave', mode='hint')
+# config.bind('<Return>', 'hint-follow', mode='hint')
 
 ## Bindings for insert mode
-# config.bind('<Ctrl-E>', 'open-editor', mode='insert')
-config.bind('<Escape>', 'leave-mode', mode='insert')
+config.bind('<Ctrl-E>', 'edit-text', mode='insert')
+config.bind('<Escape>', 'mode-leave', mode='insert')
 # config.bind('<Shift-Ins>', 'insert-text {primary}', mode='insert')
-config.bind('<Ctrl-I>', 'leave-mode', mode='insert')
-config.bind('<Ctrl-K>', 'set-cmd-text -s :spawn --userscript keys.py ', mode='insert')
+config.bind('<Ctrl-I>', 'mode-leave', mode='insert')
 
 ## Bindings for passthrough mode
-config.bind('<Ctrl-P>', 'leave-mode', mode='passthrough')
+config.bind('<Ctrl-P>', 'mode-leave', mode='passthrough')
 config.bind('<Alt-j>', 'scroll down', mode='passthrough')
 config.bind('<Alt-k>', 'scroll up', mode='passthrough')
 config.bind('<Alt-l>', 'scroll right', mode='passthrough')
@@ -1266,7 +1266,7 @@ config.bind('<Alt-d>', 'tab-close', mode='passthrough')
 # config.bind('<Ctrl-X>', 'prompt-open-download', mode='prompt')
 # config.bind('<Ctrl-Y>', 'rl-yank', mode='prompt')
 # config.bind('<Down>', 'prompt-item-focus next', mode='prompt')
-# config.bind('<Escape>', 'leave-mode', mode='prompt')
+# config.bind('<Escape>', 'mode-leave', mode='prompt')
 # config.bind('<Return>', 'prompt-accept', mode='prompt')
 # config.bind('<Shift-Tab>', 'prompt-item-focus prev', mode='prompt')
 # config.bind('<Tab>', 'prompt-item-focus next', mode='prompt')
@@ -1275,7 +1275,7 @@ config.bind('<Alt-d>', 'tab-close', mode='passthrough')
 # config.bind('y', 'prompt-accept yes', mode='prompt')
 
 ## Bindings for register mode
-# config.bind('<Escape>', 'leave-mode', mode='register')
+# config.bind('<Escape>', 'mode-leave', mode='register')
 
 ## New in v1.1.0
 ## Delay (in milliseconds) before updating completions after typing a
@@ -1316,3 +1316,5 @@ config.bind('<Alt-d>', 'tab-close', mode='passthrough')
 # c.qt.highdpi = False
 
 config.source('nord-qutebrowser.py')
+
+config.load_autoconfig(False)
