@@ -48,7 +48,7 @@ alias padoff='synclient TouchpadOff=1'
 alias padon='synclient TouchpadOff=0'
 
 # Ledger
-export LEDGER_FILE=~/Dropbox/ledger/my.ledger
+export LEDGER_FILE=~/syncdir/ledger/my.ledger
 alias led='ledger -f $LEDGER_FILE'
 alias ler='ledger -f $LEDGER_FILE reg'
 alias leb='ledger -f $LEDGER_FILE bal'
