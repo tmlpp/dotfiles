@@ -11,6 +11,8 @@ hc emit_hook reload
 xsetroot -solid '#5A8E3A'
 ~/.fehbg &
 
+hc set default_frame_layout 1
+
 # remove all existing keybindings
 hc keyunbind --all
 
@@ -113,10 +115,8 @@ for i in ${!tag_names[@]} ; do
 done
 
 # cycle through tags
-hc keybind $Mod-period use_index +1 --skip-visible
-hc keybind $Mod-comma  use_index -1 --skip-visible
-# hc keybind $Mod-n use_index +1 --skip-visible
-# hc keybind $Mod-p use_index -1 --skip-visible
+hc keybind $Mod-bracketright use_index +1 --skip-visible
+hc keybind $Mod-bracketleft  use_index -1 --skip-visible
 
 # layouting
 hc keybind $Mod-r remove
@@ -139,11 +139,17 @@ hc mousebind $Mod-Button2 zoom
 hc mousebind $Mod-Button3 resize
 
 # focus
-hc keybind $Mod-g   cycle_monitor
-hc keybind $Mod-Tab         cycle_all +1
-hc keybind $Mod-Shift-Tab   cycle_all -1
+hc keybind $Mod-g cycle_monitor
+hc keybind $Mod-Tab       cycle_all +1
+hc keybind $Mod-Shift-Tab cycle_all -1
 hc keybind $Mod-c cycle
+hc keybind $Mod-comma cycle -1
+hc keybind $Mod-period cycle +1
+hc keybind $Mod-Control-comma cycle_all -1
+hc keybind $Mod-Control-period cycle_all +1
 hc keybind $Mod-i jumpto urgent
+hc keybind $Mod-n cycle_frame +1
+hc keybind $Mod-p cycle_frame -1
 
 # theme
 hc attr theme.tiling.reset 1
@@ -206,6 +212,7 @@ hc detect_monitors
 # done
 
 if hc silent new_attr bool my_not_first_autostart ; then
+    ~/.config/tint2/pomo.sh notify &
     tint2 -c ~/.config/tint2/screen1-top &
     tint2 -c ~/.config/tint2/screen2-bottom &
     syncthing &
