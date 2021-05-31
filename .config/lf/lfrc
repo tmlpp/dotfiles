@@ -44,10 +44,10 @@ cmd open ${{
 
 # define a custom 'rename' command without prompt for overwrite
 # cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
-# map r push :rename<space>
+map r push :rename<space>
 
 # make sure trash folder exists
-# %mkdir -p ~/.trash
+%mkdir -p ~/.trash
 
 # move current file or selected files to trash folder
 # (also see 'man mv' for backup/overwrite options)
@@ -108,6 +108,7 @@ cmd bulk-rename ${{
 	index_edit=$(mktemp /tmp/lf-bulk-rename.XXXXXXXXXX)
 	cat $index > $index_edit
 	$EDITOR $index_edit
+        notify-send $EDITOR
 	if [ $(cat $index | wc -l) -eq $(cat $index_edit | wc -l) ]; then
 		max=$(($(cat $index | wc -l)+1))
 		counter=1
