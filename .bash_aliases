@@ -85,3 +85,6 @@ alias pod8='popd +8 > /dev/null ; dirs -v'
 alias pod9='popd +9 > /dev/null ; dirs -v'
 
 alias herb='herbstclient'
+
+# Downloads
+alias mvdl='find ~/Downloads -mindepth 1 -maxdepth 1 -mmin -5 -exec mv -t . {} +'
