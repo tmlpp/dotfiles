@@ -24,7 +24,7 @@ Alt=Mod1
 
 
 hc keybind $Mod-Shift-q quit
-hc keybind $Mod-Shift-r reload
+hc keybind $Mod-Control-r reload
 hc keybind $Mod-q close_or_remove
 # hc keybind $Mod-Return spawn ${TERMINAL:-xterm} # use your $TERMINAL with xterm as fallback
 hc keybind $Mod-Return spawn alacritty
@@ -62,6 +62,7 @@ hc keybind $Mod-k     focus up
 hc keybind $Mod-l     focus right
 
 hc keybind $Mod-Ctrl-c spawn emacsclient -e '(make-capture-frame)'
+hc keybind $Mod-Shift-r spawn alacritty -e ranger
 hc keybind $Mod-e spawn emacsclient -c
 # moving clients
 hc keybind $Mod-Shift-Left  shift left
