@@ -13,7 +13,7 @@ HISTFILESIZE=-1
 HISTCONTROL=ignoreboth
 
 # PS1='\u@\h \W\$ '
-PS1="\[$(tput bold)\]\[$(tput sitm)\]\[$(tput setaf 2)\][\[$(tput setaf 3)\]\u\[$(tput setaf 1)\]@\[$(tput setaf 3)\]\h \[$(tput setaf 6)\]\$PWD\[$(tput setaf 2)\]]\n\[$(tput setaf 4)\]\\$ \[$(tput sgr0)\]"
+PS1="\[$(tput bold)\]\[$(tput sitm)\]\[$(tput setaf 2)\]\[$(tput setaf 3)\]\u\[$(tput setaf 1)\]@\[$(tput setaf 3)\]\h \[$(tput setaf 6)\]\$PWD\[$(tput setaf 2)\]\n\[$(tput setaf 4)\]\\$ \[$(tput sgr0)\]"
 # PS1="\[\e[3m\u@\h $PWD\n\\$ \]"
 
 # Add bash aliases.
