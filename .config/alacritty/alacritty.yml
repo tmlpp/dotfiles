@@ -6,7 +6,7 @@
 # loaded earlier with those loaded later in the chain. The file itself will
 # always be loaded last.
 import:
-  - /home/teemu/.config/alacritty/nord.yml
+  - /home/teemu/.repos/alacritty-theme/themes/tmlpp.yaml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -100,8 +100,12 @@ window:
 
 # Font configuration
 font:
+
+  # Point size
+  size: 10.0
+
   normal:
-    family: Cascadia Code
+    family: Input Mono
     style: Medium
 
   bold:
@@ -116,8 +120,6 @@ font:
     #family: 
     style: Bold Italic
 
-  # Point size
-  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -142,21 +144,6 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
-# Colors (Tomorrow Night)
-#colors:
-  # Default colors
-  #primary:
-  #  background: '#1d1f21'
-  #  foreground: '#c5c8c6'
-
-    # Bright and dim foreground colors
-    #
-    # The dimmed foreground color is calculated automatically if it is not
-    # present. If the bright foreground color is not set, or
-    # `draw_bold_text_with_bright_colors` is `false`, the normal foreground
-    # color will be used.
-    #dim_foreground: '#828482'
-    #bright_foreground: '#eaeaea'
 
   # Cursor colors
   #
