@@ -22,7 +22,6 @@ hc keyunbind --all
 Mod=Mod4   # Use the super key as the main modifier
 Alt=Mod1
 
-
 hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Control-r reload
 hc keybind $Mod-q close_or_remove
@@ -220,17 +219,5 @@ hc detect_monitors
 # done
 
 if hc silent new_attr bool my_not_first_autostart ; then
-    ~/.config/tint2/pomo.sh notify &
-    tint2 -c ~/.config/tint2/screen1-top &
-    tint2 -c ~/.config/tint2/screen2-bottom &
-    syncthing &
-    # dropbox &
-    # picom &
-    qutebrowser &
-    emacs &
-    spotify &
-    xset dpms 3600 3600 3600
-    xset s 3600 3600
-    keepassxc &
-    numlockx
+    ~/.config/autostart.sh
 fi
