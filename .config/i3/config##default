@@ -2,18 +2,18 @@ set $mod Mod4
 
 hide_edge_borders smart
 # for_window [class="^.*"] border pixel 5
-default_border pixel 2
-# gaps inner 10
-# gaps outer 0 
+default_border pixel 4
+gaps inner 10
+gaps outer 0
 # smart_gaps on
 
 client.focused          #000000 #52b0b9 #005861 #000000
 client.focused_inactive #000000 #18838c #005861 #000000
 client.unfocused        #000000 #005861 #18838c #000000
 # new_window none
-set $term urxvt
+set $term alacritty
 # Font 
-font pango:Iosevka Medium 12
+font pango:Iosevka Medium 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -26,9 +26,66 @@ bindsym $mod+Escape                 workspace back_and_forth
 
 bindsym $mod+Menu                   exec --no-startup-id rofi -show run
 
-# bindsym $mod+needstobefiguredout  exec --no-startup-id playerctl play-pause
-bindsym $mod+bracketleft            exec --no-startup-id playerctl previous
-bindsym $mod+bracketright           exec --no-startup-id playerctl next
+
+### Q ###
+bindsym $mod+q                      kill
+bindsym Shift+$mod+q                exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# bindsym Control+$mod+q            notinuse
+# bindsym Control+Shift+$mod+q      notinuse
+
+### W ###
+# bindsym $mod+w                    notinuse
+# bindsym Shift+$mod+w              notinuse
+# bindsym Control+$mod+w            notinuse
+# bindsym Control+Shift+$mod+w      notinuse
+
+### E ###
+bindsym $mod+e                      [instance="scratchagenda"] scratchpad show ; [instance="scratchagenda"] move position center
+# bindsym Shift+$mod+e              notinuse
+# bindsym Control+$mod+e            notinuse
+# bindsym Control+Shift+$mod+e      notinuse
+
+### R ###
+bindsym $mod+r                      [instance="scratchranger"] scratchpad show ; [instance="scratchranger"] move position center
+bindsym Shift+$mod+r                restart
+bindsym Control+$mod+r              mode "resize"
+# bindsym Control+Shift+$mod+r      notinuse
+
+### T ###
+bindsym $mod+t		                [instance="scratchterm"] scratchpad show ; [instance="scratchterm"] move position center
+# bindsym Shift+$mod+t              notinuse
+# bindsym Control+$mod+t            notinuse
+# bindsym Control+Shift+$mod+t      notinuse
+
+### Y ###
+# bindsym Shift+$mod+y              notinuse
+# bindsym Shift+$mod+v              notinuse
+# bindsym Control+$mod+v            notinuse
+# bindsym Control+Shift+$mod+v      notinuse
+
+### U ###
+# bindsym $mod+u                    notinuse
+# bindsym Shift+$mod+u              notinuse
+# bindsym Control+$mod+u            notinuse
+# bindsym Control+Shift+$mod+u      notinuse
+
+### I ###
+bindsym $mod+i                      exec $term -e weechat
+# bindsym Shift+$mod+i              nothinuse
+# bindsym Control+$mod+i            notinuse
+# bindsym Control+Shift+$mod+i      notinuse
+
+### O ###
+# bindsym Shift+$mod+o              notinuse
+# bindsym Shift+$mod+o              notinuse
+# bindsym Control+$mod+o            notinuse
+# bindsym Control+Shift+$mod+o      notinuse
+
+### P ###
+bindsym $mod+p                      workspace prev
+# bindsym Shift+$mod+p              notinuse
+# bindsym Control+$mod+p            notinuse
+# bindsym Control+Shift+$mod+p      notinuse
 
 ### A ###
 bindsym $mod+a                      focus parent
@@ -36,29 +93,17 @@ bindsym $mod+a                      focus parent
 # bindsym Control+$mod+a            notinuse
 # bindsym Control+Shift+$mod+a      notinuse
 
-### B ###
-bindsym $mod+b                      exec qutebrowser
-bindsym Shift+$mod+b                exec qutebrowser --basedir ~/.qutebrowserwa -R web.whatsapp.com ':enter-mode passthrough'
-bindsym Control+$mod+b              exec qutebrowser --basedir ~/.qutebrowser1
-# bindsym Control+Shift+$mod+b      notinuse
-
-### C ###
-bindsym $mod+c                      layout toggle split
-bindsym Shift+$mod+c                reload
-bindsym Control+$mod+c              exec "emacsclient -e '(make-capture-frame)'"
-# bindsym Control+Shift+$mod+c      notinuse
+### S ###
+bindsym $mod+s                      scratchpad show
+bindsym Shift+$mod+s                move scratchpad
+# bindsym Control+$mod+s            notinuse
+# bindsym Control+Shift+$mod+s      notinuse
 
 ### D ###
 bindsym $mod+d                      focus child
 # bindsym Shift+$mod+d              notinuse
 # bindsym Control+$mod+d            notinuse
 # bindsym Control+Shift+$mod+d      notinuse
-
-### E ###
-bindsym $mod+e                      [instance="scratchagenda"] scratchpad show ; [instance="scratchagenda"] move position center
-# bindsym Shift+$mod+e              notinuse
-# bindsym Control+$mod+e            notinuse
-# bindsym Control+Shift+$mod+e      notinuse
 
 ### F ###
 bindsym $mod+f                      fullscreen toggle
@@ -78,12 +123,6 @@ bindsym Shift+$mod+h                move left
 bindsym Control+$mod+h              resize shrink width 5 px or 5 ppt
 # bindsym Control+Shift+$mod+h      notinuse
 
-### I ###
-bindsym $mod+i                      exec urxvt -e weechat
-# bindsym Shift+$mod+i              nothinuse
-# bindsym Control+$mod+i            notinuse
-# bindsym Control+Shift+$mod+i      notinuse
-
 ### J ###
 bindsym $mod+j focus                down
 bindsym Shift+$mod+j                move down
@@ -102,71 +141,11 @@ bindsym Shift+$mod+l                move right
 bindsym Control+$mod+l              resize grow width 5 px or 5 ppt
 # bindsym Control+Shift+$mod+l      notinuse
 
-### M ###
-# bindsym $mod+m                    notinuse
-# bindsym Shift+$mod+m              notinuse
-# bindsym Control+$mod+m            notinuse
-# bindsym Control+Shift+$mod+m      notinuse
-
-### N ###
-bindsym $mod+n                      workspace next
-# bindsym Shift+$mod+n              notinuse
-# bindsym Control+$mod+n            notinuse
-# bindsym Control+Shift+$mod+n      notinuse
-
-### O ###
-# bindsym Shift+$mod+o              notinuse
-# bindsym Shift+$mod+o              notinuse
-# bindsym Control+$mod+o            notinuse
-# bindsym Control+Shift+$mod+o      notinuse
-
-### P ###
-bindsym $mod+p                      workspace prev
-# bindsym Shift+$mod+p              notinuse
-# bindsym Control+$mod+p            notinuse
-# bindsym Control+Shift+$mod+p      notinuse
-
-### Q ###
-bindsym $mod+q                      kill
-bindsym Shift+$mod+q                exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-# bindsym Control+$mod+q            notinuse
-# bindsym Control+Shift+$mod+q      notinuse
-
-### R ###
-bindsym $mod+r                      [instance="scratchranger"] scratchpad show ; [instance="scratchranger"] move position center
-bindsym Shift+$mod+r                restart
-bindsym Control+$mod+r              mode "resize"
-# bindsym Control+Shift+$mod+r      notinuse
-
-### S ###
-bindsym $mod+s                      scratchpad show
-bindsym Shift+$mod+s                move scratchpad
-# bindsym Control+$mod+s            notinuse
-# bindsym Control+Shift+$mod+s      notinuse
-
-### T ###
-bindsym $mod+t		                [instance="scratchterm"] scratchpad show ; [instance="scratchterm"] move position center
-# bindsym Shift+$mod+t              notinuse
-# bindsym Control+$mod+t            notinuse
-# bindsym Control+Shift+$mod+t      notinuse
-
-### U ###
-# bindsym $mod+u                    notinuse
-# bindsym Shift+$mod+u              notinuse
-# bindsym Control+$mod+u            notinuse
-# bindsym Control+Shift+$mod+u      notinuse
-
-### V ###
-# bindsym $mod+v                    notinuse
-# bindsym Shift+$mod+v              notinuse
-# bindsym Control+$mod+v            notinuse
-# bindsym Control+Shift+$mod+v      notinuse
-
-### W ###
-# bindsym $mod+w                    notinuse
-# bindsym Shift+$mod+w              notinuse
-# bindsym Control+$mod+w            notinuse
-# bindsym Control+Shift+$mod+w      notinuse
+### Z ###
+bindsym $mod+z                      layout tabbed
+# bindsym Shift+$mod+z              notinuse
+# bindsym Control+$mod+z            notinuse
+# bindsym Control+Shift+$mod+z      notinuse
 
 ### X ###
 bindsym $mod+x                      layout stacking
@@ -174,35 +153,35 @@ bindsym $mod+x                      layout stacking
 # bindsym Control+$mod+x            notinuse
 # bindsym Control+Shift+$mod+x      notinuse
 
-### Y ###
-# bindsym Shift+$mod+y              notinuse
-# bindsym Shift+$mod+v              notinuse
-# bindsym Control+$mod+v            notinuse
-# bindsym Control+Shift+$mod+v      notinuse
+### C ###
+bindsym $mod+c                      layout toggle split
+bindsym Shift+$mod+c                notinuse
+bindsym Control+$mod+c              exec "emacsclient -e '(make-capture-frame)'"
+# bindsym Control+Shift+$mod+c      notinuse
 
-### Z ###
-bindsym $mod+z                      layout tabbed
-# bindsym Shift+$mod+z              notinuse
-# bindsym Control+$mod+z            notinuse
-# bindsym Control+Shift+$mod+z      notinuse
-
-### Å ###
+### V ###
 # bindsym $mod+v                    notinuse
 # bindsym Shift+$mod+v              notinuse
 # bindsym Control+$mod+v            notinuse
 # bindsym Control+Shift+$mod+v      notinuse
 
-### Ä ###
-# bindsym $mod+v                    notinuse
-# bindsym Shift+$mod+v              notinuse
-# bindsym Control+$mod+v            notinuse
-# bindsym Control+Shift+$mod+v      notinuse
+### B ###
+# bindsym $mod+b                    notinuse
+# bindsym Shift+$mod+b              notinuse
+# bindsym Control+$mod+b            notinuse
+# bindsym Control+Shift+$mod+b      notinuse
 
-### Ö ###
-# bindsym $mod+v                    notinuse
-# bindsym Shift+$mod+v              notinuse
-# bindsym Control+$mod+v            notinuse
-# bindsym Control+Shift+$mod+v      notinuse
+### N ###
+bindsym $mod+n                      workspace next
+# bindsym Shift+$mod+n              notinuse
+# bindsym Control+$mod+n            notinuse
+# bindsym Control+Shift+$mod+n      notinuse
+
+### M ###
+# bindsym $mod+m                    notinuse
+# bindsym Shift+$mod+m              notinuse
+# bindsym Control+$mod+m            notinuse
+# bindsym Control+Shift+$mod+m      notinuse
 
 bindsym $mod+period                 split h
 
@@ -223,12 +202,12 @@ bindsym Shift+$mod+space            floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space                  focus mode_toggle
 
-set $ws1 "1:web"
-set $ws2 "2:term"
-set $ws3 "3:emacs"
-set $ws4 "4:msg"
-set $ws5 "5:music"
-set $ws6 "6:video"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
@@ -263,7 +242,6 @@ for_window [class="Spotify"] move to workspace $ws5
 assign [class="qutebrowser"] $ws1
 for_window [title=".*WhatsApp.*"] move to workspace $ws4
 for_window [class="qutebrowser" title="qutebrowser1"] move to workspace $ws7
-for_window [class="^URxvt$" title="^WeeChat"] move to workspace $ws4
 for_window [class="Emacs" instance="capture"] floating enable
 
 # scratch terminal
@@ -324,29 +302,38 @@ mode "launcher" {
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command    i3blocks
-        position    top
-}
+# bar {
+#         status_command    i3blocks
+#         position    top
+# }
 
 # Volume and media controls
+bindsym $mod+F1 exec --no-startup-id volume-mute
+bindsym $mod+F2 exec --no-startup-id volume-down
+bindsym $mod+F3 exec --no-startup-id volume-up
+bindsym $mod+F4 exec --no-startup-id playerctl play-pause
+bindsym $mod+F5 exec --no-startup-id playerctl previous
+bindsym $mod+F6 exec --no-startup-id playerctl next
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86AudioNext exec --no-startup-id playerctl next
-bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-mute 1 false ; pactl set-sink-volume 1 +3%"
-bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-mute 1 false ; pactl set-sink-volume 1 -3%"
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id volume-up
+bindsym XF86AudioLowerVolume exec --no-startup-id volume-down
+bindsym XF86AudioMute exec --no-startup-id volume-mute
 
 # Screenshot
-bindsym Print exec --no-startup-id "scrot '%Y-%m-%d_%H%M%S.png' -e 'mv $f ~/screenshots/'"
+bindsym Print exec --no-startup-id "flameshot screen"
+bindsym Shift+Print exec --no-startup-id "flameshot gui"
 bindsym $mod+Print exec --no-startup-id "scrot -u '%Y-%m-%d_%H%M%S.png' -e 'mv $f ~/screenshots/'"
-bindsym Shift+$mod+Print exec --no-startup-id "scrot /tmp/tempscreenshot.png -e 'xclip -selection clipboard -t image/png -i $f'"
+bindsym Shift+$mod+Print exec --no-startup-id "flameshot full"
 
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 3
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 3
+# bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 3
+# bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 3
 
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id numlockx
-exec --no-startup-id dropbox
-exec --no-startup-id urxvt -bg "#2a2a2a" -name scratchranger -e ranger
-exec --no-startup-id urxvt -bg "#372424" -name scratchterm
+# exec_always --no-startup-id numlockx
+# exec --no-startup-id dropbox
+# exec --no-startup-id $term -bg "#2a2a2a" -name scratchranger -e ranger
+# exec --no-startup-id $term -bg "#372424" -name scratchterm
+
+exec --no-startup-id $HOME/.config/autostart.sh
