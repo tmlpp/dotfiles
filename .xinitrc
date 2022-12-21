@@ -34,5 +34,5 @@ fi
 
 # exec qtile
 #exec herbstluftwm
-exec awesome
+exec herbstluftwm
 #exec i3

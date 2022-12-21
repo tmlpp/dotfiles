@@ -6,7 +6,7 @@
 # loaded earlier with those loaded later in the chain. The file itself will
 # always be loaded last.
 import:
-  - /home/teemu/.repos/alacritty-theme/themes/tmlpp.yaml
+  - /home/teemu/.repos/alacritty-theme/themes/gruvbox_light.yaml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -102,10 +102,10 @@ window:
 font:
 
   # Point size
-  size: 10.0
+  size: 13.0
 
   normal:
-    family: Input Mono
+    family: Ubuntu Mono NerdFont
     style: Medium
 
   bold:
@@ -661,7 +661,7 @@ key_bindings:
   #- { key: Slash,  mods: Shift,         mode: Vi, action: SearchBackward          }
   #- { key: N,                           mode: Vi, action: SearchNext              }
   #- { key: N,      mods: Shift,         mode: Vi, action: SearchPrevious          }
-
+  - { key: Return, mods: Control|Shift, action: SpawnNewInstance }
   # (Windows, Linux, and BSD only)
   #- { key: V,              mods: Control|Shift,           action: Paste            }
   #- { key: C,              mods: Control|Shift,           action: Copy             }
