@@ -49,6 +49,7 @@ require('packer').startup(function(use)
   use 'lewis6991/gitsigns.nvim'
 
   use 'ellisonleao/gruvbox.nvim'
+  use 'folke/tokyonight.nvim'
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
@@ -61,15 +62,16 @@ require('packer').startup(function(use)
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
   use {
-  "folke/which-key.nvim",
-  config = function()
-    require("which-key").setup {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
-  end
-}
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+  use 'junegunn/goyo.vim'
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
@@ -81,7 +83,6 @@ require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
-
 -- When we are bootstrapping a configuration, it doesn't
 -- make sense to execute the rest of the init.lua.
 --
@@ -110,6 +111,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 vim.o.hlsearch = false
 vim.o.incsearch = true
 
+
 -- Relative linenumbers
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -132,8 +134,10 @@ vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
+local theme = { cs = 'gruvbox', bg = 'light' }
 vim.o.termguicolors = true
-vim.cmd [[colorscheme gruvbox]]
+vim.o.background = theme.bg
+vim.cmd.colorscheme(theme.cs)
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -162,23 +166,25 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 vim.keymap.set('i', 'jj', '<Esc>')
 vim.keymap.set('i', 'jk', '<Esc>')
-vim.keymap.set('n', '<leader>w', ':w<CR>', {desc = 'Write file'})
-vim.keymap.set('n', '<leader>q', ':q<CR>', {desc = 'Quit'})
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", {desc = 'Move region up'})
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", {desc = 'Move region down'})
-vim.keymap.set("n", "Y", "yg$", {desc = 'Copy rest of the line'})
-vim.keymap.set('n', '<C-d>', '<C-d>zz', {desc = 'Half page down and center'})
-vim.keymap.set('n', '<C-u>', '<C-u>zz', {desc = 'Half page up and center'})
-vim.keymap.set('n', 'n', 'nzzzv', {desc = 'Next search result and center'})
-vim.keymap.set('n', 'N', 'Nzzzv', {desc = 'Previous search result and center'})
-vim.keymap.set('n', 'J', 'mzJ`z', {desc = 'Join lines, save position'})
+vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Write file' })
+vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Quit' })
+vim.keymap.set('n', '<leader>Q', ':q!<CR>', { desc = 'Quit without saving' })
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = 'Move region up' })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = 'Move region down' })
+vim.keymap.set("n", "Y", "yg$", { desc = 'Copy rest of the line' })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Half page down and center' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Half page up and center' })
+vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Next search result and center' })
+vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Previous search result and center' })
+vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'Join lines, save position' })
 vim.keymap.set('x', '<leader>p', '"_dp')
-vim.keymap.set('n', '<leader>y', '"+y', {desc = 'Clipboard copy'})
-vim.keymap.set('v', '<leader>y', '"+y', {desc = 'Clipboard copy'})
-vim.keymap.set('n', '<leader>Y', '"+Y', {desc = 'Clipboard copy rest of the line'})
+vim.keymap.set('n', '<leader>y', '"+y', { desc = 'Clipboard copy' })
+vim.keymap.set('v', '<leader>y', '"+y', { desc = 'Clipboard copy' })
+vim.keymap.set('n', '<leader>Y', '"+Y', { desc = 'Clipboard copy rest of the line' })
 vim.keymap.set('v', '<leader>d', '"_d')
 vim.keymap.set('v', '<leader>d', '"_d')
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {desc = '%s/word_under_cursor/replace_with/gI'})
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = '%s/word_under_cursor/replace_with/gI' })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -196,11 +202,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('lualine').setup {
   options = {
     icons_enabled = false,
-    theme = 'gruvbox',
+    theme = 'auto',
     component_separators = '|',
     section_separators = '',
   },
 }
+
 
 -- Enable Comment.nvim
 require('Comment').setup()
@@ -428,6 +435,8 @@ require('fidget').setup()
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 
+require('cmp').setup {
+}
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -438,10 +447,10 @@ cmp.setup {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
+    ['<CR>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false, },
+    ['<C-l>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true, },
+    ['<C-j>'] = cmp.mapping.select_next_item(),
+    ['<C-k>'] = cmp.mapping.select_prev_item(),
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
