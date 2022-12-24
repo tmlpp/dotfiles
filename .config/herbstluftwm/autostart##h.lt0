@@ -43,6 +43,10 @@ hc keybind $Mod-F2 spawn volume-down
 hc keybind XF86AudioMute spawn volume-mute
 hc keybind $Mod-F1 spawn volume-mute
 
+# backlight
+hc keybind XF86MonBrightnessUp spawn brightnessctl set +10%
+hc keybind XF86MonBrightnessDown spawn brightnessctl set 10%-
+
 # screenshots
 hc keybind Print spawn flameshot screen # fullscreen
 hc keybind Shift-Print spawn flameshot gui # select area

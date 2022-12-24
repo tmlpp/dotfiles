@@ -72,7 +72,7 @@ require('packer').startup(function(use)
     end
   }
   use 'junegunn/goyo.vim'
-
+  use 'norcalli/nvim-colorizer.lua'
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
   if has_plugins then
@@ -211,6 +211,9 @@ require('lualine').setup {
 
 -- Enable Comment.nvim
 require('Comment').setup()
+
+-- rgb colorizer
+require('colorizer').setup()
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
