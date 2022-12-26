@@ -139,13 +139,13 @@ c.colors.tabs.selected.odd.fg = '#ffffff'
 
 ##### FONTS #####
 
-c.fonts.default_family = 'IBM Plex Sans'
+c.fonts.default_family = 'Ubuntu'
 c.fonts.completion.category = 'bold 11pt default_family'
 c.fonts.completion.entry = '11pt default_family'
 # c.fonts.debug_console = '10pt Fira Sans'
 c.fonts.downloads = '10pt default_family'
-c.fonts.hints = '10pt default_family'
-c.fonts.keyhint = '12pt default_family'
+c.fonts.hints = '11pt default_family'
+c.fonts.keyhint = '11pt default_family'
 # c.fonts.messages.error = '10pt default_family'
 # c.fonts.messages.info = '10pt default_family'
 # c.fonts.messages.warning = '10pt default_family'
@@ -153,13 +153,13 @@ c.fonts.keyhint = '12pt default_family'
 c.fonts.statusbar = '9pt default_family'
 c.fonts.tabs.selected = '10pt default_family'
 c.fonts.tabs.unselected = '10pt default_family'
-c.fonts.web.family.cursive = 'IBM Plex Sans'
+c.fonts.web.family.cursive = 'Ubuntu'
 # c.fonts.web.family.fantasy = ''
-c.fonts.web.family.fixed = 'IBM Plex Mono'
-c.fonts.web.family.sans_serif = 'IBM Plex Sans'
+c.fonts.web.family.fixed = 'Ubuntu Mono'
+c.fonts.web.family.sans_serif = 'Ubuntu'
 # c.fonts.web.family.serif = 'Merriweather'
 c.fonts.web.family.serif = 'IBM Plex Serif'
-c.fonts.web.family.standard = 'IBM Plex Sans'
+c.fonts.web.family.standard = 'Ubuntu'
 # c.fonts.web.size.default = 16
 # c.fonts.web.size.default_fixed = 13
 # c.fonts.web.size.minimum = 0
@@ -1318,5 +1318,5 @@ config.bind('<Alt-d>', 'tab-close', mode='passthrough')
 ## Type: Bool
 # c.qt.highdpi = False
 
-config.source('nord-qutebrowser.py')
+config.source('gruvbox.py')
 
