@@ -29,6 +29,8 @@ c.auto_save.session = True
 ##   - webkit: Use QtWebKit (based on WebKit, similar to Safari)
 # c.backend = 'webengine'
 
+# Handle certificate errors
+c.content.tls.certificate_errors = 'block'
 ## This setting can be used to map keys to other keys. When the key used
 ## as dictionary-key is pressed, the binding for the key used as
 ## dictionary-value is invoked instead. This is useful for global

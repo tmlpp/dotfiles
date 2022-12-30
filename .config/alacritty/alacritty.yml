@@ -102,9 +102,10 @@ window:
 font:
 
   # Point size
-  size: 9.0
+  size: 12.0
 
   normal:
+    # family: Cascadia Code
     family: Ubuntu Mono NerdFont
     style: Medium
 

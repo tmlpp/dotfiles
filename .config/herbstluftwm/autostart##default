@@ -46,6 +46,7 @@ hc keybind $Mod-F1 spawn volume-mute
 # screenshots
 hc keybind Print spawn flameshot screen # fullscreen
 hc keybind Shift-Print spawn flameshot gui # select area
+hc keybind Control-Print spawn flameshot screen --clipboard
 hc keybind $Mod-Print spawn scrot -u '%Y-%m-%d_%H%M%S.png' -e 'mv $f ~/screenshots/' # active window
 hc keybind $Mod-Shift-Print spawn flameshot full # all screens
 # hc keybind Print spawn flameshot screen -p ~/screenshots # fullscreen
@@ -80,10 +81,8 @@ hc keybind $Mod-Shift-l     shift right
 
 # splitting frames
 # create an empty frame at the specified direction
-hc keybind $Mod-u       split bottom  0.5
-hc keybind $Mod-o       split right   0.5
-hc keybind $Mod-s       split h
-hc keybind $Mod-v       split v
+hc keybind $Mod-s       split v
+hc keybind $Mod-v       split h
 hc keybind $Mod-a       split auto
 # hc keybind $Mod-x load "(split horizontal:0.2:0 (clients horizontal:0) (split horizontal:0.75:0 (clients vertical:0) (clients horizontal:0)))"
 hc keybind $Mod-x chain , split left 0.2 , split right 0.75
@@ -174,7 +173,7 @@ hc set smart_frame_surroundings 0
 hc set smart_window_surroundings 0
 hc set mouse_recenter_gap 0
 
-hc attr theme.active.color '#8fbcbb'
+hc attr theme.active.color '#fbf1c7'
 hc attr theme.normal.color '#4c566a'
 hc attr theme.urgent.color orange
 hc attr theme.inner_width 0
