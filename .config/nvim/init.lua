@@ -73,6 +73,9 @@ require('packer').startup(function(use)
   }
   use 'junegunn/goyo.vim'
   use 'norcalli/nvim-colorizer.lua'
+  use 'christoomey/vim-tmux-navigator'
+  use 'preservim/vimux'
+
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
   if has_plugins then
@@ -166,6 +169,8 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 vim.keymap.set('i', 'jj', '<Esc>')
 vim.keymap.set('i', 'jk', '<Esc>')
+vim.keymap.set('n', '<leader>o', 'o<Esc>')
+vim.keymap.set('n', '<leader>O', 'O<Esc>')
 vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Write file' })
 vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Quit' })
 vim.keymap.set('n', '<leader>Q', ':q!<CR>', { desc = 'Quit without saving' })
@@ -185,6 +190,8 @@ vim.keymap.set('v', '<leader>d', '"_d')
 vim.keymap.set('v', '<leader>d', '"_d')
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
   { desc = '%s/word_under_cursor/replace_with/gI' })
+
+vim.keymap.set('n', '<F5>', ':call VimuxRunCommand("python " . bufname("%"))<CR>')
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -367,8 +374,8 @@ local on_attach = function(_, bufnr)
   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
   -- See `:help K` for why this keymap
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  -- nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+  -- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -438,8 +445,6 @@ require('fidget').setup()
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 
-require('cmp').setup {
-}
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -477,6 +482,11 @@ cmp.setup {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
   },
+}
+luasnip.config.set_config {
+  history = true,
+  updateevents = "TextChanged,TextChangedI",
+  enable_autosnippets = true,
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
