@@ -2,7 +2,7 @@ searchengines = {
     'DEFAULT': 'http://www.google.com/search?q={}',
     '5': 'https://500px.com/search?q={}',
     'ddg': 'https://duckduckgo.com/?q={}',
-    'ee': 'https://eepos.finna.fi/Search/Results?lookfor={}&type=AllFields',
+    'keski': 'https://keski.finna.fi/Search/Results?lookfor={}&type=AllFields',
     'gh': 'https://github.com/search?q={}',
     'ghc': 'https://github.com/search?q={}&type=Code',
     'gm': 'https://www.google.com/maps?q={}',

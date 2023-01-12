@@ -1,3 +1,5 @@
+require('config')
+require('keys')
 -- Install packer
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
@@ -11,7 +13,8 @@ require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
 
-  use { -- LSP Configuration & Plugins
+ -- LSP Configuration & Plugins
+  use {
     'neovim/nvim-lspconfig',
     requires = {
       -- Automatically install LSPs to stdpath for neovim
@@ -31,15 +34,14 @@ require('packer').startup(function(use)
     requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   }
 
-  use { -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    run = function()
+  -- Highlight, edit, and navigate code
+  use {'nvim-treesitter/nvim-treesitter',
+      run = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end,
+      end,
   }
-
-  use { -- Additional text objects via treesitter
-    'nvim-treesitter/nvim-treesitter-textobjects',
+  -- Additional text objects via treesitter
+  use {'nvim-treesitter/nvim-treesitter-textobjects',
     after = 'nvim-treesitter',
   }
 
@@ -48,12 +50,14 @@ require('packer').startup(function(use)
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
 
+
   use 'ellisonleao/gruvbox.nvim'
   use 'folke/tokyonight.nvim'
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
+  use 'tpope/vim-obsession'
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
@@ -107,114 +111,6 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = vim.fn.expand '$MYVIMRC',
 })
 
--- [[ Setting options ]]
--- See `:help vim.o`
-
--- Set highlight on search
-vim.o.hlsearch = false
-vim.o.incsearch = true
-
-
--- Relative linenumbers
-vim.wo.number = true
-vim.wo.relativenumber = true
-
--- Enable mouse mode
-vim.o.mouse = 'a'
-
--- Enable break indent
-vim.o.breakindent = true
-
--- Save undo history
-vim.o.undofile = true
-
--- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- Decrease update time
-vim.o.updatetime = 250
-vim.wo.signcolumn = 'yes'
-
--- Set colorscheme
-local theme = { cs = 'gruvbox', bg = 'light' }
-vim.o.termguicolors = true
-vim.o.background = theme.bg
-vim.cmd.colorscheme(theme.cs)
-
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
-
--- [[ Basic Keymaps ]]
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
-vim.o.swapfile = false
-vim.o.backup = false
-vim.o.undodir = os.getenv('HOME') .. '/.vim/undodir'
-vim.o.undofile = true
-vim.o.scrolloff = 8
-vim.o.colorcolumn = '80'
-
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
--- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
-vim.keymap.set('i', 'jj', '<Esc>')
-vim.keymap.set('i', 'jk', '<Esc>')
-vim.keymap.set('n', '<leader>o', 'o<Esc>')
-vim.keymap.set('n', '<leader>O', 'O<Esc>')
-vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Write file' })
-vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Quit' })
-vim.keymap.set('n', '<leader>Q', ':q!<CR>', { desc = 'Quit without saving' })
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = 'Move region up' })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = 'Move region down' })
-vim.keymap.set("n", "Y", "yg$", { desc = 'Copy rest of the line' })
-vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Half page down and center' })
-vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Half page up and center' })
-vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Next search result and center' })
-vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Previous search result and center' })
-vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'Join lines, save position' })
-vim.keymap.set('x', '<leader>p', '"_dp')
-vim.keymap.set('n', '<leader>y', '"+y', { desc = 'Clipboard copy' })
-vim.keymap.set('v', '<leader>y', '"+y', { desc = 'Clipboard copy' })
-vim.keymap.set('n', '<leader>Y', '"+Y', { desc = 'Clipboard copy rest of the line' })
-vim.keymap.set('v', '<leader>d', '"_d')
-vim.keymap.set('v', '<leader>d', '"_d')
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-  { desc = '%s/word_under_cursor/replace_with/gI' })
-
-vim.keymap.set('n', '<F5>', ':call VimuxRunCommand("python " . bufname("%"))<CR>')
-
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})
-
--- Set lualine as statusline
--- See `:help lualine.txt`
-require('lualine').setup {
-  options = {
-    icons_enabled = false,
-    theme = 'auto',
-    component_separators = '|',
-    section_separators = '',
-  },
-}
-
 
 -- Enable Comment.nvim
 require('Comment').setup()
@@ -228,54 +124,6 @@ require('indent_blankline').setup {
   char = '┊',
   show_trailing_blankline_indent = false,
 }
-
--- Gitsigns
--- See `:help gitsigns.txt`
-require('gitsigns').setup {
-  signs = {
-    add = { text = '+' },
-    change = { text = '~' },
-    delete = { text = '_' },
-    topdelete = { text = '‾' },
-    changedelete = { text = '~' },
-  },
-}
-
--- [[ Configure Telescope ]]
--- See `:help telescope` and `:help telescope.setup()`
-require('telescope').setup {
-  defaults = {
-    mappings = {
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-        ['<C-j>'] = require('telescope.actions').move_selection_next,
-        ['<C-k>'] = require('telescope.actions').move_selection_previous,
-        ["jj"] = { "<esc>", type = "command" },
-      },
-    },
-  },
-}
-
--- Enable telescope fzf native, if installed
-pcall(require('telescope').load_extension, 'fzf')
-
--- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
-end, { desc = '[/] Fuzzily search in current buffer]' })
-
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
