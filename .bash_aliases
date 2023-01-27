@@ -33,7 +33,7 @@ alias e='$EDITOR'
 
 # config commands
 alias c3='$EDITOR ~/.config/i3/config'
-alias cvi='$EDITOR ~/.config/nvim/init.vim'
+alias cvi='$EDITOR ~/.config/nvim/init.lua'
 alias cqb='$EDITOR ~/.config/qutebrowser/config.py'
 alias cb='$EDITOR ~/.bashrc'
 alias cba='$EDITOR ~/.bash_aliases'
@@ -88,3 +88,4 @@ alias herb='herbstclient'
 
 # Downloads
 alias mvdl='find ~/Downloads -mindepth 1 -maxdepth 1 -mmin -5 -exec mv -t . {} +'
+alias mvss='find ~/screenshots -mindepth 1 -maxdepth 1 -mmin -5 -exec mv -t . {} +'
