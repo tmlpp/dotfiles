@@ -723,7 +723,7 @@ c.scrolling.smooth = True
 ## The name of the session to save by default. If this is set to null,
 ## the session which was last loaded is saved.
 ## Type: SessionName
-# c.session.default_name = None
+c.session.default_name = 'default'
 
 ## Spell checking languages. You can check for available languages and
 ## install dictionaries using scripts/install_dict.py. Run the script
@@ -1139,11 +1139,13 @@ config.bind('<Ctrl-Shift-K>', 'tab-move -')
 # config.bind('sk', 'set-cmd-text -s :bind')
 # config.bind('sl', 'set-cmd-text -s :set -t')
 # config.bind('ss', 'set-cmd-text -s :set')
-config.bind('sw', 'set-cmd-text -s :session-save --only-active-window')
-config.bind('sl', 'set-cmd-text -s :session-load')
-config.bind('ss', 'session-save default')
+
+config.bind('SS', 'set-cmd-text -s :session-save ')
+config.bind('Ss', 'session-save -c')
+config.bind('SL', 'set-cmd-text -s :session-load')
+config.bind('Sl', 'set-cmd-text -s :session-load -c')
+
 config.bind('sr', 'config-source')
-config.bind('sp', 'spawn --userscript qutepocket')
 config.bind('th', 'back -t')
 config.bind('tl', 'forward -t')
 # config.bind('u', 'undo')
