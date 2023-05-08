@@ -33,8 +33,6 @@ vim.keymap.set('v', '<leader>d', '"_d')
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
   { desc = '%s/word_under_cursor/replace_with/gI' })
 
-vim.keymap.set('n', '<F5>', ':call VimuxRunCommand("python " . bufname("%"))<CR>')
-
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })

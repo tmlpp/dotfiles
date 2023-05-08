@@ -59,6 +59,8 @@ alias wac='xsetwacom'
 # directories
 alias mkd='mkdir -p'
 alias ..='cd..'
+alias dirs='dirs -v'
+alias up1='pushd .. > /dev/null ; dirs -v'
 alias up2='pushd ../.. > /dev/null ; dirs -v'
 alias up3='pushd ../../.. > /dev/null ; dirs -v'
 alias up4='pushd ../../../.. > /dev/null ; dirs -v'
