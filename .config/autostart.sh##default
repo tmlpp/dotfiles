@@ -32,5 +32,5 @@ emacs &
 spotify &
 xset dpms 3600 3600 3600
 xset s 3600 3600
-keepassxc &
+#keepassxc &
 numlockx
