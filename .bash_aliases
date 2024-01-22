@@ -87,7 +87,21 @@ alias pod8='popd +8 > /dev/null ; dirs -v'
 alias pod9='popd +9 > /dev/null ; dirs -v'
 
 alias herb='herbstclient'
+alias nebo='newsboat'
+alias sctl='systemctl'
+alias scup='systemctl start'
+alias scdown='systemctl stop'
+alias scre='systemctl restart'
+alias scon='systemctl enable'
+alias scoff='systemctl disable'
+alias scuup='systemctl --user start'
+alias scudown='systemctl --user stop'
+alias scure='systemctl --user restart'
+alias scuon='systemctl --user enable'
+alias scuoff='systemctl --user disable'
 
 # Downloads
 alias mvdl='find ~/Downloads -mindepth 1 -maxdepth 1 -mmin -5 -exec mv -t . {} +'
 alias mvss='find ~/screenshots -mindepth 1 -maxdepth 1 -mmin -5 -exec mv -t . {} +'
+
+alias today='nvim ~/syncdir/notes/$(date "+%Y-%m-%d").md'
