@@ -24,8 +24,9 @@ xmodmap "$usermodmap"
 fi
 
 # ~/.config/tint2/pomo.sh notify &
-tint2 -c ~/.config/tint2/screen1-top &
-tint2 -c ~/.config/tint2/screen2-bottom &
+# tint2 -c ~/.config/tint2/screen1-top &
+# tint2 -c ~/.config/tint2/screen2-bottom &
+~/.config/polybar/launch.sh &
 syncthing &
 qutebrowser &
 emacs &
