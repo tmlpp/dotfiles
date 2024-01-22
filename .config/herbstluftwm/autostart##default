@@ -21,12 +21,13 @@ hc keyunbind --all
 #Mod=Mod1    # Use alt as the main modifier
 Mod=Mod4   # Use the super key as the main modifier
 Alt=Mod1
+term=kitty
 
 hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Control-r reload
 hc keybind $Mod-q close_or_remove
 # hc keybind $Mod-Return spawn ${TERMINAL:-xterm} # use your $TERMINAL with xterm as fallback
-hc keybind $Mod-Return spawn alacritty
+hc keybind $Mod-Return spawn $term
 hc keybind $Mod-Menu spawn rofi -show run
 
 # Media controls
@@ -66,7 +67,7 @@ hc keybind $Mod-k     focus up
 hc keybind $Mod-l     focus right
 
 hc keybind $Mod-Ctrl-c spawn emacsclient -e '(make-capture-frame)'
-hc keybind $Mod-Shift-r spawn alacritty -e ranger
+hc keybind $Mod-Shift-r spawn $term -e ranger
 hc keybind $Mod-e spawn emacsclient -c
 hc keybind $Mod-F8 spawn keepassxc
 # moving clients

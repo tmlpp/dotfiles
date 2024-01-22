@@ -26,6 +26,7 @@ source ~/.repos/bash-git-prompt/gitprompt.sh
 
 export EDITOR="nvim"
 export BROWSER=qutebrowser
+export TERMINAL=kitty
 
 mkcd () {
         mkdir -p "$1"
