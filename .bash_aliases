@@ -1,6 +1,7 @@
 # Some aliases
 alias l='less'
 alias ls='ls -h --color=auto --group-directories-first'
+alias l1='ls -1'
 alias ll='ls -l'
 alias lll='ls -l | less'
 alias la='ls -A'
