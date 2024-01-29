@@ -10,10 +10,13 @@ return {
         defaults = {
           mappings = {
             i = {
+              ['<Esc>'] = require('telescope.actions').close,
               ['<C-u>'] = false,
               ['<C-d>'] = false,
               ['<C-j>'] = require('telescope.actions').move_selection_next,
               ['<C-k>'] = require('telescope.actions').move_selection_previous,
+              ['<C-s>'] = require('telescope.actions').file_split,
+              ['<C-v>'] = require('telescope.actions').file_vsplit,
               ["jj"] = { "<esc>", type = "command" },
             },
           },
@@ -37,6 +40,9 @@ return {
               },
             },
           },
+          colorscheme = {
+            sorting_strategy = "descending"
+          },
         },
       }
       local builtin = require('telescope.builtin')
@@ -48,6 +54,7 @@ return {
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>?', builtin.oldfiles, { desc = '[?] Find recently opened files' })
       vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader>sc', builtin.colorscheme, { desc = '[c] Select colorscheme' })
       vim.keymap.set('n', '<leader>/', function()
         builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
           winblend = 10,
