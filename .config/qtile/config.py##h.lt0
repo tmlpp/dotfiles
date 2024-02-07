@@ -61,7 +61,6 @@ keys = [
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack",),
     Key([mod], "Menu", lazy.spawn("rofi -show run")),
-    Key([mod], "g", lazy.next_screen()),
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "F8", lazy.spawn("keepassxc")),
@@ -164,49 +163,6 @@ groupbox_defaults = dict(
 
 screens = [
     Screen(
-        bottom=bar.Bar(
-            [
-                widget.Clock(format="W%V | %a %d %b | %H:%M"),
-                widget.GroupBox(
-                    **groupbox_defaults,
-                ),
-                widget.DF(
-                    partition='/',
-                    visible_on_warn=False,
-                    format='{p} {uf}{m}|{r:.0f}%'
-                ),
-                widget.DF(
-                    partition='/home',
-                    visible_on_warn=False,
-                    format='{p} {uf}{m}|{r:.0f}%'
-                ),
-                widget.DF(
-                    partition='/amanda',
-                    visible_on_warn=False,
-                ),
-                widget.DF(
-                    partition='/bella',
-                    visible_on_warn=False,
-                ),
-                widget.DF(
-                    partition='/cecilia',
-                    visible_on_warn=False,
-                ),
-                widget.DF(
-                    partition='/diana',
-                    visible_on_warn=False,
-                ),
-                widget.DF(
-                    partition='/ella',
-                    visible_on_warn=False,
-                ),
-                widget.Spacer(length=bar.STRETCH),
-            ],
-            24,
-            **bar_defaults
-        )
-    ),
-    Screen(
         top=bar.Bar(
             [
                 widget.CurrentLayout(),
@@ -218,23 +174,25 @@ screens = [
                     max_title_width = 150,
                     border = fg,
                 ),
-                # widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
+                widget.DF(
+                    partition='/',
+                    visible_on_warn=False,
+                    format='{p} {uf}{m}|{r:.0f}%'
                 ),
-                # widget.StatusNotifier(),
+                widget.DF(
+                    partition='/home',
+                    visible_on_warn=False,
+                    format='{p} {uf}{m}|{r:.0f}%'
+                ),
+                widget.Spacer(length=bar.STRETCH),
                 widget.Volume(),
                 widget.Memory(),
                 widget.Systray(),
                 widget.Clock(format="W%V | %a %d %b | %H:%M"),
-                # widget.QuickExit(),
             ],
             24,
             **bar_defaults
-        ),
+        )
     ),
 ]
 
