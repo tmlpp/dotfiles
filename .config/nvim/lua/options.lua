@@ -23,6 +23,9 @@ vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
+vim.o.splitbelow = true
+vim.o.splitright = true
+
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
 
