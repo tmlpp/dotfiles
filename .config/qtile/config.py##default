@@ -80,6 +80,7 @@ keys = [
     Key(["shift"], "Print", lazy.spawn("flameshot gui")), # Select area
     Key(["control"], "Print", lazy.spawn("flameshot screen --clipboard")), # Fullscreen, clipboard
     Key([mod], "Print", lazy.spawn("scrot -u '%Y-%m-%d_%H%M%S.png' -e 'mv $f ~/screenshots/'")), # Save active window
+    Key([mod, "control"], "c", lazy.spawn("emacsclient -e '(make-capture-frame)'")),
 ]
 
 groups = [
@@ -259,6 +260,11 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
+        Match(wm_class='PureRef'),
+        Match(title='Blender Preferences'),
+        Match(title='capture'),
+        Match(wm_class='qalculate-gtk'),
+        Match(wm_class='speedcrunch'),
     ]
 )
 auto_fullscreen = False
