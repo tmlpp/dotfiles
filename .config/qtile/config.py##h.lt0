@@ -62,7 +62,7 @@ keys = [
     Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack",),
-    Key([mod], "Menu", lazy.spawn("rofi -show run")),
+    Key([mod], "backspace", lazy.spawn("rofi -show run")),
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "F8", lazy.spawn("keepassxc")),
@@ -165,7 +165,7 @@ groupbox_defaults = dict(
 
 screens = [
     Screen(
-        top=bar.Bar(
+        bottom=bar.Bar(
             [
                 widget.CurrentLayout(),
                 widget.GroupBox(
@@ -173,7 +173,7 @@ screens = [
                 ),
                 widget.Prompt(),
                 widget.TaskList(
-                    max_title_width = 150,
+                    max_title_width = 300,
                     border = fg,
                 ),
                 widget.DF(
@@ -186,9 +186,9 @@ screens = [
                     visible_on_warn=False,
                     format='{p} {uf}{m}|{r:.0f}%'
                 ),
-                widget.Spacer(length=bar.STRETCH),
+                # widget.Spacer(length=bar.STRETCH),
                 widget.Volume(),
-                widget.Memory(),
+                # widget.Memory(),
                 widget.Systray(),
                 widget.Clock(format="W%V | %a %d %b | %H:%M"),
             ],
