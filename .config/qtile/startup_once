@@ -1,11 +1,10 @@
 #!/bin/bash
 
-dropbox &
 syncthing &
 numlockx &
-qutebrowser &
+# qutebrowser &
 # discord &
-emacs &
+# emacs &
 # qute-wa &
 # spotify &
 # picom -b
