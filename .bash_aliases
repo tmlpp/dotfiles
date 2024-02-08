@@ -43,6 +43,8 @@ alias cwee='$EDITOR ~/.weechat/weechat.conf'
 # Yadm and git
 alias y='yadm'
 alias g='git'
+alias lg='lazygit'
+alias ly='lazygit -w ~ -g ~/.local/share/yadm/repo.git/'
 
 # Touchpad
 alias padoff='synclient TouchpadOff=1'
