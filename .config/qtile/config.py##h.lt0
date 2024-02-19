@@ -8,6 +8,12 @@ import psutil
 mod = "mod4"
 terminal = 'kitty'
 
+# Use the prompt to get a name for new group in treetab layout
+@lazy.layout.function
+def add_treetab_section(layout):
+    prompt = qtile.widgets_map["prompt"]
+    prompt.start_input("Section name: ", layout.cmd_add_section)
+
 keys = [
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
@@ -68,6 +74,7 @@ keys = [
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "F8", lazy.spawn("keepassxc")),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    Key([mod, "shift"], "a", add_treetab_section, desc='Prompt to add new section in treetab'),
 
 
     # Volume and media
