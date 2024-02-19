@@ -76,6 +76,7 @@ keys = [
     Key([mod], "F3", lazy.spawn("volume-up")),
     Key([mod], "F4", lazy.spawn("playerctl --player=spotify play-pause")),
     Key([mod], "F5", lazy.spawn("playerctl --player=spotify previous")),
+    Key([mod], "F5", lazy.spawn("playerctl --player=spotify next")),
 
     # Screenshots
     Key([], "Print", lazy.spawn("flameshot screen")), # Fullscreen, save
@@ -267,6 +268,7 @@ floating_layout = layout.Floating(
         Match(title='capture'),
         Match(wm_class='qalculate-gtk'),
         Match(wm_class='speedcrunch'),
+        Match(wm_class='zoom'),
     ]
 )
 auto_fullscreen = False

@@ -3,6 +3,7 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 import os
 import subprocess
+import psutil
 
 mod = "mod4"
 terminal = 'kitty'
@@ -75,6 +76,7 @@ keys = [
     Key([mod], "F3", lazy.spawn("volume-up")),
     Key([mod], "F4", lazy.spawn("playerctl --player=spotify play-pause")),
     Key([mod], "F5", lazy.spawn("playerctl --player=spotify previous")),
+    Key([mod], "F6", lazy.spawn("playerctl --player=spotify next")),
 
     # Screenshots
     Key([], "Print", lazy.spawn("flameshot screen")), # Fullscreen, save
@@ -173,7 +175,7 @@ screens = [
                 ),
                 widget.Prompt(),
                 widget.TaskList(
-                    max_title_width = 300,
+                    max_title_width = 150,
                     border = fg,
                 ),
                 widget.DF(
@@ -186,9 +188,18 @@ screens = [
                     visible_on_warn=False,
                     format='{p} {uf}{m}|{r:.0f}%'
                 ),
+                widget.DF(
+                    partition='/amanda',
+                    visible_on_warn=False,
+                    format='{p} {uf}{m}|{r:.0f}%'
+                ),
                 # widget.Spacer(length=bar.STRETCH),
                 widget.Volume(),
-                # widget.Memory(),
+                widget.Memory(),
+                widget.Battery(
+                    charge_char='▲',
+                    discharge_char='▼',
+                ),
                 widget.Systray(),
                 widget.Clock(format="W%V | %a %d %b | %H:%M"),
             ],
@@ -224,6 +235,7 @@ floating_layout = layout.Floating(
         Match(title='capture'),
         Match(wm_class='qalculate-gtk'),
         Match(wm_class='speedcrunch'),
+        Match(wm_class='zoom'),
     ]
 )
 auto_fullscreen = False
