@@ -1,5 +1,5 @@
 from libqtile import bar, layout, qtile, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 import os
 import subprocess
@@ -70,11 +70,12 @@ keys = [
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack",),
     Key([mod], "backspace", lazy.spawn("rofi -show run")),
-    Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
+    # Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "F8", lazy.spawn("keepassxc")),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([mod, "shift"], "a", add_treetab_section, desc='Prompt to add new section in treetab'),
+    Key([mod], 't', lazy.group['scratchpad'].dropdown_toggle('term')),
 
 
     # Volume and media
@@ -102,9 +103,17 @@ groups = [
     Group(name='3',
           label='baz',
           ),
+    ScratchPad("scratchpad", [
+        DropDown("term", "kitty",
+                 # x=0.25, y=0,
+                 # width=0.5, height=0.7,
+                 # opacity=0.9,
+                 on_focus_lost_hide=True,
+                 warp_pointer=False),
+    ]),
 ]
 
-for i in groups:
+for i in groups[:-1]:
     keys.extend([
             Key([mod], i.name, lazy.group[i.name].toscreen(), desc=f"Switch to group {i.label}"),
             Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=False),
