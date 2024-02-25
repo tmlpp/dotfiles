@@ -3,7 +3,6 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, 
 from libqtile.lazy import lazy
 import os
 import subprocess
-import psutil
 
 mod = "mod4"
 terminal = 'kitty'
@@ -70,13 +69,12 @@ keys = [
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack",),
     Key([mod], "backspace", lazy.spawn("rofi -show run")),
-    # Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
+    Key([mod], "y", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "F8", lazy.spawn("keepassxc")),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([mod, "shift"], "a", add_treetab_section, desc='Prompt to add new section in treetab'),
     Key([mod], 't', lazy.group['scratchpad'].dropdown_toggle('term')),
-
 
     # Volume and media
     Key([mod], "F1", lazy.spawn("volume-mute")),
@@ -91,23 +89,30 @@ keys = [
     Key(["shift"], "Print", lazy.spawn("flameshot gui")), # Select area
     Key(["control"], "Print", lazy.spawn("flameshot screen --clipboard")), # Fullscreen, clipboard
     Key([mod], "Print", lazy.spawn("scrot -u '%Y-%m-%d_%H%M%S.png' -e 'mv $f ~/screenshots/'")), # Save active window
+
+    Key([mod, "control"], "c", lazy.spawn("emacsclient -e '(make-capture-frame)'")),
 ]
 
 groups = [
     Group(name='1',
-          label='foo',
+          label='main',
           ),
     Group(name='2',
-          label='bar',
+          label='dev',
           ),
     Group(name='3',
-          label='baz',
+          label='media',
+          ),
+    Group(name='4',
+          label='cgi',
+          ),
+    Group(name='5',
+          label='msg',
           ),
     ScratchPad("scratchpad", [
         DropDown("term", "kitty",
-                 # x=0.25, y=0,
-                 # width=0.5, height=0.7,
-                 # opacity=0.9,
+                 x=0.25, y=0.25,
+                 width=0.5, height=0.5,
                  on_focus_lost_hide=True,
                  warp_pointer=False),
     ]),
@@ -255,7 +260,7 @@ floating_layout = layout.Floating(
     ]
 )
 auto_fullscreen = False
-focus_on_window_activation = "smart"
+focus_on_window_activation = "urgent"
 reconfigure_screens = True
 
 @hook.subscribe.startup_once
