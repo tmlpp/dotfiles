@@ -1135,15 +1135,15 @@ config.bind('<Ctrl-Shift-K>', 'tab-move -')
 # config.bind('r', 'reload')
 # config.bind('sf', 'save')
 # config.bind('sk', 'cmd-set-text -s :bind')
-# config.bind('sl', 'cmd-set-text -s :set -t')
-# config.bind('ss', 'cmd-set-text -s :set')
+config.unbind('sl')
+config.unbind('ss')
 
-config.unbind('Ss')
-config.bind('Ssn', 'cmd-set-text -s :session-save ')
-config.bind('Ssa', 'session-save')
-config.bind('Ssc', 'session-save -c')
-config.bind('SL', 'cmd-set-text -s :session-load')
-config.bind('Sl', 'cmd-set-text -s :session-load -c')
+config.bind('sld', f'session-load -c {c.session.default_name}') # load default, close current
+config.bind('sll', 'cmd-set-text -s :session-load -c') # load session, close current
+config.bind('slt', 'cmd-set-text -s :session-load -t') # load session temporarily
+config.bind('ssd', 'session-save') # save default
+config.bind('sss', 'session-save -c') # save current
+config.bind('ssn', 'cmd-set-text -s :session-save ') # save with name
 
 config.bind('sr', 'config-source')
 config.bind('th', 'back -t')
