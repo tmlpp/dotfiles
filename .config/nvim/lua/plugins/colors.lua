@@ -5,7 +5,7 @@ return {
     name = "catppuccin",
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme("catppuccin-latte")
+      vim.cmd.colorscheme("catppuccin-mocha")
     end,
   },
   { "ellisonleao/gruvbox.nvim", name = "gruvbox",  priority = 1000 },
@@ -21,12 +21,12 @@ return {
     config = function()
       require("styler").setup({
         themes = {
-          help = {colorscheme = 'catppuccin-frappe'},
-          -- lazy = {},
+          help = {colorscheme = 'catppuccin-macchiato'},
+          markdown = {colorscheme = 'catppuccin-frappe'},
+          text = {colorscheme = 'carbonfox'},
+          oil = {colorscheme = 'catppuccin-macchiato'},
           -- lua = {},
-          -- markdown = {},
           -- python = {},
-          oil = {colorscheme = 'catppuccin-frappe'},
         },
       })
     end,

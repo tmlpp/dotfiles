@@ -25,6 +25,7 @@ vim.o.smartcase = true
 
 vim.o.splitbelow = true
 vim.o.splitright = true
+vim.o.cursorline = true
 
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
