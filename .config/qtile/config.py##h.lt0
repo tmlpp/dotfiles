@@ -83,6 +83,8 @@ keys = [
     Key([mod], "F4", lazy.spawn("playerctl --player=spotify play-pause")),
     Key([mod], "F5", lazy.spawn("playerctl --player=spotify previous")),
     Key([mod], "F6", lazy.spawn("playerctl --player=spotify next")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-")),
 
     # Screenshots
     Key([], "Print", lazy.spawn("flameshot screen")), # Fullscreen, save
@@ -215,6 +217,11 @@ screens = [
                     format='{p} {uf}{m}|{r:.0f}%'
                 ),
                 # widget.Spacer(length=bar.STRETCH),
+                widget.Pomodoro(
+                    color_active = fg,
+                    color_inactive = fg,
+                    color_break = fg,
+                ),
                 widget.Volume(),
                 widget.Memory(),
                 widget.Battery(
