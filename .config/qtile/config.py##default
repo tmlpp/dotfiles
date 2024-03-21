@@ -83,7 +83,7 @@ keys = [
     Key([mod], "F3", lazy.spawn("volume-up")),
     Key([mod], "F4", lazy.spawn("playerctl --player=spotify play-pause")),
     Key([mod], "F5", lazy.spawn("playerctl --player=spotify previous")),
-    Key([mod], "F5", lazy.spawn("playerctl --player=spotify next")),
+    Key([mod], "F6", lazy.spawn("playerctl --player=spotify next")),
 
     # Screenshots
     Key([], "Print", lazy.spawn("flameshot screen")), # Fullscreen, save
@@ -251,6 +251,27 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 # widget.StatusNotifier(),
+                widget.Pomodoro(
+                    color_active = fg,
+                    color_break = fg,
+                    color_inactive = fg,
+                    length_long_break = 15,
+                    length_pomodori = 20,
+                    length_short_break = 15,
+                    prefix_active = 'SIT ',
+                    prefix_inactive = 'SIT/STAND',
+                    prefix_break = 'STAND ',
+                    prefix_long_break = 'STAND ',
+                    prefix_paused = 'AFK',
+                ),
+                widget.Pomodoro(
+                    color_active = fg,
+                    color_break = fg,
+                    color_inactive = fg,
+                    length_long_break = 35,
+                    length_pomodori = 45,
+                    length_short_break = 5,
+                ),
                 widget.Volume(),
                 widget.Memory(),
                 widget.Systray(),

@@ -21,7 +21,7 @@ return {
             },
           },
           file_ignore_patterns = {
-            '%.png', '%.jpg',
+            '%.png', '%.jpg', '%.svg', '%.ttf', '%.otf',
           },
           path_display = { 'smart' },
           prompt_prefix = '‣ ',

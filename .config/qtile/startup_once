@@ -10,4 +10,5 @@ numlockx &
 # picom -b
 xset dpms 3600 3600 3600
 xset s 3600 3600
+dunst &
 nm-applet &
