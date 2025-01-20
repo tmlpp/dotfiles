@@ -2,18 +2,22 @@ return {
 	'nvim-neorg/neorg',
 	build = ':Neorg sync-parsers',
 	lazy = false,
-	dependencies = { 'nvim-lua/plenary.nvim' },
+	dependencies = {
+		'nvim-lua/plenary.nvim',
+		'nvim-neorg/lua-utils.nvim',
+	},
 	config = function()
 		require('neorg').setup({
 			load = {
 				['core.defaults'] = {},
+				['core.export'] = {},
 				['core.concealer'] = {
 					config = {
-            icons = {
-              heading =  {
-                icons = {'■'}
-              }
-            }
+						icons = {
+							heading = {
+								icons = { '■' },
+							},
+						},
 					},
 				},
 				['core.dirman'] = {

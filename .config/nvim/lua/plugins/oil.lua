@@ -5,9 +5,9 @@ return {
   config = function ()
     require("oil").setup({
       columns = {
-      --   'icon',
-      --   'permissions',
-      --   'mtime'
+        'icon',
+        'permissions',
+        'mtime'
       },
       vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
     })

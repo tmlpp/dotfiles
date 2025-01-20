@@ -11,7 +11,7 @@ return {
 				null_ls.builtins.formatting.black,
         -- JS/TS
 				null_ls.builtins.formatting.prettier,
-				null_ls.builtins.formatting.eslint_d,
+				-- null_ls.builtins.formatting.eslint_d,
 			},
 		})
 		vim.keymap.set("n", "<leader>gF", vim.lsp.buf.format, { desc = "Format buffer" })

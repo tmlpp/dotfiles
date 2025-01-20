@@ -7,13 +7,22 @@ return {
       lspconfig.clangd.setup({
         capabilities = capabilities
       })
+      lspconfig.intelephense.setup({
+        capabilities = capabilities
+      })
       lspconfig.lua_ls.setup({
+        capabilities = capabilities
+      })
+      lspconfig.solargraph.setup({
         capabilities = capabilities
       })
       lspconfig.pyright.setup({
         capabilities = capabilities
       })
-      lspconfig.tsserver.setup({
+      lspconfig.ts_ls.setup({
+        capabilities = capabilities
+      })
+      lspconfig.gopls.setup({
         capabilities = capabilities
       })
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
@@ -30,7 +39,7 @@ return {
     config = function()
       require('mason-lspconfig').setup {
         ensure_installed = {
-          'bashls', 'clangd', 'lua_ls', 'marksman', 'pyright', 'tsserver'
+          'bashls', 'intelephense', 'clangd', 'lua_ls', 'marksman', 'pyright', 'ts_ls'
         }
       }
     end
