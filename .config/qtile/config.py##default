@@ -137,14 +137,17 @@ layout_defaults = dict(
 )
 
 layouts = [
-    layout.Columns(
-        name='COL',
-        border_focus_stack=["#ff0000", "#ffff00"],
-        **border,
-        **layout_defaults,
-    ),
     layout.Max(
         name='MAX',
+    ),
+    layout.Columns(
+        name='COL',
+        border_normal='#f38ba8',
+        border_focus='#fab387',
+        border_normal_stack='#74c7ec',
+        border_focus_stack='#f9e2af',
+        # fair=True,
+        **layout_defaults,
     ),
     layout.TreeTab(),
     #     name='TAB',
@@ -161,8 +164,10 @@ layouts = [
     # layout.Zoomy(),
 ]
 
-fg = '#eeee99'
+# fg = '#eeee99'
+fg = '#cdd6f4'
 bg = '#331133'
+highlight = '#585b70'
 
 widget_defaults = dict(
     font="Ubuntu Mono",
@@ -179,58 +184,20 @@ bar_defaults = dict(
 )
 
 groupbox_defaults = dict(
-    highlight_method = 'border',
+    highlight_method = 'block',
     active = fg,
+    inactive = '#6c7086',
+    block_highlight_text_color = fg,
     borderwidth = 2,
-    this_current_screen_border = fg,
-    this_screen_border = '#aaaaaa',
+    this_current_screen_border = highlight,
+    this_screen_border = '#45475a',
+    other_current_screen_border = '#313244',
+    other_screen_border = '#45475a',
 )
 
+monitored_disks = ['/', '/home', '/amanda', '/cecilia', '/diana', '/ella', '/freya']
 
 screens = [
-    Screen(
-        bottom=bar.Bar(
-            [
-                widget.Clock(format="W%V | %a %d %b | %H:%M"),
-                widget.GroupBox(
-                    **groupbox_defaults,
-                ),
-                widget.DF(
-                    partition='/',
-                    visible_on_warn=False,
-                    format='{p} {uf}{m}|{r:.0f}%'
-                ),
-                widget.DF(
-                    partition='/home',
-                    visible_on_warn=False,
-                    format='{p} {uf}{m}|{r:.0f}%'
-                ),
-                widget.DF(
-                    partition='/amanda',
-                    visible_on_warn=False,
-                ),
-                widget.DF(
-                    partition='/bella',
-                    visible_on_warn=False,
-                ),
-                widget.DF(
-                    partition='/cecilia',
-                    visible_on_warn=False,
-                ),
-                widget.DF(
-                    partition='/diana',
-                    visible_on_warn=False,
-                ),
-                widget.DF(
-                    partition='/ella',
-                    visible_on_warn=False,
-                ),
-                widget.Spacer(length=bar.STRETCH),
-            ],
-            24,
-            **bar_defaults
-        )
-    ),
     Screen(
         top=bar.Bar(
             [
@@ -240,8 +207,9 @@ screens = [
                 ),
                 widget.Prompt(),
                 widget.TaskList(
+                    highlight_method = 'block',
                     max_title_width = 150,
-                    border = fg,
+                    border = highlight,
                 ),
                 # widget.WindowName(),
                 widget.Chord(
@@ -272,7 +240,11 @@ screens = [
                     length_pomodori = 45,
                     length_short_break = 5,
                 ),
-                widget.Volume(),
+                widget.CPU(
+                ),
+                widget.Volume(
+                    emoji=True,
+                ),
                 widget.Memory(),
                 widget.Systray(),
                 widget.Clock(format="W%V | %a %d %b | %H:%M"),
@@ -281,6 +253,28 @@ screens = [
             24,
             **bar_defaults
         ),
+    ),
+    Screen(
+        bottom=bar.Bar(
+            [
+                widget.Clock(format="W%V | %a %d %b | %H:%M"),
+                widget.GroupBox(
+                    **groupbox_defaults,
+                ),
+                *[widget.DF(
+                    partition=i,
+                    visible_on_warn=False,
+                    format='{p} {uf}{m}|{r:.0f}%'
+                ) for i in monitored_disks],
+                widget.TaskList(
+                    max_title_width = 150,
+                    border = fg,
+                ),
+                widget.Spacer(length=bar.STRETCH),
+            ],
+            24,
+            **bar_defaults
+        )
     ),
 ]
 
