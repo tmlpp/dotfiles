@@ -845,7 +845,7 @@ c.tabs.background = True
 ##   - next: After the current tab.
 ##   - first: At the beginning.
 ##   - last: At the end.
-# c.tabs.new_position.unrelated = 'last'
+c.tabs.new_position.unrelated = 'next'
 
 ## Padding around text for tabs
 ## Type: Padding
@@ -1030,6 +1030,7 @@ config.bind(';L', 'hint --rapid links userscript save.url')
 config.bind(';I', 'hint images userscript img-dl-sha1-rename')
 config.bind(';g', 'hint links userscript make_geocache_chapter.py')
 config.bind(';G', 'spawn --userscript make_geocache_chapter.py')
+config.bind(';a', 'spawn --userscript make_geocache_chapter.py')
 # config.bind('<Alt-1>', 'tab-focus 1')
 # config.bind('<Alt-2>', 'tab-focus 2')
 # config.bind('<Alt-3>', 'tab-focus 3')
@@ -1151,7 +1152,8 @@ config.bind('sll', 'cmd-set-text -s :session-load -c') # load session, close cur
 config.bind('slt', 'cmd-set-text -s :session-load -t') # load session temporarily
 config.bind('ssd', 'session-save') # save default
 config.bind('sss', 'session-save -c') # save current
-config.bind('ssn', 'cmd-set-text -s :session-save ') # save with name
+config.bind('ssn', 'cmd-set-text -s :session-save') # save with name
+config.bind('sd', 'cmd-set-text -s :session-delete') # delete session, prompt name
 
 config.bind('sr', 'config-source')
 config.bind('th', 'back -t')
@@ -1169,7 +1171,7 @@ config.bind('tl', 'forward -t')
 # config.bind('wo', 'cmd-set-text -s :open -w')
 # config.bind('wp', 'open -w -- {clipboard}')
 config.bind('wt', 'tab-give')
-config.bind('wT', 'cmd-set-text :tab-give  ')
+config.bind('wT', 'cmd-set-text -s :tab-give')
 # config.bind('xO', 'cmd-set-text :open -b -r {url:pretty}')
 config.bind('xb', 'config-cycle statusbar.show always in-mode')
 # config.bind('xo', 'cmd-set-text -s :open -b')

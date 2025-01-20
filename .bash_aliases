@@ -2,10 +2,13 @@
 alias l='less'
 alias ls='ls -h --color=auto --group-directories-first'
 alias l1='ls -1'
+alias lss='ls -1'
 alias ll='ls -l'
 alias lll='ls -l | less'
 alias la='ls -A'
-alias rm='rm -r'
+alias RM='rm -rf'
+alias rmr='rm -r'
+alias rm.='rm -rfIv $PWD && cd ..'
 alias cd..='cd ..'
 alias df='df -h'
 alias du='du -h'
@@ -19,6 +22,11 @@ alias off='shutdown -h now'
 alias uz='unzip'
 alias q='exit'
 alias cal='cal -m'
+alias y='xclip -i -selection clipboard'
+alias p='xclip -o -selection clipboard'
+alias decrypt="gpg --decrypt"
+alias encrypt="gpg --encrypt"
+alias cat="bat"
 
 # p as in package operations
 alias pU='yay -Suy' 	# update system
@@ -29,6 +37,7 @@ alias pQ='yay -Q'    # list installed
 alias pQi='yay -Qi'  # show package info
 alias pCC='yay -Sc'
 alias pm='pacman'
+alias yeet='yay -Rns'
 
 alias e='$EDITOR'
 
@@ -41,7 +50,6 @@ alias cba='$EDITOR ~/.bash_aliases'
 alias cwee='$EDITOR ~/.weechat/weechat.conf'
 
 # Yadm and git
-alias y='yadm'
 alias g='git'
 alias lg='lazygit'
 alias ly='lazygit -w ~ -g ~/.local/share/yadm/repo.git/'
@@ -123,10 +131,6 @@ alias scudown='systemctl --user stop'
 alias scure='systemctl --user restart'
 alias scuon='systemctl --user enable'
 alias scuoff='systemctl --user disable'
-
-# Downloads
-alias mvdl='find ~/Downloads -mindepth 1 -maxdepth 1 -mmin -5 -exec mv -t . {} +'
-alias mvss='find ~/screenshots -mindepth 1 -maxdepth 1 -mmin -5 -exec mv -t . {} +'
 
 alias today='nvim ~/syncdir/notes/$(date "+%Y-%m-%d").md'
 

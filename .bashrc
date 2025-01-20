@@ -52,5 +52,7 @@ eval "$(pyenv init -)"
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:~/app/tmuxifier/bin
+eval "$(tmuxifier init -)"
 export PYENV_ROOT="$HOME/.pyenv"
-export CDPATH=..:~/study/jamk
+eval "$(fzf --bash)"
