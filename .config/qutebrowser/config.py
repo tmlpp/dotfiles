@@ -904,10 +904,8 @@ c.tabs.position = 'left'
 ## {current_url}: URL of the current web page
 ## {protocol}: Protocol (http/https/...) of the current web page
 ## Type: FormatString
-# c.tabs.title.format = '{index}: {title}'
-# c.tabs.title.format_pinned = '{index}'
-# c.window.title_format = '{title}{title_sep}qutebrowser - {host}'
-c.window.title_format = windowtitle
+c.tabs.title.format = '{index}: {audio} {current_title}'
+c.window.title_format = '{private} {current_title}'
 
 ## The width of the tab bar if it's vertical, in px or as percentage of
 ## the window.
@@ -1172,11 +1170,10 @@ config.bind('tl', 'forward -t')
 # config.bind('wp', 'open -w -- {clipboard}')
 config.bind('wt', 'tab-give')
 config.bind('wT', 'cmd-set-text -s :tab-give')
-# config.bind('xO', 'cmd-set-text :open -b -r {url:pretty}')
-config.bind('xb', 'config-cycle statusbar.show always in-mode')
-# config.bind('xo', 'cmd-set-text -s :open -b')
-config.bind('xt', 'config-cycle tabs.show always switching')
-config.bind('xx', 'config-cycle statusbar.show always in-mode ;; config-cycle tabs.show always switching')
+config.bind('xb', 'config-cycle statusbar.show always never in-mode')
+config.bind('xt', 'config-cycle tabs.show always switching never')
+config.bind('xh', 'set statusbar.show never ;; set tabs.show never')
+config.bind('xs', 'set statusbar.show always ;; set tabs.show always')
 # config.bind('yD', 'yank domain -s')
 # config.bind('yP', 'yank pretty-url -s')
 # config.bind('yT', 'yank title -s')
