@@ -69,6 +69,7 @@ keys = [
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack",),
     Key([mod], "Menu", lazy.spawn("rofi -show run")),
+    Key([mod], "Escape", lazy.spawn("system-menu")),
     Key([mod], "g", lazy.next_screen()),
     Key([mod], "y", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
@@ -76,6 +77,7 @@ keys = [
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([mod, "shift"], "a", add_treetab_section, desc='Prompt to add new section in treetab'),
     Key([mod], 't', lazy.group['scratchpad'].dropdown_toggle('term')),
+    Key([mod], 'c', lazy.group['scratchpad'].dropdown_toggle('calculator')),
 
     # Volume and media
     Key([mod], "F1", lazy.spawn("volume-mute")),
@@ -114,6 +116,11 @@ groups = [
         DropDown("term", terminal,
                  x=0.25, y=0.25,
                  width=0.5, height=0.5,
+                 on_focus_lost_hide=True,
+                 warp_pointer=False),
+        DropDown("calculator", "speedcrunch",
+                 x=0.78, y=0.02,
+                 width=0.2, height=0.3,
                  on_focus_lost_hide=True,
                  warp_pointer=False),
     ]),
@@ -322,3 +329,5 @@ auto_minimize = True
 wl_input_rules = None
 
 wmname = "LG3D"
+
+# /* vim: set filetype=python : */
