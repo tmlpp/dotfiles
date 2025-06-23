@@ -4,6 +4,8 @@ from libqtile.lazy import lazy
 import os
 import subprocess
 
+import my_widgets
+
 mod = "mod4"
 terminal = 'kitty'
 
@@ -208,7 +210,6 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayout(),
                 widget.GroupBox(
                     **groupbox_defaults,
                 ),
@@ -246,6 +247,18 @@ screens = [
                     length_long_break = 35,
                     length_pomodori = 45,
                     length_short_break = 5,
+                my_widgets.Nord_Pool_Current(
+                    vat_percent = 25.5,
+                ),
+                # widget.Pomodoro(
+                #     color_active = fg,
+                #     color_break = fg,
+                #     color_inactive = fg,
+                #     length_long_break = 35,
+                #     length_pomodori = 45,
+                #     length_short_break = 5,
+                # ),
+                widget.NetGraph(
                 ),
                 widget.CPU(
                 ),
@@ -255,6 +268,7 @@ screens = [
                 widget.Memory(),
                 widget.Systray(),
                 widget.Clock(format="W%V | %a %d %b | %H:%M"),
+                widget.CurrentLayout(),
                 # widget.QuickExit(),
             ],
             24,
