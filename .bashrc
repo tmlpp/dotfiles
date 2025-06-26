@@ -56,3 +56,4 @@ export PATH=$PATH:~/app/tmuxifier/bin
 eval "$(tmuxifier init -)"
 export PYENV_ROOT="$HOME/.pyenv"
 eval "$(fzf --bash)"
+. "$HOME/.cargo/env"
