@@ -1,3 +1,4 @@
 #!/bin/bash
 
-qutebrowser --basedir ~/.qutebrowser1
+qutebrowser --basedir ~/.qutebrowser1 &
+echo $! > /tmp/qute-x-pid
