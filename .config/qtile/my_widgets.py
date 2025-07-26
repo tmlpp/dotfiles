@@ -1,6 +1,7 @@
 from libqtile import widget
 from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
+
 import requests
 
 def convert_nord_pool_price(price, vat = 0.0):
@@ -9,7 +10,7 @@ def convert_nord_pool_price(price, vat = 0.0):
 
 flags = {'ee': '🇪🇪', 'fi':'🇫🇮', 'lv': '🇱🇻', 'lt': '🇱🇹'}
 
-class Nord_Pool_Current(widget.base.ThreadPoolText):
+class NordPoolPrice(widget.base.ThreadPoolText):
     defaults = [
         ('update_interval', 60.0, 'Update interval for Nord Pool electricity price widget'),
         ('format', '⚡{flag} {price} c/kWh', 'Bus stop widget format'),
@@ -29,5 +30,5 @@ class Nord_Pool_Current(widget.base.ThreadPoolText):
 
     def __init__(self, **config):
         super().__init__("", **config)
-        self.add_defaults(Nord_Pool_Current.defaults)
+        self.add_defaults(NordPoolPrice.defaults)
 

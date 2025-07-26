@@ -1,5 +1,5 @@
 from libqtile import bar, layout, qtile, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
+from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 import os
 import subprocess
@@ -23,40 +23,42 @@ keys = [
 
     Key([mod, "shift"], "h",
         lazy.layout.shuffle_left(),
-        lazy.layout.move_left().when(layout=["treetab"]),
-        desc="Move window to the left/move tab left in treetab"),
+        lazy.layout.move_left(),
+        desc="Move/shuffle window or tab left"),
     Key([mod, "shift"], "l",
         lazy.layout.shuffle_right(),
-        lazy.layout.move_right().when(layout=["treetab"]),
-        desc="Move window to the right/move tab right in treetab"),
+        lazy.layout.move_right(),
+        desc="Move/shuffle window or tab right"),
     Key([mod, "shift"], "j",
         lazy.layout.shuffle_down(),
-        lazy.layout.move_down().when(layout=["treetab"]),
-        desc="Move window to the right/move tab right in treetab"),
+        lazy.layout.move_down(),
+        desc="Move/shuffle window or tab down"),
     Key([mod, "shift"], "k",
         lazy.layout.shuffle_up(),
-        lazy.layout.move_up().when(layout=["treetab"]),
-        desc="Move window to the right/move tab right in treetab"),
+        lazy.layout.move_up(),
+        desc="Move/shuffle window or tab up"),
 
     Key([mod, "control"], "j",
         lazy.layout.grow(), # Monad
         lazy.layout.grow_down(),
-        lazy.layout.section_down().when(layout=["treetab"]),
+        lazy.layout.section_down(),
         lazy.layout.decrease_nmaster(),
-        desc="Move window to the right/move tab right in treetab"),
+        desc="Grow window down or move to next section."),
     Key([mod, "control"], "k",
         lazy.layout.shrink(), # Monad
         lazy.layout.grow_up(),
-        lazy.layout.section_up().when(layout=["treetab"]),
+        lazy.layout.section_up(),
         lazy.layout.increase_nmaster(),
-        desc="Move window to the right/move tab right in treetab"),
+        desc="Grow window up or move to previous section."),
     Key([mod, "control"], "h",
         lazy.layout.shrink_main(), # Monad
         lazy.layout.grow_left(), # Column, BSP
+        lazy.layout.decrease_ratio(),
         desc="Move window to the right/move tab right in treetab"),
     Key([mod, "control"], "l",
         lazy.layout.grow_main(), # Monad
         lazy.layout.grow_right(), # Column, BSP
+        lazy.layout.increase_ratio(),
         desc="Move window to the right/move tab right in treetab"),
 
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
@@ -96,6 +98,11 @@ keys = [
     Key([mod], "Print", lazy.spawn("scrot -u '%Y-%m-%d_%H%M%S.png' -e 'mv $f ~/screenshots/'")), # Save active window
 
     Key([mod, "control"], "c", lazy.spawn("emacsclient -e '(make-capture-frame)'")),
+    KeyChord([mod], "b", [
+        Key([], "j", lazy.hide_show_bar('bottom')),
+        Key([], "k", lazy.hide_show_bar('top')),
+        Key([], "a", lazy.hide_show_bar()),
+    ])
 ]
 
 groups = [
@@ -158,9 +165,37 @@ layouts = [
         # fair=True,
         **layout_defaults,
     ),
-    layout.TreeTab(),
-    #     name='TAB',
-    # ),
+    layout.TreeTab(
+        name='TAB',
+        bg_color = '000000', # Background color of tabs
+        active_bg = '333333', # Background color of active tab
+        active_fg = 'ffffff', # Foreground color of active tab
+        inactive_bg = '606060', # Background color of inactive tab
+        inactive_fg = 'ffffff', # Foreground color of inactive tab
+        border_width = 0, # Width of the border
+        font = 'sans', # Font
+        fontshadow = None, # font shadow color, default is None (no shadow)
+        fontsize = 14, # Font pixel size.
+        level_shift = 20, # Shift for children tabs
+        margin_left = 0, # Left margin of tab panel
+        margin_y = 0, # Vertical margin of tab panel
+        padding_left = 10, # Left padding for tabs
+        padding_x = 5, # Left padding for tab label
+        padding_y = 5, # Top padding for tab label
+        panel_width = 200, # Width of the left panel
+        place_right = True, # Place the tab panel on the right side
+        previous_on_rm = False, # Focus previous window on close instead of first.
+        section_bottom = 10, # Bottom margin of section
+        section_fg = 'ffffff', # Color of section label
+        section_fontsize = 14, # Font pixel size of section label
+        section_left = 10, # Left margin of section label
+        section_padding = 5, # Bottom of margin section label
+        section_top = 5, # Top margin of section label
+        sections = ['Default', 'Foo', 'Bar'], # Titles of section instances
+        urgent_bg = 'ff0000', # Background color of urgent tab
+        urgent_fg = 'ffffff', # Foreground color of urgent tab
+        vspace = 0, # Space between tabs
+    ),
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
@@ -168,7 +203,6 @@ layouts = [
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
-    # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
 ]
@@ -216,7 +250,8 @@ screens = [
                 widget.Prompt(),
                 widget.TaskList(
                     highlight_method = 'block',
-                    max_title_width = 150,
+                    max_title_width = 200,
+                    title_width_method = 'uniform',
                     border = highlight,
                 ),
                 # widget.WindowName(),
@@ -240,14 +275,7 @@ screens = [
                     prefix_long_break = 'STAND ',
                     prefix_paused = 'AFK',
                 ),
-                widget.Pomodoro(
-                    color_active = fg,
-                    color_break = fg,
-                    color_inactive = fg,
-                    length_long_break = 35,
-                    length_pomodori = 45,
-                    length_short_break = 5,
-                my_widgets.Nord_Pool_Current(
+                my_widgets.NordPoolPrice(
                     vat_percent = 25.5,
                 ),
                 # widget.Pomodoro(
@@ -259,6 +287,8 @@ screens = [
                 #     length_short_break = 5,
                 # ),
                 widget.NetGraph(
+                ),
+                widget.MemoryGraph(
                 ),
                 widget.CPU(
                 ),
@@ -274,8 +304,25 @@ screens = [
             24,
             **bar_defaults
         ),
+        bottom=bar.Bar(
+            [
+                widget.Clock(format="W%V | %a %d %b | %H:%M"),
+                widget.OpenWeather(
+                    location='Jyväskylä',
+                ),
+            ],
+            24,
+            **bar_defaults
+        ),
     ),
     Screen(
+        top=bar.Bar(
+            [
+                widget.Clock(format="W%V | %a %d %b | %H:%M"),
+            ],
+            24,
+            **bar_defaults
+        ),
         bottom=bar.Bar(
             [
                 widget.Clock(format="W%V | %a %d %b | %H:%M"),
