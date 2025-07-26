@@ -54,6 +54,11 @@ function delete_file()
   mp.osd_message(filename .. " permanently deleted", 5)
 end
 
+function show_file_path()
+  local path = mp.get_property("path")
+  mp.osd_message(path, 5)
+end
+
 mp.add_key_binding(nil, "move_to_trash", function()
   trash_file()
   quit_or_next()
@@ -69,4 +74,7 @@ end)
 mp.add_key_binding(nil, "move_to_maybe", function()
   move_file(maybeDir)
   quit_or_next()
+end)
+mp.add_key_binding(nil, "show_file_path", function()
+  show_file_path()
 end)
