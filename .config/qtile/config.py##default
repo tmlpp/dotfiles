@@ -63,12 +63,15 @@ keys = [
 
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen on the focused window",),
+    Key([mod], "m", lazy.window.toggle_minimize(), desc="Toggle fullscreen on the focused window",),
     Key([mod], "bracketright", lazy.screen.next_group()),
     Key([mod], "bracketleft", lazy.screen.prev_group()),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "Tab", lazy.layout.next(), desc="Move window focus to other window"),
     Key([mod, 'shift'], "Tab", lazy.layout.previous(), desc="Move window focus to other window"),
+    Key([mod], "period", lazy.group.next_window(), desc="Move window focus to other window"),
+    Key([mod], "comma", lazy.group.prev_window(), desc="Move window focus to other window"),
     Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack",),
@@ -240,6 +243,11 @@ groupbox_defaults = dict(
 
 monitored_disks = ['/', '/home', '/amanda', '/cecilia', '/diana', '/ella', '/freya']
 
+graph_defaults = dict(
+    border_width = 1,
+    type = 'line',
+    line_width = 1,
+)
 screens = [
     Screen(
         top=bar.Bar(
@@ -278,20 +286,45 @@ screens = [
                 my_widgets.NordPoolPrice(
                     vat_percent = 25.5,
                 ),
-                # widget.Pomodoro(
-                #     color_active = fg,
-                #     color_break = fg,
-                #     color_inactive = fg,
-                #     length_long_break = 35,
-                #     length_pomodori = 45,
-                #     length_short_break = 5,
-                # ),
                 widget.NetGraph(
+                    **graph_defaults,
+                    graph_color = 'a6e3a1',
+                    samples = 20,
+                    bandwidth_type='up',
+                    width = 40,
+                    start_pos = 'bottom',
                 ),
+                widget.NetGraph(
+                    **graph_defaults,
+                    graph_color = 'a6e3a1',
+                    samples = 20,
+                    bandwidth_type='down',
+                    width = 40,
+                    start_pos = 'top',
+                ),
+                # *[
+                #     widget.NetGraph(
+                #         **graph_defaults,
+                #         bandwidth_type=i,
+                #         samples=20,
+                #         width=40,
+                #         # interface='enp42s0',
+                #     ) for i in ['up', 'down']
+                # ],
                 widget.MemoryGraph(
+                    **graph_defaults,
+                    width = 60,
+                    samples = 60,
                 ),
-                widget.CPU(
-                ),
+                *[
+                    widget.CPUGraph(
+                        **graph_defaults,
+                        core = i,
+                        width = 30,
+                        graph_color = 'f9e2af',
+                        samples=15,
+                    ) for i in range(os.cpu_count() // 2)
+                ],
                 widget.Volume(
                     emoji=True,
                 ),
