@@ -1,13 +1,10 @@
 local utils = require("mp.utils")
-local cwd = utils.getcwd()
-local saveDir = cwd .. "/save"
-local maybeDir = cwd .. "/maybe"
 
-function create_directories()
+function create_directory(parent, dir)
   mp.command_native({
     name = "subprocess",
     playback_only = false,
-    args = { "mkdir", "-p", saveDir, maybeDir },
+    args = { "mkdir", "-p", parent .. dir},
   })
 end
 
@@ -21,17 +18,17 @@ function quit_or_next()
   end
 end
 
-function move_file(targetDir)
-  local path = mp.get_property("path")
-  local filename = mp.get_property("filename")
-  create_directories()
-  local newPath = targetDir .. "/" .. filename
+function move_file(target)
+  local sourcePath = mp.get_property("path")
+  local dir, filename = utils.split_path(sourcePath)
+  local destPath = dir .. target.. "/" .. filename
+  create_directory(dir, target)
   mp.command_native({
     name = "subprocess",
     playback_only = false,
-    args = { "mv", path, newPath },
+    args = { "mv", sourcePath, destPath },
   })
-  mp.osd_message(filename .. " moved to " .. targetDir, 5)
+  mp.osd_message(filename .. " moved to ./" .. target, 5)
 end
 
 function trash_file()
@@ -68,13 +65,11 @@ mp.add_key_binding(nil, "delete_permanently", function()
   quit_or_next()
 end)
 mp.add_key_binding(nil, "move_to_save", function()
-  move_file(saveDir)
+  move_file("save")
   quit_or_next()
 end)
 mp.add_key_binding(nil, "move_to_maybe", function()
-  move_file(maybeDir)
+  move_file("maybe")
   quit_or_next()
 end)
-mp.add_key_binding(nil, "show_file_path", function()
-  show_file_path()
-end)
+mp.add_key_binding(nil, "show_file_path", show_file_path)
