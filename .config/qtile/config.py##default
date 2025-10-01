@@ -3,7 +3,6 @@ from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen, Sc
 from libqtile.lazy import lazy
 import os
 import subprocess
-
 import my_widgets
 
 mod = "mod4"
@@ -280,19 +279,6 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 # widget.StatusNotifier(),
-                widget.Pomodoro(
-                    color_active = fg,
-                    color_break = fg,
-                    color_inactive = fg,
-                    length_long_break = 15,
-                    length_pomodori = 20,
-                    length_short_break = 15,
-                    prefix_active = 'SIT ',
-                    prefix_inactive = 'SIT/STAND',
-                    prefix_break = 'STAND ',
-                    prefix_long_break = 'STAND ',
-                    prefix_paused = 'AFK',
-                ),
                 my_widgets.NordPoolPrice(
                     vat_percent = 25.5,
                 ),
@@ -358,6 +344,28 @@ screens = [
                 widget.OpenWeather(
                     location='Jyväskylä',
                 ),
+                *[widget.DF(
+                    partition=i,
+                    visible_on_warn=False,
+                    foreground=colors['base0D'],
+                    warn_color=colors['base09'],
+                    warn_space=2,
+                    format='{p} {uf}{m}|{r:.0f}%'
+                ) for i in monitored_disks],
+                widget.Spacer(length=bar.STRETCH),
+                widget.Pomodoro(
+                    color_active = fg,
+                    color_break = fg,
+                    color_inactive = fg,
+                    length_long_break = 15,
+                    length_pomodori = 20,
+                    length_short_break = 15,
+                    prefix_active = 'SIT ',
+                    prefix_inactive = 'SIT/STAND',
+                    prefix_break = 'STAND ',
+                    prefix_long_break = 'STAND ',
+                    prefix_paused = 'AFK',
+                ),
             ],
             24,
             **bar_defaults
@@ -377,11 +385,6 @@ screens = [
                 widget.GroupBox(
                     **groupbox_defaults,
                 ),
-                *[widget.DF(
-                    partition=i,
-                    visible_on_warn=False,
-                    format='{p} {uf}{m}|{r:.0f}%'
-                ) for i in monitored_disks],
                 widget.TaskList(
                     max_title_width = 150,
                     border = fg,
