@@ -493,11 +493,11 @@ c.downloads.location.directory = '~/Downloads'
 ## Prompt the user for the download location. If set to false,
 ## `downloads.location.directory` will be used.
 ## Type: Bool
-c.downloads.location.prompt = False
+c.downloads.location.prompt = True
 
 ## Remember the last used download directory.
 ## Type: Bool
-# c.downloads.location.remember = True
+c.downloads.location.remember = False
 
 ## What to display in the download filename input.
 ## Type: String
@@ -1046,9 +1046,9 @@ config.bind(';l', 'hint links userscript save.url')
 config.bind(';;', 'spawn --userscript save.url')
 config.bind(';L', 'hint --rapid links userscript save.url')
 config.bind(';I', 'hint images userscript img-dl-sha1-rename')
-config.bind(';g', 'hint links userscript make_geocache_chapter.py')
-config.bind(';G', 'spawn --userscript make_geocache_chapter.py')
-config.bind(';a', 'spawn --userscript make_geocache_chapter.py')
+config.bind(';g', 'spawn --userscript make_geocache_chapter.py')
+config.bind(';c', 'spawn --userscript convert_coordinates.py')
+config.bind('wr', 'devtools ;; reload')
 # config.bind('<Alt-1>', 'tab-focus 1')
 # config.bind('<Alt-2>', 'tab-focus 2')
 # config.bind('<Alt-3>', 'tab-focus 3')

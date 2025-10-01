@@ -9,6 +9,15 @@ import my_widgets
 mod = "mod4"
 terminal = 'kitty'
 
+theme = 'gruvbox-dark-soft'
+
+with open(os.path.expanduser(f'~/.config/qtile/themes/{theme}.yaml'), 'r') as f:
+    colors = {}
+    for l in f.readlines()[2:]:
+        key, val = l.split()[:2]
+        colors[key.strip(':')] = val.strip('"')
+    
+
 # Use the prompt to get a name for new group in treetab layout
 @lazy.layout.function
 def add_treetab_section(layout):
@@ -145,9 +154,11 @@ for i in groups[:-1]:
                 desc=f"move focused window to group {i.label}"),
     ])
 
-border = dict(
-    border_focus='#cccccc',
-    border_normal='#888888',
+borders = dict(
+    border_normal=colors['base04'],
+    border_focus=colors['base07'],
+    border_normal_stack=colors['base0D'],
+    border_focus_stack=colors['base0B'],
 )
 
 layout_defaults = dict(
@@ -161,43 +172,39 @@ layouts = [
     ),
     layout.Columns(
         name='COL',
-        border_normal='#f38ba8',
-        border_focus='#fab387',
-        border_normal_stack='#74c7ec',
-        border_focus_stack='#f9e2af',
-        # fair=True,
+        **borders,
         **layout_defaults,
     ),
     layout.TreeTab(
         name='TAB',
-        bg_color = '000000', # Background color of tabs
-        active_bg = '333333', # Background color of active tab
-        active_fg = 'ffffff', # Foreground color of active tab
-        inactive_bg = '606060', # Background color of inactive tab
-        inactive_fg = 'ffffff', # Foreground color of inactive tab
+        bg_color = colors['base00'], # Background color of tabs
+        active_bg = colors['base07'], # Background color of active tab
+        active_fg = colors['base00'], # Foreground color of active tab
+        inactive_bg = colors['base03'], # Background color of inactive tab
+        inactive_fg = colors['base07'], # Foreground color of inactive tab
         border_width = 0, # Width of the border
-        font = 'sans', # Font
+        font = 'Ubuntu Mono', # Font
         fontshadow = None, # font shadow color, default is None (no shadow)
         fontsize = 14, # Font pixel size.
         level_shift = 20, # Shift for children tabs
         margin_left = 0, # Left margin of tab panel
         margin_y = 0, # Vertical margin of tab panel
-        padding_left = 10, # Left padding for tabs
+        padding_left = 0, # Left padding for tabs
         padding_x = 5, # Left padding for tab label
         padding_y = 5, # Top padding for tab label
         panel_width = 200, # Width of the left panel
         place_right = True, # Place the tab panel on the right side
         previous_on_rm = False, # Focus previous window on close instead of first.
         section_bottom = 10, # Bottom margin of section
-        section_fg = 'ffffff', # Color of section label
+        section_fg = colors['base07'], # Color of section label
         section_fontsize = 14, # Font pixel size of section label
         section_left = 10, # Left margin of section label
         section_padding = 5, # Bottom of margin section label
         section_top = 5, # Top margin of section label
         sections = ['Default', 'Foo', 'Bar'], # Titles of section instances
-        urgent_bg = 'ff0000', # Background color of urgent tab
-        urgent_fg = 'ffffff', # Foreground color of urgent tab
-        vspace = 0, # Space between tabs
+        urgent_bg = colors['base08'], # Background color of urgent tab
+        urgent_fg = colors['base07'], # Foreground color of urgent tab
+        vspace = 3, # Space between tabs
     ),
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -218,8 +225,8 @@ highlight = '#585b70'
 widget_defaults = dict(
     font="Ubuntu Mono",
     fontsize=14,
-    foreground=fg,
-    background=bg,
+    foreground=colors['base07'],
+    background=colors['base00'],
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
@@ -231,14 +238,14 @@ bar_defaults = dict(
 
 groupbox_defaults = dict(
     highlight_method = 'block',
-    active = fg,
-    inactive = '#6c7086',
-    block_highlight_text_color = fg,
+    active = colors['base04'],
+    inactive = colors['base03'],
+    block_highlight_text_color = colors['base00'],
     borderwidth = 2,
-    this_current_screen_border = highlight,
-    this_screen_border = '#45475a',
-    other_current_screen_border = '#313244',
-    other_screen_border = '#45475a',
+    this_current_screen_border = colors['base07'], # Active screen's group active screen
+    other_screen_border = colors['base04'], # Inactive screen's group on active screen
+    this_screen_border = colors['base05'], # Inactive screen's group on inactive screen 
+    other_current_screen_border = colors['base00'], # Active screen's group inactive screen
 )
 
 monitored_disks = ['/', '/home', '/amanda', '/cecilia', '/diana', '/ella', '/freya']
@@ -260,7 +267,10 @@ screens = [
                     highlight_method = 'block',
                     max_title_width = 200,
                     title_width_method = 'uniform',
-                    border = highlight,
+                    foreground = colors['base07'],
+                    border = colors['base07'],
+                    markup_floating = "<i>{}</i>",
+                    markup_focused = f'<span color="#{colors['base00']}">{{}}</span>',
                 ),
                 # widget.WindowName(),
                 widget.Chord(
@@ -288,7 +298,8 @@ screens = [
                 ),
                 widget.NetGraph(
                     **graph_defaults,
-                    graph_color = 'a6e3a1',
+                    graph_color = colors['base09'],
+                    border_color = colors['base09'],
                     samples = 20,
                     bandwidth_type='up',
                     width = 40,
@@ -296,7 +307,8 @@ screens = [
                 ),
                 widget.NetGraph(
                     **graph_defaults,
-                    graph_color = 'a6e3a1',
+                    graph_color = colors['base09'],
+                    border_color = colors['base09'],
                     samples = 20,
                     bandwidth_type='down',
                     width = 40,
@@ -315,13 +327,16 @@ screens = [
                     **graph_defaults,
                     width = 60,
                     samples = 60,
+                    graph_color = colors['base0D'],
+                    border_color = colors['base0D'],
                 ),
                 *[
                     widget.CPUGraph(
                         **graph_defaults,
                         core = i,
                         width = 30,
-                        graph_color = 'f9e2af',
+                        graph_color = colors['base0A'],
+                        border_color = colors['base0A'],
                         samples=15,
                     ) for i in range(os.cpu_count() // 2)
                 ],
