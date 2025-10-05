@@ -2,13 +2,21 @@ from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 import os
+import random
 import subprocess
 import my_widgets
 
 mod = "mod4"
 terminal = 'kitty'
 
-theme = 'gruvbox-dark-soft'
+random_theme = True
+
+if random_theme:
+    themes = ['gruvbox-dark-soft', 'monokai', 'dracula', 'selenized-dark', 'tokyo-city-dark', 'tokyo-night-dark',
+          'tokyo-night-storm', 'zenburn']
+    theme = random.choice(themes)
+else:
+    theme = 'gruvbox-dark-soft'
 
 with open(os.path.expanduser(f'~/.config/qtile/themes/{theme}.yaml'), 'r') as f:
     colors = {}
@@ -216,23 +224,18 @@ layouts = [
     # layout.Zoomy(),
 ]
 
-# fg = '#eeee99'
-fg = '#cdd6f4'
-bg = '#331133'
-highlight = '#585b70'
-
 widget_defaults = dict(
     font="Ubuntu Mono",
     fontsize=14,
     foreground=colors['base07'],
     background=colors['base00'],
-    padding=3,
+    padding=10,
 )
 extension_defaults = widget_defaults.copy()
 
 bar_defaults = dict(
     border_width=[0, 0, 0, 0],
-    border_color=[fg, "000000", fg, "000000"]
+    border_color=[colors['base07'], "000000", colors['base07'], "000000"]
 )
 
 groupbox_defaults = dict(
@@ -240,11 +243,16 @@ groupbox_defaults = dict(
     active = colors['base04'],
     inactive = colors['base03'],
     block_highlight_text_color = colors['base00'],
-    borderwidth = 2,
+    borderwidth = 0,
+    margin_x = 0,
+    margin_y = 3,
+    rounded = False,
     this_current_screen_border = colors['base07'], # Active screen's group active screen
     other_screen_border = colors['base04'], # Inactive screen's group on active screen
     this_screen_border = colors['base05'], # Inactive screen's group on inactive screen 
     other_current_screen_border = colors['base00'], # Active screen's group inactive screen
+    padding_x = 10,
+    padding_y = 8,
 )
 
 monitored_disks = ['/', '/home', '/amanda', '/cecilia', '/diana', '/ella', '/freya']
@@ -254,6 +262,29 @@ graph_defaults = dict(
     type = 'line',
     line_width = 1,
 )
+
+tasklist_defaults = dict(
+    highlight_method = 'block',
+    max_title_width = 200,
+    title_width_method = 'uniform',
+    foreground = colors['base07'],
+    border = colors['base07'],
+    markup_floating = "<i>{}</i>",
+    markup_focused = f'<span color="#{colors['base00']}"><b>{{}}</b></span>',
+    margin=0,
+    padding=5,
+    rounded = False,
+    window_name_location = True,
+)
+
+current_screen_defaults = dict(
+    active_color = colors['base07'],
+    inactive_color = colors['base09'],
+    active_text = '★ ★ ★',
+    inactive_text = '☆ ☆ ☆',
+    fmt='<b>{}</b>'
+)
+
 screens = [
     Screen(
         top=bar.Bar(
@@ -263,15 +294,8 @@ screens = [
                 ),
                 widget.Prompt(),
                 widget.TaskList(
-                    highlight_method = 'block',
-                    max_title_width = 200,
-                    title_width_method = 'uniform',
-                    foreground = colors['base07'],
-                    border = colors['base07'],
-                    markup_floating = "<i>{}</i>",
-                    markup_focused = f'<span color="#{colors['base00']}">{{}}</span>',
+                    **tasklist_defaults,
                 ),
-                # widget.WindowName(),
                 widget.Chord(
                     chords_colors={
                         "launch": ("#ff0000", "#ffffff"),
@@ -282,33 +306,6 @@ screens = [
                 my_widgets.NordPoolPrice(
                     vat_percent = 25.5,
                 ),
-                widget.NetGraph(
-                    **graph_defaults,
-                    graph_color = colors['base09'],
-                    border_color = colors['base09'],
-                    samples = 20,
-                    bandwidth_type='up',
-                    width = 40,
-                    start_pos = 'bottom',
-                ),
-                widget.NetGraph(
-                    **graph_defaults,
-                    graph_color = colors['base09'],
-                    border_color = colors['base09'],
-                    samples = 20,
-                    bandwidth_type='down',
-                    width = 40,
-                    start_pos = 'top',
-                ),
-                # *[
-                #     widget.NetGraph(
-                #         **graph_defaults,
-                #         bandwidth_type=i,
-                #         samples=20,
-                #         width=40,
-                #         # interface='enp42s0',
-                #     ) for i in ['up', 'down']
-                # ],
                 widget.MemoryGraph(
                     **graph_defaults,
                     width = 60,
@@ -332,8 +329,6 @@ screens = [
                 widget.Memory(),
                 widget.Systray(),
                 widget.Clock(format="W%V | %a %d %b | %H:%M"),
-                widget.CurrentLayout(),
-                # widget.QuickExit(),
             ],
             24,
             **bar_defaults
@@ -353,19 +348,23 @@ screens = [
                     format='{p} {uf}{m}|{r:.0f}%'
                 ) for i in monitored_disks],
                 widget.Spacer(length=bar.STRETCH),
-                widget.Pomodoro(
-                    color_active = fg,
-                    color_break = fg,
-                    color_inactive = fg,
-                    length_long_break = 15,
-                    length_pomodori = 20,
-                    length_short_break = 15,
-                    prefix_active = 'SIT ',
-                    prefix_inactive = 'SIT/STAND',
-                    prefix_break = 'STAND ',
-                    prefix_long_break = 'STAND ',
-                    prefix_paused = 'AFK',
+                # widget.Pomodoro(
+                #     color_active = colors['base07'],
+                #     color_break = colors['base07'],
+                #     color_inactive = colors['base07'],
+                #     length_long_break = 15,
+                #     length_pomodori = 20,
+                #     length_short_break = 15,
+                #     prefix_active = 'SIT ',
+                #     prefix_inactive = 'SIT/STAND',
+                #     prefix_break = 'STAND ',
+                #     prefix_long_break = 'STAND ',
+                #     prefix_paused = 'AFK',
+                # ),
+                widget.CurrentScreen(
+                    **current_screen_defaults
                 ),
+                widget.CurrentLayout(),
             ],
             24,
             **bar_defaults
@@ -386,10 +385,13 @@ screens = [
                     **groupbox_defaults,
                 ),
                 widget.TaskList(
-                    max_title_width = 150,
-                    border = fg,
+                    **tasklist_defaults,
                 ),
                 widget.Spacer(length=bar.STRETCH),
+                widget.CurrentScreen(
+                    **current_screen_defaults
+                ),
+                widget.CurrentLayout(),
             ],
             24,
             **bar_defaults
