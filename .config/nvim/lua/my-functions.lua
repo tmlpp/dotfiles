@@ -1,6 +1,6 @@
 -- Copy N last lines of a CSV, paste, and replace first column with current datetime
 function CopyCsvWithDatetime()
-  local n = tonumber(vim.fn.input("How many lines? ", "2"))
+  local n = tonumber(vim.fn.input("How many lines? ", "3"))
   local datetime = os.date("%Y-%m-%d %H:%M")
   local total = vim.fn.line("$")
   local start_line = total - n + 1
