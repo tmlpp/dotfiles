@@ -255,7 +255,7 @@ groupbox_defaults = dict(
     padding_y = 8,
 )
 
-monitored_disks = ['/', '/home', '/amanda', '/cecilia', '/diana', '/ella', '/freya']
+monitored_disks = ['/', '/home', '/amanda', '/bella', '/cecilia', '/diana', '/ella', '/freya']
 
 graph_defaults = dict(
     border_width = 1,
@@ -305,6 +305,9 @@ screens = [
                 # widget.StatusNotifier(),
                 my_widgets.NordPoolPrice(
                     vat_percent = 25.5,
+                    transfer_fee = 1.67331,
+                    energy_tax = 2.253,
+                    notify_price_change = True,
                 ),
                 widget.MemoryGraph(
                     **graph_defaults,
