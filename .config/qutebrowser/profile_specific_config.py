@@ -7,6 +7,7 @@ searchengines = {
     'ghc': 'https://github.com/search?q={}&type=Code',
     'gm': 'https://www.google.com/maps?q={}',
     'i': 'https://www.google.com/images?q={}',
+    'imdb': 'https://www.imdb.com/find/?q={}',
     'r': 'https://reddit.com/r/{}',
     'R': 'https://www.reddit.com/search?q={}',
     'rar': 'https://rarbg.is/torrents.php?search={}',
