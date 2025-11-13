@@ -166,21 +166,31 @@ borders = dict(
     border_focus=colors['base07'],
     border_normal_stack=colors['base0D'],
     border_focus_stack=colors['base0B'],
+    border_width = 2,
 )
 
-layout_defaults = dict(
-    margin = 8,
-    border_width = 2
-)
 
 layouts = [
+    layout.Bsp(
+        margin = 4,
+        **borders,
+    ),
     layout.Max(
         name='MAX',
+        margin = 8,
+    ),
+    layout.MonadTall(
+        margin = 8,
+        **borders,
     ),
     layout.Columns(
         name='COL',
+        margin = 8,
         **borders,
-        **layout_defaults,
+    ),
+    layout.Tile(
+        margin = 8,
+        **borders,
     ),
     layout.TreeTab(
         name='TAB',
@@ -214,12 +224,10 @@ layouts = [
         vspace = 3, # Space between tabs
     ),
     # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
     # layout.Matrix(),
-    # layout.MonadTall(),
     # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
+    # layout.RatioTile(
+    # ),
     # layout.VerticalTile(),
     # layout.Zoomy(),
 ]
