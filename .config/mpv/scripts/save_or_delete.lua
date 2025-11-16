@@ -21,14 +21,19 @@ end
 function move_file(target)
   local sourcePath = mp.get_property("path")
   local dir, filename = utils.split_path(sourcePath)
-  local destPath = dir .. target.. "/" .. filename
-  create_directory(dir, target)
+  local destPath = ""
+  if target == 'watched' then
+    destPath = "/home/teemu/tbw/watched"
+  else
+    destPath = dir .. target.. "/" .. filename
+    create_directory(dir, target)
+  end
   mp.command_native({
     name = "subprocess",
     playback_only = false,
     args = { "mv", sourcePath, destPath },
   })
-  mp.osd_message(filename .. " moved to ./" .. target, 5)
+  mp.osd_message(filename .. " moved to " .. target, 5)
 end
 
 function trash_file()
@@ -70,6 +75,10 @@ mp.add_key_binding(nil, "move_to_save", function()
 end)
 mp.add_key_binding(nil, "move_to_maybe", function()
   move_file("maybe")
+  quit_or_next()
+end)
+mp.add_key_binding(nil, "move_to_watched", function()
+  move_file("watched")
   quit_or_next()
 end)
 mp.add_key_binding(nil, "show_file_path", show_file_path)
