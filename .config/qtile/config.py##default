@@ -9,16 +9,18 @@ import my_widgets
 mod = "mod4"
 terminal = 'kitty'
 
+themes_path = os.path.expanduser('~/.config/qtile/themes/')
+
 random_theme = True
 
 if random_theme:
-    themes = ['gruvbox-dark-soft', 'monokai', 'dracula', 'selenized-dark', 'tokyo-city-dark', 'tokyo-night-dark',
-          'tokyo-night-storm', 'zenburn']
+    with os.scandir(themes_path) as m:
+        themes = [t.name for t in list(m)]
     theme = random.choice(themes)
 else:
     theme = 'gruvbox-dark-soft'
 
-with open(os.path.expanduser(f'~/.config/qtile/themes/{theme}.yaml'), 'r') as f:
+with open(os.path.expanduser(f'~/.config/qtile/themes/{theme}'), 'r') as f:
     colors = {}
     for l in f.readlines()[2:]:
         key, val = l.split()[:2]
@@ -88,7 +90,6 @@ keys = [
     Key([mod, 'shift'], "Tab", lazy.layout.previous(), desc="Move window focus to other window"),
     Key([mod], "period", lazy.group.next_window(), desc="Move window focus to other window"),
     Key([mod], "comma", lazy.group.prev_window(), desc="Move window focus to other window"),
-    Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack",),
     Key([mod], "Menu", lazy.spawn("rofi -show run")),
@@ -120,7 +121,7 @@ keys = [
     KeyChord([mod], "b", [
         Key([], "j", lazy.hide_show_bar('bottom')),
         Key([], "k", lazy.hide_show_bar('top')),
-        Key([], "a", lazy.hide_show_bar()),
+        Key([], "b", lazy.hide_show_bar()),
     ])
 ]
 
@@ -171,29 +172,22 @@ borders = dict(
 
 
 layouts = [
-    layout.Bsp(
-        margin = 4,
-        **borders,
-    ),
     layout.Max(
-        name='MAX',
+        name='0 MAX',
         margin = 8,
     ),
     layout.MonadTall(
+        name = '1 MONADTALL',
         margin = 8,
         **borders,
     ),
-    layout.Columns(
-        name='COL',
-        margin = 8,
-        **borders,
-    ),
-    layout.Tile(
-        margin = 8,
+    layout.Bsp(
+        name = '2 BSP',
+        margin = 4,
         **borders,
     ),
     layout.TreeTab(
-        name='TAB',
+        name='3 TAB',
         bg_color = colors['base00'], # Background color of tabs
         active_bg = colors['base07'], # Background color of active tab
         active_fg = colors['base00'], # Foreground color of active tab
@@ -223,6 +217,16 @@ layouts = [
         urgent_fg = colors['base07'], # Foreground color of urgent tab
         vspace = 3, # Space between tabs
     ),
+    layout.Columns(
+        name='4 COL',
+        margin = 8,
+        **borders,
+    ),
+    layout.Tile(
+        name = '5 TILE',
+        margin = 8,
+        **borders,
+    ),
     # layout.Stack(num_stacks=2),
     # layout.Matrix(),
     # layout.MonadWide(),
@@ -231,6 +235,16 @@ layouts = [
     # layout.VerticalTile(),
     # layout.Zoomy(),
 ]
+
+keys.extend([
+    KeyChord([mod], "space", [
+        Key([], "j", lazy.next_layout(), desc="Toggle between layouts"),
+        Key([], "k", lazy.next_layout(), desc="Toggle between layouts"),
+        Key([], "h", lazy.to_layout_index(0), desc="Switch to default layout"),
+        # Use number keys to switch directly to nth layout. '0' is the first/default
+        *[Key([], str(i), lazy.to_layout_index(i), desc=f'Switch to layout number {i}') for i in range(len(layouts))]
+    ])
+])
 
 widget_defaults = dict(
     font="Ubuntu Mono",
@@ -283,6 +297,7 @@ tasklist_defaults = dict(
     padding=5,
     rounded = False,
     window_name_location = True,
+    window_name_location_offset = 1,
 )
 
 current_screen_defaults = dict(
@@ -315,7 +330,7 @@ screens = [
                     vat_percent = 25.5,
                     transfer_fee = 1.67331,
                     energy_tax = 2.253,
-                    notify_price_change = True,
+                    notify_price_change = False,
                 ),
                 widget.MemoryGraph(
                     **graph_defaults,
